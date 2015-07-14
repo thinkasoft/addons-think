@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <!-- Modificacion sobre la pestaña de del docuemnto XML-->
+        <record model="ir.ui.view" id="account_invoice_extended_form_view">
+            <field name="name">account.invoice.supplier.form.extended</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/group/field[@name='supplier_invoice_number']" position='replace'>
+                	<field name="supplier_invoice_number" on_change="onchange_reference(supplier_invoice_number)"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
