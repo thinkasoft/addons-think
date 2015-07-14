@@ -6,11 +6,11 @@
 		"hr"
 	],
 	'author' : "Me",
-	'description' :
-	"""\
-	fields added:
+	'description' : """\
+fields added:
 		- Rif [Text]
 		- Retencion [integer]""",
-	'update_xml': ["view/hr_employee_extended.xml"],
-
-}
+	'data' : [
+		'view/hr_employee_extended.xml',
+	],
+} 
