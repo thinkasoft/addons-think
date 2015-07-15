@@ -15,7 +15,8 @@
     "update_xml" : [
                 #'security/ir.model.access.csv',
                 'view/xml_islr_payroll_view.xml',
-                'view/xml_islr_payroll_view_extended.xml'
+                'view/xml_islr_payroll_view_extended.xml',
+                "report/islr_wh_report.xml",
                 #'islr_wh_report.xml',
     ],
     "installable": True,

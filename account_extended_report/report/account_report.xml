@@ -7,7 +7,7 @@
             model="account.invoice"
             name="account.invoice2"
             rml="account_extended_report/report/account_print_invoice2.rml"
-            string="Invoices"
+            string="Invoices jajaja"
             attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
             attachment_use="True"
             usage="default"
