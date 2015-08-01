@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+<!-- Add instructor field to existing view -->
+
+		<record model="ir.ui.view" id="tire_fleet_extended_form_view">
+			<field name="name">view.tires.fleet.extended</field>
+			<field name="model">fleet.vehicle</field>
+			<field name="inherit_id" ref="fleet.fleet_vehicle_form" />
+			<field name="arch" type="xml">
+					<sheet>
+					 	<notebook>
+	                            <page string="CAUCHOS - ROTACIONES">
+	                                <group>
+	                                     <field name="marca"/>
+					                     <field name="modelo"/>
+					                     <field name="medida"/>
+					                     <field name="Fecha_Rotacion"/>
+					                     <field name="Posicion_actual"/>
+	                                </group>
+	                            </page>
+	                 	</notebook>
+	                 </sheet>
+			</field>
+		</record> 
+
+	</data>
+</openerp>
