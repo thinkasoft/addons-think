@@ -8,19 +8,75 @@
 			<field name="model">fleet.vehicle</field>
 			<field name="inherit_id" ref="fleet.fleet_vehicle_form" />
 			<field name="arch" type="xml">
-					<sheet>
-					 	<notebook>
-	                            <page string="CAUCHOS - ROTACIONES">
-	                                <group>
-	                                     <field name="marca"/>
-					                     <field name="modelo"/>
-					                     <field name="medida"/>
-					                     <field name="Fecha_Rotacion"/>
-					                     <field name="Posicion_actual"/>
-	                                </group>
-	                            </page>
-	                 	</notebook>
-	                 </sheet>
+				<xpath expr='//sheet' position="replace">
+						<sheet> 
+                        <field name="image_medium" widget="image" class="oe_left oe_avatar"/> 
+                        <div class="oe_title">
+                            <label for="model_id" class="oe_edit_only"/>
+                            <h1>
+                                <field name="model_id" class="oe_inline" on_change="on_change_model(model_id)"/>
+                            </h1>
+                            <label for="license_plate" class="oe_edit_only"/>
+                            <h2>
+                                <field name="license_plate" class="oe_inline"/>
+                            </h2>
+                            <label for="tag_ids" class="oe_edit_only"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </div>
+                        <div class="oe_right oe_button_box">
+                            <button name="return_action_to_open" type="object" context="{'xml_id':'fleet_vehicle_log_contract_act'}" string="Contracts" help="show the contract for this vehicle"/>
+                            <button name="act_show_log_cost" type="object" string="Costs" help="show all the costs for this vehicle" groups="fleet.group_fleet_manager"/>
+                            <button name="return_action_to_open" type="object" context="{'xml_id':'fleet_vehicle_log_services_act'}" string="Services" help="show the services logs for this vehicle"/>
+                            <button name="return_action_to_open" type="object" context="{'xml_id':'fleet_vehicle_log_fuel_act'}" string="Fuel Logs" help="show the fuel logs for this vehicle"/>
+                            <button name="return_action_to_open" type="object" context="{'xml_id':'fleet_vehicle_odometer_act'}" string="Odometer Logs" help="show the odometer logs for this vehicle"/>
+                        </div>  
+						<notebook>
+							<page string="Colocar nombre">
+								<group col="2" string="General Properties">
+                            <group>
+                                <field name="driver_id"/>
+                                <field name="location"/>
+                                <field name="vin_sn"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group>
+                                <label for="odometer"/>
+                                <div>
+                                    <field name="odometer" class="oe_inline"/>
+                                    <field name="odometer_unit" class="oe_inline"/>
+                                </div>
+                                <field name="acquisition_date"/>
+                                <field name="car_value"/>
+                            </group>
+                        </group>
+                        <group col="2">
+                            <group string="Additional Properties">
+                                <field name="seats"/>
+                                <field name="doors"/>
+                                <field name="color"/>
+                            </group>
+                            <group string="Engine Options">
+                                <field name="transmission"/>
+                                <field name="fuel_type"/>
+                                <field name="co2"/>
+                                <field name="horsepower"/>
+                                <field name="horsepower_tax"/>
+                                <field name="power"/>
+                            </group>  
+                        </group>
+							</page>
+							<page string="CAUCHOS - ROTACIONES">
+                            	<group>
+	                                 <field name="marca"/>
+				                     <field name="modelo"/>
+				                     <field name="medida"/>
+				                     <field name="Fecha_Rotacion"/>
+				                     <field name="Posicion_actual"/>
+                            	</group>
+                			</page>
+                    	</notebook>
+                	</sheet>
+                </xpath>
 			</field>
 		</record> 
 
