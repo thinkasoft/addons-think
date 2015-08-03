@@ -19,11 +19,11 @@
 #
 ##############################################################################
 {
-    'name' : 'Factura Rialca',
-    'version' : '1.1',
-    'author' : 'OpenERP SA',
-    'category' : 'Accounting & Finance',
-    'description' : """
+    'name': 'Factura Rialca',
+    'version': '1.1',
+    'author': 'www.thinkasoft.com',
+    'category': 'Accounting & Finance',
+    'description': """
 Accounting and Financial Management.
 ====================================
 
@@ -44,14 +44,17 @@ Creates a dashboard for accountants that includes:
     * Company Analysis
     * Graph of Treasury
 
-The processes like maintaining of general ledger is done through the defined financial Journals (entry move line orgrouping is maintained through journal) 
-for a particular financial year and for preparation of vouchers there is a module named account_voucher.
+The processes like maintaining of general ledger is done through the defined
+financial Journals (entry move line orgrouping is maintained through journal)
+
+for a particular financial year and for preparation of vouchers there is a
+module named account_voucher.
     """,
-    'depends' : ['account'],
+    'depends': ['account'],
     'data': [
-        
+
         'report/account_report.xml',
-        
+
     ],
     'installable': True,
     'auto_install': False,

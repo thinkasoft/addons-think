@@ -1,14 +1,15 @@
-from openerp.osv import osv, fields
+from openerp.osv import osv
 
-class Account_invoice_extended( osv.Model ):
-	"""Inherited account.invoice"""
 
-	_inherit = 'account.invoice'
+class Account_invoice_extended (osv.Model):
+    """Inherited account.invoice"""
 
-	def onchange_reference(self, cr, uid, ids, supplier_invoice_number, context=None):
+    _inherit = 'account.invoice'
 
-		context = context or {}
+    def onchange_reference(self, cr, uid, ids, supplier_invoice_number,
+                           context=None):
 
-		return {'value': {'reference': supplier_invoice_number, }}
+        context = context or {}
+        return {'value': {'reference': supplier_invoice_number, }}
 
 Account_invoice_extended()

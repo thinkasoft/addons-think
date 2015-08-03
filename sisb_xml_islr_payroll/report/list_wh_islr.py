@@ -4,7 +4,7 @@
 #    Module Writen to OpenERP, Open Source Management Solution
 #    Copyright (C) OpenERP Venezuela (<http://openerp.com.ve>).
 #    All Rights Reserved
-###############Credits######################################################
+# ##############Credits######################################################
 #    Coded by: Yanina Gabriela Aular Osorio  <yanina.aular@vauxoo.com>
 #    Planified by: Nhomar Hernandez
 #    Finance by: Helados Gilda, C.A. http://heladosgilda.com.ve
@@ -25,12 +25,12 @@
 ##############################################################################
 
 from openerp.report import report_sxw
-from openerp.osv import osv
+
 
 class list_wh_islr(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context):
-    	super(list_wh_islr, self).__init__(cr, uid, name, context=context)    
+        super(list_wh_islr, self).__init__(cr, uid, name, context=context)
 
 
 report_sxw.report_sxw(
@@ -39,4 +39,4 @@ report_sxw.report_sxw(
     rml='sisb_xml_islr_payroll/report/list_wh_islr_report.rml',
     parser=list_wh_islr,
     header=False
-) 
+)
