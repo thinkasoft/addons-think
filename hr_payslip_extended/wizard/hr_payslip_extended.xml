@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		
+    <record id="view_hr_payslip_extended" model="ir.ui.view">
+            <field name="name">AGREGAR NOMBRE</field>
+            <field name="model">hr.payslip.extended</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet Profit" version="7.0">
+                   <sheet>
+                       <group> 
+                           <label string="Period" />
+                           <div>
+                            <field name="period_id"/>
+                           </div>
+                       </group>
+                   </sheet>
+               </form>
+            </field>
+        </record>
+
+    <record id="action_hr_payslip_extended" model="ir.actions.act_window">
+            <field name="name">AGREGAR NOMBRE</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payslip.extended</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+    </record>
+
+		<menuitem parent="hr_payroll.menu_hr_root_payroll" id="nomina_2" action="action_hr_payslip_extended" sequence="2"/>
+	</data>
+</openerp>
