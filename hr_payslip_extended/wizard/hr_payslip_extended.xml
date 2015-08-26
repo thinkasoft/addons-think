@@ -11,7 +11,7 @@
                        <group> 
                            <label string="Period" />
                            <div>
-                            <field name="period_id"/>
+                            <field name="period_id" on_change="on_change_method(period_id)"/>
                            </div>
                        </group>
                    </sheet>
@@ -28,6 +28,6 @@
             <field name="target">new</field>
     </record>
 
-		<menuitem parent="hr_payroll.menu_hr_root_payroll" id="nomina_2" action="action_hr_payslip_extended" sequence="2"/>
+		<menuitem parent="hr_payroll.menu_hr_root_payroll" id="payroll_2" action="action_hr_payslip_extended" sequence="2"/>
 	</data>
 </openerp>
