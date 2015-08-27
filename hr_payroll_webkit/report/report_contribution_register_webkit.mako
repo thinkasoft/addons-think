@@ -39,34 +39,34 @@
 		<table class="list_table"  width="100%">
     		<thead>
     			<tr>
-	    			<th style="text-align:left;">${_("PaySlip Name")}</th>
-	    			<th style="text-align:left;">${_("Code")}</th>
-	    			<th style="text-align:left;">${_("Name")}</th>
+	    			<th style="text-align:left;">${_("Vat")}</th>
+	    			<th style="text-align:left;">${_("Employee")}</th>
 	    			<th style="text-align:right;">${_("Quantity/Rate")}</th>
-	    			<th style="text-align:right;" >${_("Amount")}</th>
-	    			<th style="text-align:right;" >${_("Total")}</th>
+	    			<th style="text-align:left;">${_("R.P.V.H")}</th>
+	    			<th style="text-align:right;" >${_("FAOV")}</th>
+	    			<th style="text-align:right;" >${_("Monto")}</th>
     			</tr>
     		</thead>
     		%for line in (get_payslip_lines(o)):
     			<tbody >
             	<tr>
 	                <td style="text-align:left;">
-	                	${line.get('payslip_name') or '' |entity}
+	                	${line.get('payslip_employeeid') or '' |entity}
 					 </td>
             		<td style="text-align:left;">
-            			${line['code'] or '' |entity} 
+            			${line['payslip_name'] or '' |entity} 
             		</td>
             		<td style="text-align:left;">
-            			${line['name'] or '' |entity} 
+            			${formatLang(line['amount']) or 0.0 |entity} 
             		</td>
             		<td>
-            			${formatLang(line['quantity']) or 0.0 |entity} 
+            			${formatLang(line['rpvh']) or 0.0 |entity} 
             		</td>
             		<td style="text-align:right;">
-            			${formatLang(line['amount'])or 0.0 |entity} 
+            			${formatLang(line['faov']) or 0.0 |entity} 
             		</td>
             		<td style="text-align:right;">
-            			${formatLang(line['total'], currency_obj = o.company_id and o.company_id.currency_id)}
+            			${formatLang(line['mount'], currency_obj = o.company_id and o.company_id.currency_id)}
             		</td>
             	</tr>
             	</tbody>
