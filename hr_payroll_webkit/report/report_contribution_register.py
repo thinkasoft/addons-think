@@ -63,38 +63,36 @@ class contribution_register_report(report_sxw.rml_parse):
         ids_ant = 0
         self.cr.execute("SELECT pl.id from hr_payslip_line as pl "
                         "LEFT JOIN hr_payslip AS hp on (pl.slip_id = hp.id) "
-                        "WHERE (hp.date_from >= %s) AND (hp.date_to <= %s) "
-                        "AND pl.register_id = %s "
+                        "WHERE (%s <= hp.date_to) AND (hp.date_to <= %s)"
                         "AND hp.state = 'done' "
                         "ORDER BY hp.employee_id",
-                        (self.date_from, self.date_to, obj.id))
+                        (self.date_from, self.date_to))
         payslip_lines = [x[0] for x in self.cr.fetchall()]
         for line in payslip_line.browse(self.cr, self.uid, payslip_lines):
-            if ids_ant == line.slip_id.employee_id.id:
-                dic['amount'] += line.amount
-                if dic['amount'] != 0.0:
+            print line.code, line.slip_id.employee_id.name_related, self.date_from, self.date_to
+            if line.code == '039':
+                if ids_ant == line.slip_id.employee_id.id:
+                    print line.id, line.slip_id.employee_id.name_related, line.amount
+                    dic['amount'] += line.amount
                     dic['rpvh'] = dic['amount'] / 100
                     dic['faov'] = dic['amount'] * 2 / 100
                     dic['mount'] = dic['rpvh'] + dic['faov']
                 else:
-                    dic['rpvh'] = 0
-                    dic['faov'] = 0
-                    dic['mount'] = 0
-            else:
-                dic = {
-                    'payslip_name': line.slip_id.employee_id.name_related,
-                    'payslip_employeeid':
-                    line.slip_id.employee_id.identification_id,
-                    'payslip_namerelated':
-                    line.slip_id.employee_id.name_related,
-                    'amount': line.amount,
-                    'rpvh': float(line.amount) / 100,
-                    'faov': float(line.amount) * 2 / 100,
-                    'mount': (float(line.amount) / 100) +
-                    (float(line.amount) * 2) / 100
-                }
-                ids_ant = line.employee_id.id
-                res.append(dic)
+                    dic = {
+                        'payslip_name': line.slip_id.employee_id.name_related,
+                        'payslip_employeeid':
+                        line.slip_id.employee_id.identification_id,
+                        'payslip_namerelated':
+                        line.slip_id.employee_id.name_related,
+                        'amount': line.total,
+                        'rpvh': float(line.amount) / 100,
+                        'faov': float(line.amount) * 2 / 100,
+                        'mount': (float(line.amount) / 100) +
+                        (float(line.amount) * 2) / 100
+                    }
+                    print line.id, line.slip_id.employee_id.name_related, line.amount
+                    ids_ant = line.employee_id.id
+                    res.append(dic)
         return res
 
 report_sxw.report_sxw(
