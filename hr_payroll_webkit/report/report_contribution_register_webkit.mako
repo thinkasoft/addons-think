@@ -47,6 +47,7 @@
 	    			<th style="text-align:right;" >${_("Monto")}</th>
     			</tr>
     		</thead>
+    		<% total = 0.0%>
     		%for line in (get_payslip_lines(o)):
     			<tbody >
             	<tr>
@@ -70,6 +71,7 @@
             		</td>
             	</tr>
             	</tbody>
+            	<% total += line['mount']%>
     		%endfor
     	</table>
 		<table class="list_table" width="30%" style="border-top:1px solid #ccc">
@@ -80,7 +82,7 @@
     				<table  >
     				    <tr>
     				        <td style="text-align:left;border-top:0px" ><b>${_("Total :")}</b></td>
-                            <td style="text-align:right;border-top:0px" >${formatLang(sum_total(), currency_obj = o.company_id and o.company_id.currency_id) or 0.0}</td>
+                            <td style="text-align:right;border-top:0px" >${formatLang(total, currency_obj = o.company_id and o.company_id.currency_id) or 0.0}</td>
     				    </tr>
     				</table>
 	    			</td>

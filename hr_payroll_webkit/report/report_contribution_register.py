@@ -100,8 +100,6 @@ class contribution_register_report(report_sxw.rml_parse):
                 }
                 ids_ant = line.employee_id.id
                 res.append(dic)
-
-            self.regi_total += line.total
         return res
 
 report_sxw.report_sxw(
