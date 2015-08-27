@@ -67,7 +67,7 @@
             			${formatLang(line['faov']) or 0.0 |entity} 
             		</td>
             		<td style="text-align:right;">
-            			${formatLang(line['mount'], currency_obj = o.company_id and o.company_id.currency_id)}
+            			${formatLang(line['mount'], currency_obj = o.company_id and o.company_id.currency_id) or 0.0}
             		</td>
             	</tr>
             	</tbody>

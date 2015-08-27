@@ -32,7 +32,6 @@ class contribution_register_report(report_sxw.rml_parse):
         )
         self.localcontext.update({
             'get_payslip_lines': self._get_payslip_lines,
-            'sum_total': self.sum_total,
         })
 
     def set_context(self, objects, data, ids, report_type=None):
@@ -56,35 +55,31 @@ class contribution_register_report(report_sxw.rml_parse):
             report_type=report_type
         )
 
-    def sum_total(self):
-        return self.regi_total
-
     def _get_payslip_lines(self, obj):
         payslip_line = self.pool.get('hr.payslip.line')
         payslip_lines = []
         res = []
         dic = {}
         ids_ant = 0
-        self.regi_total = 0.0
         self.cr.execute("SELECT pl.id from hr_payslip_line as pl "
                         "LEFT JOIN hr_payslip AS hp on (pl.slip_id = hp.id) "
                         "WHERE (hp.date_from >= %s) AND (hp.date_to <= %s) "
                         "AND pl.register_id = %s "
                         "AND hp.state = 'done' "
-                        "ORDER BY pl.employee_id",
+                        "ORDER BY hp.employee_id",
                         (self.date_from, self.date_to, obj.id))
         payslip_lines = [x[0] for x in self.cr.fetchall()]
         for line in payslip_line.browse(self.cr, self.uid, payslip_lines):
             if ids_ant == line.slip_id.employee_id.id:
                 dic['amount'] += line.amount
                 if dic['amount'] != 0.0:
-                    dic['rpvh'] = float(dic['amount']) / 100,
-                    dic['faov'] = float(float(float(dic['amount']) * 2) / 100),
+                    dic['rpvh'] = dic['amount'] / 100
+                    dic['faov'] = dic['amount'] * 2 / 100
                     dic['mount'] = dic['rpvh'] + dic['faov']
                 else:
-                    dic['rpvh'] = 0.00
-                    dic['faov'] = 0.00
-                    dic['mount'] = 0.00
+                    dic['rpvh'] = 0
+                    dic['faov'] = 0
+                    dic['mount'] = 0
             else:
                 dic = {
                     'payslip_name': line.slip_id.employee_id.name_related,
@@ -94,7 +89,7 @@ class contribution_register_report(report_sxw.rml_parse):
                     line.slip_id.employee_id.name_related,
                     'amount': line.amount,
                     'rpvh': float(line.amount) / 100,
-                    'faov': float(line.amount * 2) / 100,
+                    'faov': float(line.amount) * 2 / 100,
                     'mount': (float(line.amount) / 100) +
                     (float(line.amount) * 2) / 100
                 }
