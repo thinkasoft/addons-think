@@ -19,19 +19,15 @@
 #
 ##############################################################################
 {
-    'name': 'Invoice Rialca',
-    'version': '1.1',
-    'author': 'Ingenieria Thinkasoft de Venezuela',
-    'category': 'Accounting & Finance',
-    'description': """""",
-    'depends': ['account'],
-    'data': [
-
-        'report/account_report.xml',
-
+    'name': "Contract extension",
+    'category': "Accounting",
+    'version': "1.0",
+    'depends': [
+        "hr"
     ],
+    'author': "Ingenieria Thinkasoft de Venezuela",
+    'description': """""",
     'website': 'http://www.thinkasoft.com',
+    'update_xml': ["view/hr_contract_extended.xml"],
     'installable': True,
-    'auto_install': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

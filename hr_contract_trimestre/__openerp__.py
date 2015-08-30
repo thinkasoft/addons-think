@@ -1,5 +1,5 @@
 {
-    'name': "Contract extension",
+    'name': "Contract trimestre extension",
     'category': "Test",
     'version': "1.0",
     'depends': [

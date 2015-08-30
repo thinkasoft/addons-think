@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-    <!-- Modificacion sobre la pestaña de del docuemnto XML-->
         <record model="ir.ui.view" id="account_invoice_extended_form_view">
             <field name="name">account.invoice.supplier.form.extended</field>
             <field name="model">account.invoice</field>
