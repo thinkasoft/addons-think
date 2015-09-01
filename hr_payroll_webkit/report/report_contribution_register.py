@@ -61,13 +61,18 @@ class contribution_register_report(report_sxw.rml_parse):
         res = []
         dic = {}
         ids_ant = 0
-        self.cr.execute("SELECT pl.id from hr_payslip_line as pl "
-                        "LEFT JOIN hr_payslip AS hp on (pl.slip_id = hp.id) "
-                        "WHERE (%s <= hp.date_to) AND (hp.date_to <= %s)"
-                        "AND pl.code = %s"
-                        "AND hp.state = 'done' "
-                        "ORDER BY hp.employee_id",
-                        (self.date_from, self.date_to, '039'))
+        self.cr.execute(
+            "SELECT pl.id from "
+            "hr_payslip_line as pl,"
+            "hr_payslip AS hp,"
+            "hr_employee AS he "
+            "WHERE pl.slip_id = hp.id "
+            "AND pl.employee_id = he.id "
+            "AND (%s <= hp.date_to) AND (hp.date_to <= %s) "
+            "AND pl.code = '039' "
+            "AND hp.state = 'done' "
+            "ORDER BY he.identification_id",
+            (self.date_from, self.date_to))
         payslip_lines = [x[0] for x in self.cr.fetchall()]
         for line in payslip_line.browse(self.cr, self.uid, payslip_lines):
             if ids_ant == line.slip_id.employee_id.id:
