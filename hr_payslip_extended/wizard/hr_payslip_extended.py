@@ -7,32 +7,38 @@
 #    Developed by: thinkasoft , C.A.
 ##############################################################################
 
-from openerp.osv import fields, osv
+import time
 import pdb
+
+from openerp.osv import fields, osv
+from datetime import datetime
+from dateutil import relativedelta
 
 
 class hr_payslip_extended(osv.osv):
 
     _name = 'hr.payslip.extended'
+    _description = 'PaySlip Lines by Contribution Registers'
     _columns = {
-        'period_id': fields.many2one(
-            'account.period', 'Period', readonly=False,
-            help="Period when the accounts entries were done"),
+        'date_from': fields.date('Date From', required=True),
+        'date_to': fields.date('Date To', required=True),
     }
+
     _defaults = {
+        'date_from': lambda *a: time.strftime('%Y-%m-01'),
+        'date_to': lambda *a: str(datetime.now() + relativedelta.relativedelta(months=+1, day=1, days=-1))[:10],
     }
 
-    def on_change_method(self, cr, uid, period_id, context=None):
-        context = {}
+    def print_report(self, cr, uid, ids, context=None):
 
-        obj_hp = self.pool.get('hr.payslip')
-        obj_hp_line = self.pool.get('hr.payslip.line')
-        lista = obj_hp.search(
-            cr, uid,
-            [("period_id", "=", period_id)],
-            order="employee_id", context=context
-        )
-        brw = obj_hp_line.browse(cr, uid, lista, context=context)
-
-        return {}
+        datas = {
+            'ids': context.get('active_ids', []),
+            'model': 'hr.payslip.extended',
+            'form': self.read(cr, uid, ids, [], context=context)[0]
+        }
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'hr.payslip.extended.mako',
+            'datas': datas,
+        }
 hr_payslip_extended()

@@ -11,5 +11,6 @@
     'author': "www.thinkasoft.com",
     'data': [
         'wizard/hr_payslip_extended.xml',
+        'report/report_hr_payslip_extended.xml'
     ],
 }

@@ -3,24 +3,24 @@
 	<data>
 		
     <record id="view_hr_payslip_extended" model="ir.ui.view">
-            <field name="name">AGREGAR NOMBRE</field>
+            <field name="name">hr.payslip.extended</field>
             <field name="model">hr.payslip.extended</field>
             <field name="arch" type="xml">
                 <form string="Timesheet Profit" version="7.0">
-                   <sheet>
-                       <group> 
-                           <label string="Period" />
-                           <div>
-                            <field name="period_id" on_change="on_change_method(period_id)"/>
-                           </div>
-                       </group>
-                   </sheet>
+                <header>
+                    <button name="print_report" string="Print" type="object" icon="gtk-print" class="oe_highlight"/>
+                </header>
+                <group col="4" colspan="6">
+                    <field name="date_from"/>
+                    <newline/>
+                    <field name="date_to"/>
+                </group>
                </form>
             </field>
         </record>
 
     <record id="action_hr_payslip_extended" model="ir.actions.act_window">
-            <field name="name">AGREGAR NOMBRE</field>
+            <field name="name">Inces</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hr.payslip.extended</field>
             <field name="view_type">form</field>
@@ -28,6 +28,13 @@
             <field name="target">new</field>
     </record>
 
-		<menuitem parent="hr_payroll.menu_hr_root_payroll" id="payroll_2" action="action_hr_payslip_extended" sequence="2"/>
+    <record model="ir.values" id="payroll_2">
+            <field name="model_id" ref="model_hr_payslip_extended" />
+            <field name="name">hr.contribution.register</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_hr_payslip_extended'))" />
+            <field name="key">action</field>
+            <field name="model">hr.contribution.register</field>
+        </record>
 	</data>
 </openerp>
