@@ -19,6 +19,7 @@ class HrPayrollWeekend(osv.osv):
     '''
     _inherit = 'hr.payslip'
 
+    # Caculate weekend and Mondays
     def calculate_weekend(self, cr, uid, ids, date_from, date_to, contract_ids, context=None):
         weekend = [5, 6]
         sunday = [0]
@@ -54,6 +55,7 @@ class HrPayrollWeekend(osv.osv):
         print res
         return res
 
+    # Replace method onchange_employee_id located in hr_payroll line 641
     def onchange_employee_id_1(self, cr, uid, ids, date_from, date_to, employee_id=False, contract_id=False, context=None):
         res = super(HrPayrollWeekend, self).onchange_employee_id(cr, uid, ids, date_from, date_to, employee_id, contract_id, context)
         weekend_id = self.calculate_weekend(cr, uid, ids, date_from, date_to, contract_id, context)
@@ -61,6 +63,7 @@ class HrPayrollWeekend(osv.osv):
         res['value']['worked_days_line_ids'] += weekend_id
         return res
 
+    # Replace method onchange_contract_id located in hr_payroll 712
     def onchange_contract_id_1(
         self, cr, uid, ids, date_from, date_to, employee_id=False,
         contract_id=False, context=None

@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name': "Weekend Payroll Calculation",
+    'name': "Calculation Monday and weekends",
     'category': "Human Resources",
     'version': "1.0",
     'depends': [
@@ -27,9 +27,9 @@
     ],
     'author': "Ingenieria Thinkasoft de Venezuela",
     'description': """
-Weekend payroll calculation
-============================
-    Calculate weekends from a period od time.
+Calculation weekends and Mondays
+================================
+    Calculate weekends and Mondays from a period of time.
 
     fields:
 
