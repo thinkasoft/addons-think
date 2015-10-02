@@ -11,6 +11,7 @@
 from openerp.osv import osv
 from datetime import datetime
 from dateutil import rrule
+from openerp.tools.translate import _
 
 
 class HrPayrollWeekend(osv.osv):
@@ -34,7 +35,7 @@ class HrPayrollWeekend(osv.osv):
 
             res = []
             attendances_weekend = {
-                'name': "Not Working days paid at 100%",
+                'name': _('Not Working days paid at 100%'),
                 'sequence': 1,
                 'code': 'Weekend',
                 'number_of_days': totalweekemd.count(),
@@ -43,9 +44,9 @@ class HrPayrollWeekend(osv.osv):
             }
 
             attendances_sunday = {
-                'name': "Lunes",
+                'name': _('Monday'),
                 'sequence': 2,
-                'code': 'Lunes',
+                'code': 'Monday',
                 'number_of_days': totalsunday.count(),
                 'number_of_hours': 0.0,
                 'contract_id': contract.id,
@@ -59,25 +60,25 @@ class HrPayrollWeekend(osv.osv):
         inputs = []
         for contract in self.pool.get('hr.contract').browse(cr, uid, [contract_ids], context=context):
             expenses = {
-                'name': 'Expenses',
+                'name': _('Expenses'),
                 'code': 'Expenses',
                 'amount': 0,
                 'contract_id': contract.id,
             }
-            other_incomes = {
-                'name': 'Other incomes',
-                'code': 'Other incomes',
-                'amount': 0,
-                'contract_id': contract.id,
-            }
             difference = {
-                'name': 'Difference',
+                'name': _('Difference'),
                 'code': 'Difference',
                 'amount': 0,
                 'contract_id': contract.id,
             }
+            other_incomes = {
+                'name': _('Other incomes'),
+                'code': 'Other incomes',
+                'amount': 0,
+                'contract_id': contract.id,
+            }
 
-            inputs = [expenses] + [other_incomes] + [difference]
+            inputs = [expenses] + [difference] + [other_incomes]
             print inputs
         return inputs
 
