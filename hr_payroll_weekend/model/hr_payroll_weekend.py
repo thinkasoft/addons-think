@@ -24,43 +24,72 @@ class HrPayrollWeekend(osv.osv):
         weekend = [5, 6]
         sunday = [0]
 
-        contract = self.pool.get('hr.contract').browse(cr, uid, contract_ids, context=context)
-        date_from = datetime.strptime(date_from, "%Y-%m-%d")
-        date_to = datetime.strptime(date_to, "%Y-%m-%d")
+        for contract in self.pool.get('hr.contract').browse(cr, uid, [contract_ids], context=context):
 
-        totalweekemd = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=weekend)
-        totalsunday = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=sunday)
+            date_from = datetime.strptime(date_from, "%Y-%m-%d")
+            date_to = datetime.strptime(date_to, "%Y-%m-%d")
 
-        res = []
-        attendances_weekend = {
-            'name': "Not Working days paid at 100%",
-            'sequence': 1,
-            'code': 'Weekend',
-            'number_of_days': totalweekemd.count(),
-            'number_of_hours': 0.0,
-            'contract_id': contract.id,
-        }
+            totalweekemd = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=weekend)
+            totalsunday = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=sunday)
 
-        attendances_sunday = {
-            'name': "Lunes",
-            'sequence': 2,
-            'code': 'Lunes',
-            'number_of_days': totalsunday.count(),
-            'number_of_hours': 0.0,
-            'contract_id': contract.id,
-        }
+            res = []
+            attendances_weekend = {
+                'name': "Not Working days paid at 100%",
+                'sequence': 1,
+                'code': 'Weekend',
+                'number_of_days': totalweekemd.count(),
+                'number_of_hours': 0.0,
+                'contract_id': contract.id,
+            }
 
-        res = [attendances_weekend]
-        res += [attendances_sunday]
-        print res
+            attendances_sunday = {
+                'name': "Lunes",
+                'sequence': 2,
+                'code': 'Lunes',
+                'number_of_days': totalsunday.count(),
+                'number_of_hours': 0.0,
+                'contract_id': contract.id,
+            }
+
+            res = [attendances_weekend]
+            res += [attendances_sunday]
         return res
+
+    def calculate_other(self, cr, uid, contract_ids, date_from, date_to, context=None):
+        inputs = []
+        for contract in self.pool.get('hr.contract').browse(cr, uid, [contract_ids], context=context):
+            expenses = {
+                'name': 'Expenses',
+                'code': 'Expenses',
+                'amount': 0,
+                'contract_id': contract.id,
+            }
+            other_incomes = {
+                'name': 'Other incomes',
+                'code': 'Other incomes',
+                'amount': 0,
+                'contract_id': contract.id,
+            }
+            difference = {
+                'name': 'Difference',
+                'code': 'Difference',
+                'amount': 0,
+                'contract_id': contract.id,
+            }
+
+            inputs = [expenses] + [other_incomes] + [difference]
+            print inputs
+        return inputs
 
     # Replace method onchange_employee_id located in hr_payroll line 641
     def onchange_employee_id_1(self, cr, uid, ids, date_from, date_to, employee_id=False, contract_id=False, context=None):
         res = super(HrPayrollWeekend, self).onchange_employee_id(cr, uid, ids, date_from, date_to, employee_id, contract_id, context)
         weekend_id = self.calculate_weekend(cr, uid, ids, date_from, date_to, contract_id, context)
+        other_line = self.calculate_other(cr, uid, contract_id, date_from, date_to, context)
 
         res['value']['worked_days_line_ids'] += weekend_id
+        res['value']['input_line_ids'] = other_line
+
         return res
 
     # Replace method onchange_contract_id located in hr_payroll 712
