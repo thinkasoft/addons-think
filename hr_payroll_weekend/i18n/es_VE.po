@@ -18,7 +18,7 @@ msgstr ""
 #. module: hr_payroll_weekend
 #: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:69
 #, python-format
-msgid "Other incomes"
+msgid "Otherincomes"
 msgstr "Otras asignaciones"
 
 #. module: hr_payroll_weekend
@@ -34,6 +34,12 @@ msgid "Expenses"
 msgstr "Viaticos"
 
 #. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:82
+#, python-format
+msgid "Advance of salary"
+msgstr "Anticipo Salario"
+
+#. module: hr_payroll_weekend
 #: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:38
 #, python-format
 msgid "Not Working days paid at 100%"
@@ -42,8 +48,8 @@ msgstr "Días de trabajo no pagados al 100%"
 #. module: hr_payroll_weekend
 #: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:75
 #, python-format
-msgid "Difference"
-msgstr "Diferencia"
+msgid "Payment Difference"
+msgstr "Diferencia Pago de gastos"
 
 #. module: hr_payroll_weekend
 #: model:ir.model,name:hr_payroll_weekend.model_hr_payslip

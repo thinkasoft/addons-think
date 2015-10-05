@@ -66,19 +66,26 @@ class HrPayrollWeekend(osv.osv):
                 'contract_id': contract.id,
             }
             difference = {
-                'name': _('Difference'),
+                'name': _('Payment Difference'),
                 'code': 'Difference',
                 'amount': 0,
                 'contract_id': contract.id,
             }
-            other_incomes = {
-                'name': _('Other incomes'),
-                'code': 'Other incomes',
+            otherincomes = {
+                'name': _('Otherincomes'),
+                'code': 'Otherincomes',
                 'amount': 0,
                 'contract_id': contract.id,
             }
 
-            inputs = [expenses] + [difference] + [other_incomes]
+            anticipio_advance = {
+                'name': _('Advance of salary'),
+                'code': 'Anticipio Advance',
+                'amount': 0,
+                'contract_id': contract.id,
+            }
+
+            inputs = [expenses] + [difference] + [otherincomes] + [anticipio_advance]
             print inputs
         return inputs
 
