@@ -8,22 +8,22 @@
 			<field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
 			<field name="arch" type="xml">
 				<notebook position="inside">
-					<page string="Retencion">
-						<separator string="Datos" colspan="4"/>
+					<page string="Withholding">
+						<separator string="Data" colspan="4"/>
 						<group>
 							<group>
 								<group>
-									<field name="ret_isrl"/>
-									<field name="ret_seguro_privado"/>
-									<field name="ret_caja_ahorro"/>
-									<field name="ret_ivss"/>
-									<field name="ret_inces"/>
+									<field name="income_wh"/>
+									<field name="insurance_health_wh"/>
+									<field name="saving_wh"/>
+									<field name="nhs_wh"/>
+									<field name="inces_wh"/>
 								</group>
 								<group>
-									<field digits="(2, 2)" name="mod_ret_isrl"/>
-									<field digits="(2, 2)" name="mod_ret_seguro_privado"/>
-									<field digits="(2, 2)" name="mod_ret_caja_ahorro"/>
-									<field name="ret_faov"/>
+									<field digits="(2, 2)" name="mod_income_wh"/>
+									<field digits="(2, 2)" name="mod_insurance_health_wh"/>
+									<field digits="(2, 2)" name="mod_saving_wh"/>
+									<field name="lph_wh"/>
 								</group>
 							</group>
 						</group>

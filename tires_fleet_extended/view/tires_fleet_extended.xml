@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+<!-- Add instructor field to existing view -->
+
+		<record model="ir.ui.view" id="tire_fleet_extended_form_view">
+			<field name="name">view.tires.fleet.extended</field>
+			<field name="model">fleet.vehicle</field>
+			<field name="inherit_id" ref="fleet.fleet_vehicle_form" />
+			<field name="arch" type="xml">
+                <xpath expr='//sheet/group[2]' position="replace" />
+				<xpath expr='//group[@string="General Properties"]' position="replace">
+                        <notebook>
+                            <page string="Colocar nombre">
+                                <group col="2" string="General Properties">
+                                    <group>
+                                        <field name="driver_id"/>
+                                        <field name="location"/>
+                                        <field name="vin_sn"/>
+                                        <field name="company_id" groups="base.group_multi_company"/>
+                                    </group>
+                                    <group>
+                                        <label for="odometer"/>
+                                        <div>
+                                            <field name="odometer" class="oe_inline"/>
+                                            <field name="odometer_unit" class="oe_inline"/>
+                                        </div>
+                                        <field name="acquisition_date"/>
+                                        <field name="car_value"/>
+                                    </group>
+                                </group>
+                                <group col="2">
+                                    <group string="Additional Properties">
+                                        <field name="seats"/>
+                                        <field name="doors"/>
+                                        <field name="color"/>
+                                    </group>
+                                    <group string="Engine Options">
+                                        <field name="transmission"/>
+                                        <field name="fuel_type"/>
+                                        <field name="co2"/>
+                                        <field name="horsepower"/>
+                                        <field name="horsepower_tax"/>
+                                        <field name="power"/>
+                                    </group>  
+                                </group>
+                            </page>
+                            <page string="CAUCHOS - ROTACIONES">
+                                <group>
+                                     <field name="marca"/>
+                                     <field name="modelo"/>
+                                     <field name="medida"/>
+                                     <field name="Fecha_Rotacion"/>
+                                     <field name="Posicion_actual"/>
+                                </group>
+                            </page>
+                        </notebook>
+                </xpath>
+			</field>
+		</record> 
+
+	</data>
+</openerp>

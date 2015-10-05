@@ -1,1 +1,5 @@
-import hr_contract_extended
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
+
+import model
+ 
