@@ -42,8 +42,14 @@ msgstr "Anticipo Salario"
 #. module: hr_payroll_weekend
 #: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:38
 #, python-format
-msgid "Not Working days paid at 100%"
-msgstr "Días de trabajo no pagados al 100%"
+msgid "Not Working days paid at 100% (Saturday - Sunday)"
+msgstr "Días de trabajo no pagados al 100% (Sabado - Domingo)"
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:49
+#, python-format
+msgid "Not Working days paid at 100% (Sunday - Monday)"
+msgstr "Días de trabajo no pagados al 100% (Domingo - Lunes)"
 
 #. module: hr_payroll_weekend
 #: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:75

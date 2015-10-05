@@ -23,6 +23,7 @@ class HrPayrollWeekend(osv.osv):
     # Caculate weekend and Mondays
     def calculate_weekend(self, cr, uid, ids, date_from, date_to, contract_ids, context=None):
         weekend = [5, 6]
+        weekend2 = [0, 6]
         sunday = [0]
 
         for contract in self.pool.get('hr.contract').browse(cr, uid, [contract_ids], context=context):
@@ -31,11 +32,12 @@ class HrPayrollWeekend(osv.osv):
             date_to = datetime.strptime(date_to, "%Y-%m-%d")
 
             totalweekemd = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=weekend)
+            totalweekemd2 = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=weekend2)
             totalsunday = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=sunday)
 
             res = []
             attendances_weekend = {
-                'name': _('Not Working days paid at 100%'),
+                'name': _('Not Working days paid at 100% (Saturday - Sunday)'),
                 'sequence': 1,
                 'code': 'Weekend',
                 'number_of_days': totalweekemd.count(),
@@ -43,9 +45,18 @@ class HrPayrollWeekend(osv.osv):
                 'contract_id': contract.id,
             }
 
+            attendances_weekend2 = {
+                'name': _('Not Working days paid at 100% (Sunday - Monday)'),
+                'sequence': 2,
+                'code': 'Weekend2',
+                'number_of_days': totalweekemd2.count(),
+                'number_of_hours': 0.0,
+                'contract_id': contract.id,
+            }
+
             attendances_sunday = {
                 'name': _('Monday'),
-                'sequence': 2,
+                'sequence': 3,
                 'code': 'Monday',
                 'number_of_days': totalsunday.count(),
                 'number_of_hours': 0.0,
@@ -53,6 +64,7 @@ class HrPayrollWeekend(osv.osv):
             }
 
             res = [attendances_weekend]
+            res += [attendances_weekend2]
             res += [attendances_sunday]
         return res
 
@@ -80,7 +92,7 @@ class HrPayrollWeekend(osv.osv):
 
             anticipio_advance = {
                 'name': _('Advance of salary'),
-                'code': 'Anticipio Advance',
+                'code': 'Advance',
                 'amount': 0,
                 'contract_id': contract.id,
             }
