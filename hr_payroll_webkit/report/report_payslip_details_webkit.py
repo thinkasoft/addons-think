@@ -1,25 +1,17 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
+###########################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#
+#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
+#
 ##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-############################################################################
+
 from openerp.report import report_sxw
-from openerp.tools import amount_to_text_en
+
 
 class payslip_details_report(report_sxw.rml_parse):
 
@@ -53,7 +45,7 @@ class payslip_details_report(report_sxw.rml_parse):
                 LEFT JOIN hr_salary_rule_category AS rc on (pl.category_id = rc.id) \
                 WHERE pl.id in %s \
                 GROUP BY rc.parent_id, pl.sequence, pl.id, pl.category_id \
-                ORDER BY pl.sequence, rc.parent_id''',(tuple(ids),))
+                ORDER BY pl.sequence, rc.parent_id''', (tuple(ids),))
             for x in self.cr.fetchall():
                 result.setdefault(x[1], [])
                 result[x[1]].append(x[0])

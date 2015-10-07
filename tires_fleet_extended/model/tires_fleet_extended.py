@@ -6,24 +6,27 @@
 # ############## Credits ######################################################
 #    Developed by: thinkasoft , C.A.
 #
-#    Coded by:  Gerardo Medina (gerardo.medina.m@gmail.com)
+#    Coded by:  Gerardo Medina gerardo.medina.m@gmail.com
 #               Aular Hector Manuel (aular.hector3@gmail.com)
 #
 ##############################################################################
 
-
 from openerp.osv import osv, fields
 
 
-class hr_contract_trimestre(osv.Model):
-    """Inherited hr.contract"""
+class tires_fleet_extended(osv.Model):
+    """Inherited fleet.vehicle"""
 
-    _inherit = 'hr.contract'
+    _inherit = 'fleet.vehicle'
 
     _columns = {
-        'average_wage': fields.float('Sueldo Trimestral'),
+        'marca': fields.char('Marca del Caucho', size=20),
+        'modelo': fields.char('Modelo del Caucho', size=20),
+        'medida': fields.char('Medida del Caucho'),
+        'Fecha_Rotacion': fields.date('Fecha Rotacion'),
+        'Posicion_actual': fields.char('Posicion Actual'),
     }
 
     _defaults = {
-        'average_wage': 0,
+        'marca': "...",
     }
