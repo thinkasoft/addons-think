@@ -98,7 +98,7 @@ class HrPayrollWeekend(osv.osv):
             }
 
             inputs = [expenses] + [difference] + [otherincomes] + [anticipio_advance]
-            print inputs
+
         return inputs
 
     # Replace method onchange_employee_id located in hr_payroll line 641

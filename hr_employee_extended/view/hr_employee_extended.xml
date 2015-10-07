@@ -8,13 +8,13 @@
 			<field name="inherit_id" ref="hr.view_employee_form" />
 			<field name="arch" type="xml">
 				<field name="otherid" position="after">
-                    <field name="rif"/>
-                    <field  name="retencion"/>
-                     <field name="sueldo"/>
-                     <field name="Fecha_Ingreso"/>
-                     <field name="Fecha_Egreso"/>
-                     <field name="Beneficio_laboral"/>
-		     <field name="Constancia_banco"/>
+                    <field name="vat"/>
+                    <field  name="withholding"/>
+                     <field name="salary"/>
+                     <field name="admission_date"/>
+                     <field name="date_exit"/>
+                     <field name="employment_benefit"/>
+		     		<field name="reference_bank"/>
                 </field>
 			</field>
 		</record> 
