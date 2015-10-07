@@ -1,4 +1,5 @@
 from openerp.osv import osv, fields
+from datetime import datetime
 
 
 class Payroll_extension(osv.Model):
@@ -19,4 +20,7 @@ class Payroll_extension(osv.Model):
 
     _defaults = {
         'retencion': 0,
+        'sueldo': 0,
+        'rif': ' ',
+        'Fecha_Ingreso': datetime.now(),
     }
