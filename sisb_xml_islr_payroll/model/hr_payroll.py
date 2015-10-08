@@ -12,7 +12,7 @@ class hr_payslip(osv.osv):
     def _get_vat_fnc(self, cr, uid, ids, field_names, arg=None, context=None):
         res = {}
         for hr_payslip_obj in self.browse(cr, uid, ids, context=context):
-            res[hr_payslip_obj.id] = hr_payslip_obj.employee_id.rif
+            res[hr_payslip_obj.id] = hr_payslip_obj.employee_id.vat
 
         return res
 
@@ -20,7 +20,7 @@ class hr_payslip(osv.osv):
                              context=None):
         res = {}
         for hr_payslip_obj in self.browse(cr, uid, ids, context=context):
-            res[hr_payslip_obj.id] = hr_payslip_obj.employee_id.retencion
+            res[hr_payslip_obj.id] = hr_payslip_obj.employee_id.withholding
 
         return res
 
