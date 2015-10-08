@@ -13,25 +13,19 @@
 from openerp.report import report_sxw
 
 
-class payslip_report(report_sxw.rml_parse):
+class employee_report(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context):
-        super(payslip_report, self).__init__(cr, uid, name, context)
+        super(employee_report, self).__init__(cr, uid, name, context)
         self.localcontext.update({
-            'get_payslip_lines': self.get_payslip_lines,
+            'otr_cosa': self.otra_cosa,
         })
 
-    def get_payslip_lines(self, obj):
-        payslip_line = self.pool.get('hr.payslip.line')
+    def otr_cosa(self):
         res = []
-        ids = []
-        for id in range(len(obj)):
-            if obj[id].appears_on_payslip is True:
-                ids.append(obj[id].id)
-        if ids:
-            res = payslip_line.browse(self.cr, self.uid, ids)
+        print "Entro aqui"
         return res
 
-report_sxw.report_sxw('report.payslip.webkit', 'hr.payslip', 'hr_payroll_webkit/report/report_payslip_webkit.mako', parser=payslip_report)
+report_sxw.report_sxw('report.employee', 'hr.payslip', 'hr_payroll_webkit/report/report_employee.mako', parser=employee_report)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
