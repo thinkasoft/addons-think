@@ -23,7 +23,11 @@
     'category': "Human Resources",
     'version': "1.0",
     'depends': [
-        "hr_payroll"
+        'hr',
+        'hr_payroll',
+        'hr_contract',
+        'hr_holidays',
+        'decimal_precision',
     ],
     'author': "Ingenieria Thinkasoft de Venezuela",
     'description': """
@@ -37,6 +41,9 @@ Calculation weekends and Mondays
     date_to: end day of payroll to generate.
 """,
     'website': 'http://www.thinkasoft.com',
-    'update_xml': ["view/hr_payroll_weekend.xml"],
+    'update_xml': [
+    	"view/hr_payroll_weekend.xml",
+    	"wizard/hr_payroll_payslips_by_employees_extended.xml"
+    ],
     'installable': True,
 }
