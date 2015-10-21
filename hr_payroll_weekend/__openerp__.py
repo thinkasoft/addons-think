@@ -20,15 +20,7 @@
 ##############################################################################
 {
     'name': "Calculation Monday and weekends",
-    'category': "Human Resources",
     'version': "1.0",
-    'depends': [
-        'hr',
-        'hr_payroll',
-        'hr_contract',
-        'hr_holidays',
-        'decimal_precision',
-    ],
     'author': "Ingenieria Thinkasoft de Venezuela",
     'description': """
 Calculation weekends and Mondays
@@ -40,10 +32,16 @@ Calculation weekends and Mondays
     date_from: start day of payroll to generate.
     date_to: end day of payroll to generate.
 """,
+    'category': "Human Resources",
     'website': 'http://www.thinkasoft.com',
-    'update_xml': [
-    	"view/hr_payroll_weekend.xml",
-    	"wizard/hr_payroll_payslips_by_employees_extended.xml"
+    'depends': [
+        'hr',
+        'hr_payroll',
+        'hr_contract',
+        'hr_holidays',
+        'decimal_precision',
     ],
-    'installable': True,
+    'data': [
+        'wizard/hr_payroll_payslips_by_employees_extended.xml', 'view/hr_payroll_weekend.xml',
+    ],
 }
