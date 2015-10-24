@@ -1,15 +1,16 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 ###########################################################################
-#    Copyright (C) thinkasoft , C.A. (www.thinkasoft.com)
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
 #    All Rights Reserved
 # ############## Credits ######################################################
 #    Developed by: thinkasoft , C.A.
+#
+#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
+#
 ##############################################################################
 
 import time
-import pdb
-
 from openerp.osv import fields, osv
 from datetime import datetime
 from dateutil import relativedelta

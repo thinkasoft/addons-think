@@ -26,7 +26,17 @@
         "hr"
     ],
     'author': "Ingenieria Thinkasoft de Venezuela",
-    'description': """""",
+    'description': """
+Module Contract extension
+====================================
+    add a new tab in the contract module, it contains:
+
+    - Income wh
+    - Insurance health wh
+    - Perc Insurance health wh
+    - Inces wh
+    - Perc Saving wh
+""",
     'website': 'http://www.thinkasoft.com',
     'update_xml': ["view/hr_contract_extended.xml"],
     'installable': True,

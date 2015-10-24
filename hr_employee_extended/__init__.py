@@ -1,1 +1,1 @@
-import hr_employee_extended
+import model

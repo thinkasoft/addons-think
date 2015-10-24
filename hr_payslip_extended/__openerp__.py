@@ -1,6 +1,26 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 {
     'name': "Payroll extension",
-    'category': "Test",
+    'category': "Payroll",
     'version': "1.0",
     'depends': [
         "hr_payroll"
@@ -8,9 +28,12 @@
     'description': """
         fields added:
         - Period_id [many2one] [Text]""",
-    'author': "www.thinkasoft.com",
+    'author': "Ingenieria Thinkasoft de Venezuela",
     'data': [
         'wizard/hr_payslip_extended.xml',
         'report/report_hr_payslip_extended.xml'
     ],
+    'website': 'http://www.thinkasoft.com',
+    'installable': True,
+    'auto_install': False,
 }

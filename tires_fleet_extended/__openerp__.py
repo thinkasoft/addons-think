@@ -5,7 +5,8 @@
     'depends': [
         "fleet"
     ],
-    'author': "www.thinkasoft.com",
+    'author': 'Ingenieria Thinkasoft de Venezuela',
+    'website': 'http://www.thinkasoft.com',
     'description': """\
         fields added:
         - Serial [Text]

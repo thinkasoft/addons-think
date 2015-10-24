@@ -47,7 +47,7 @@ class HrPayrollWeekend(osv.osv):
 
             attendances_weekend2 = {
                 'name': _('Not Working days paid at 100% (Sunday - Monday)'),
-                'sequence': 2,
+                'sequence': 1,
                 'code': 'Weekend2',
                 'number_of_days': totalweekemd2.count(),
                 'number_of_hours': 0.0,
@@ -56,7 +56,7 @@ class HrPayrollWeekend(osv.osv):
 
             attendances_sunday = {
                 'name': _('Monday'),
-                'sequence': 3,
+                'sequence': 1,
                 'code': 'Monday',
                 'number_of_days': totalsunday.count(),
                 'number_of_hours': 0.0,
@@ -74,41 +74,46 @@ class HrPayrollWeekend(osv.osv):
             expenses = {
                 'name': _('Expenses'),
                 'code': 'Expenses',
-                'amount': 0,
+                'amount': 0.0,
                 'contract_id': contract.id,
             }
             difference = {
                 'name': _('Payment Difference'),
                 'code': 'Difference',
-                'amount': 0,
+                'amount': 0.0,
                 'contract_id': contract.id,
             }
             otherincomes = {
                 'name': _('Otherincomes'),
                 'code': 'Otherincomes',
-                'amount': 0,
+                'amount': 0.0,
                 'contract_id': contract.id,
             }
 
             anticipio_advance = {
                 'name': _('Advance of salary'),
                 'code': 'Advance',
-                'amount': 0,
+                'amount': 0.0,
                 'contract_id': contract.id,
             }
 
             inputs = [expenses] + [difference] + [otherincomes] + [anticipio_advance]
-            print inputs
+
         return inputs
 
     # Replace method onchange_employee_id located in hr_payroll line 641
     def onchange_employee_id_1(self, cr, uid, ids, date_from, date_to, employee_id=False, contract_id=False, context=None):
         res = super(HrPayrollWeekend, self).onchange_employee_id(cr, uid, ids, date_from, date_to, employee_id, contract_id, context)
+        print res
+        import pdb
+        pdb.set_trace()
+        if not contract_id:
+            contract_id = res['value']['contract_id']
         weekend_id = self.calculate_weekend(cr, uid, ids, date_from, date_to, contract_id, context)
         other_line = self.calculate_other(cr, uid, contract_id, date_from, date_to, context)
 
         res['value']['worked_days_line_ids'] += weekend_id
-        res['value']['input_line_ids'] = other_line
+        res['value']['input_line_ids'] += other_line
 
         return res
 

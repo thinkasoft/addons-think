@@ -23,7 +23,9 @@
     'version': '1.1',
     'author': 'Ingenieria Thinkasoft de Venezuela',
     'category': 'Accounting & Finance',
-    'description': """""",
+    'description': """
+Reporte para empresas TRialca
+    """,
     'depends': ['account'],
     'data': [
 
