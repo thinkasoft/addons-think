@@ -20,7 +20,11 @@
 ##############################################################################
 
 
-from openerp.osv import osv
+import time
+from datetime import datetime
+from dateutil import relativedelta
+
+from openerp.osv import fields, osv
 from openerp.tools.translate import _
 
 
@@ -29,9 +33,11 @@ class hr_payslip_employees_extended(osv.osv_memory):
     _name = "hr.payslip.employees.extended"
     _description = 'Generate payslips for all selected employees'
     _inherit = "hr.payslip.employees"
-
+    _columns = {
+        'employee_ids': fields.many2many('hr.employee', 'hr_employee_group_rel', 'payslip_id', 'employee_id', 'Employees'),
+    }
     def compute_sheet_1(self, cr, uid, ids, context=None):
-        print "Aqui entro"
+        
         emp_pool = self.pool.get('hr.employee')
         slip_pool = self.pool.get('hr.payslip')
         run_pool = self.pool.get('hr.payslip.run')
