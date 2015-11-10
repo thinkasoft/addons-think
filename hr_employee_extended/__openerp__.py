@@ -33,6 +33,7 @@ fields added:
         - Retencion [integer]""",
     'data': [
         'view/hr_employee_extended.xml',
+        'hr_employee_extended_report.xml'
     ],
     'website': 'http://www.thinkasoft.com',
     'installable': True,

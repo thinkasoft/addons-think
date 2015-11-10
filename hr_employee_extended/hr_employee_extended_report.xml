@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <openerp>
 	<data>
         <record id="hr_webkit_header" model="ir.header_webkit">
@@ -224,20 +224,18 @@
             <field name="name">HR Webkit Header</field>
         </record>
     </data>
-    <data>
-        <report auto="False" menu="False" id="contribution_register_webkit" model="hr.contribution.register" name="contribution.register.lines.webkit" file="hr_payroll_webkit/report/report_contribution_register_webkit.mako" string="PaySlip Lines" report_type="webkit" webkit_header="hr_webkit_header"/>
-        <report auto="False" id="hr_payroll.payslip_details_report" model="hr.payslip" name="paylip.details.webkit" file="hr_payroll_webkit/report/report_payslip_details_webkit.mako" string="PaySlip Details" report_type="webkit" webkit_header="hr_webkit_header"/>
-		<report auto="False" id="hr_payroll.payslip_report" model="hr.payslip" name="payslip.webkit" file="hr_payroll_webkit/report/report_payslip_webkit.mako" string="Employee PaySlip" report_type="webkit" webkit_header="hr_webkit_header"/>
-
-		<report
-        id="employee_report" 
-        name="employee.report" 
-        string="El Nuevo" 
-        model="hr.payslip"
-        auto="False"
-        menu="True"
-        file="hr_payroll_webkit/report/report_employee.mako" 
+    <data> 
+        <report 
+        id="employee_extended_report" 
+        name="employee.extended.report" 
+        string="Reporte Nuevo" 
+        model="hr.employee" 
+        file="hr_employee_extended/report/employee_extended_report.mako"
         report_type="webkit" 
-        webkit_header="hr_webkit_header"/>
+        webkit_header="hr_webkit_header"
+        auto="False" 
+        header="False" 
+        menu="True" 
+        multi="False"/>
     </data>
 </openerp>
