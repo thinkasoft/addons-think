@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 19:18+0000\n"
-"PO-Revision-Date: 2015-10-07 19:18+0000\n"
+"POT-Creation-Date: 2015-11-10 17:11+0000\n"
+"PO-Revision-Date: 2015-11-10 17:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,11 @@ msgstr "Fecha de Egreso"
 #: field:hr.employee,salary:0
 msgid "Monthly salary"
 msgstr "Salario Mensual"
+
+#. module: hr_employee_extended
+#: model:ir.actions.report.xml,name:hr_employee_extended.employee_extended_report
+msgid "Payslip benefits employee"
+msgstr "Recibo de utilidades"
 
 #. module: hr_employee_extended
 #: model:ir.model,name:hr_employee_extended.model_hr_employee

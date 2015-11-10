@@ -232,7 +232,7 @@
 		<report
         id="employee_report" 
         name="employee.report" 
-        string="El Nuevo" 
+        string="Admin payslip" 
         model="hr.payslip"
         auto="False"
         menu="True"

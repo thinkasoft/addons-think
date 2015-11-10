@@ -228,7 +228,7 @@
         <report 
         id="employee_extended_report" 
         name="employee.extended.report" 
-        string="Reporte Nuevo" 
+        string="Payslip benefits employee" 
         model="hr.employee" 
         file="hr_employee_extended/report/employee_extended_report.mako"
         report_type="webkit" 
