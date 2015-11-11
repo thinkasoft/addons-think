@@ -31,6 +31,8 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
         payslip_obj = self.pool.get('hr.payslip')
         today = datetime.datetime.now()
 
+        print obj.id, "Empleado: ", obj.name
+
         for month in xrange(1, 13):
             dateMonthStart = "%s-%s-01" % (today.year, month)
             dateMonthEnd = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year - 1, month)[1])
@@ -38,19 +40,21 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
             dateMonthStart = datetime.datetime.strptime(dateMonthStart, "%Y-%m-%d")
             dateMonthEnd = datetime.datetime.strptime(dateMonthEnd, "%Y-%m-%d")
 
+            print "Primer Dia: ", dateMonthStart, "Ultimo Dia: ", dateMonthEnd
+
             slip_ids = payslip_obj.search(self.cr, self.uid,
                                           [('date_to', '>=', dateMonthStart), ('date_to', '<=', dateMonthEnd),
                                            ('employee_id', '=', obj.id)
                                            ],
                                           context=False)
-
+            print "Nominas slip_ids: ", slip_ids
             slip_line_ids = payslip_line_obj.search(self.cr, self.uid,
-                                                    [('slip_id', '=', slip_ids),
-                                                     '|', '|', '|', ('code', '=', '001'), ('code', '=', '003'), ('code', '=', '002'),
-                                                     ('code', '=', '039')
+                                                    [('slip_id', 'in', slip_ids),
+                                                     '|', '|', '|', '|', ('code', '=', '001'), ('code', '=', '003'),
+                                                     ('code', '=', '002'), ('code', '=', '005'), ('code', '=', '039')
                                                      ],
                                                     order='code', context=False)
-
+            print "Nominas slip_line_ids: ", slip_line_ids
             dic = {
                 'month': list_month[month - 1],
                 'basic': 0,
