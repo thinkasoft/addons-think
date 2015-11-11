@@ -83,21 +83,32 @@
   <table width="100%" class="bottomBorder">
                     <tr>
                         <td width="5%">
-                            <FONT FACE="raro, courier" SIZE=1><b>CODIGO</b></FONT>
+                            <FONT FACE="raro, courier" SIZE=1><b>Mes</b></FONT>
                         </td>
                         <td width="35%">
-                            <FONT FACE="raro, courier" SIZE=1><b>DESCRIPCION</b></FONT>
+                            <FONT FACE="raro, courier" SIZE=1><b>Devengado Basico</b></FONT>
                         </td>
                         <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>CANTIDAD</b></FONT>
-                        </td>
-                        <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>IMPORTE</b></FONT>
-                        </td>
-                        <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>TOTAL</b></FONT>
+                            <FONT FACE="raro, courier" SIZE=1><b>Decengado Integral</b></FONT>
                         </td>
                     </tr>
+  </table>
+  <table width="100%" class="bottomBorder" style="line-height:8pt;">
+        %for line in (otra_cosa(o)):
+          <tbody >
+              <tr>
+                  <td style="text-align:left;">
+                    ${line['month'] }
+                  </td>
+                  <td style="text-align:left;">
+                    ${formatLang(line['basic']) } 
+                  </td>
+                  <td style="text-align:left;">
+                    ${formatLang(line['integral']) } 
+                  </td>
+              </tr>
+          </tbody>
+        %endfor
   </table>
   <table width="80%" style="margin: 0 auto;">
       <tr>

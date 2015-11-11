@@ -11,7 +11,6 @@
 ##############################################################################
 
 from openerp.report import report_sxw
-import pdb
 
 class employee_report(report_sxw.rml_parse):
 

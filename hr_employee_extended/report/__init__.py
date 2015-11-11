@@ -1,1 +1,1 @@
-from . import employee_extended_report
+import employee_extended_report
