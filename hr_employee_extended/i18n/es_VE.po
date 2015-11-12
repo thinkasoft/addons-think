@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-10 17:11+0000\n"
-"PO-Revision-Date: 2015-11-10 17:11+0000\n"
+"POT-Creation-Date: 2015-11-12 16:11+0000\n"
+"PO-Revision-Date: 2015-11-12 16:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,16 @@ msgstr "Beneficio Laboral?"
 #: field:hr.employee,withholding:0
 msgid "Income Withholding"
 msgstr "Rentencion de ISRL"
+
+#. module: hr_employee_extended
+#: field:hr.employee,other_benefits_deductions:0
+msgid "Other benefits deductions"
+msgstr "Deducciones en utilidades"
+
+#. module: hr_employee_extended
+#: field:hr.employee,number_days_benefits:0
+msgid "Number days benefits"
+msgstr "Dias de utilidades"
 
 #. module: hr_employee_extended
 #: field:hr.employee,vat:0

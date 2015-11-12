@@ -26,10 +26,14 @@ class Payroll_extension(osv.Model):
         'date_exit': fields.date('Date Diacharge', required=False),
         'employment_benefit': fields.boolean('Employment Benefit?'),
         'reference_bank': fields.char('Reference Bank', size=50),
+        'number_days_benefits': fields.integer('Number days benefits', size= 3),
+        'other_benefits_deductions': fields.float('Other benefits deductions', size=7, digits=(5, 2), required=True),
     }
 
     _defaults = {
         'withholding': 0,
         'salary': 0,
         'vat': ' ',
+        'number_days_benefits': 60,
+        'other_benefits_deductions': 0
     }

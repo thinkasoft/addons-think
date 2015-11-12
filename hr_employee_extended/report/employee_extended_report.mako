@@ -93,8 +93,10 @@
                         </td>
                     </tr>
   </table>
+  <%total_integral = 0%>
   <table width="100%" class="bottomBorder" style="line-height:8pt;">
-        %for line in (otra_cosa(o)):
+        %for line in (get_payslip_lines(o)):
+        <%total_integral += line['integral']%>
           <tbody >
               <tr>
                   <td style="text-align:left;">
@@ -109,6 +111,71 @@
               </tr>
           </tbody>
         %endfor
+  </table>
+  <table width="100%" class="bottomBorder" style="line-height:8pt;">
+          <tbody >
+              <tr>
+                  <td style="text-align:left;"/>
+                  <td style="text-align:left;"/>
+                  <td style="text-align:left;"/>
+                    ${formatLang(total_integral, digits=2)} 
+                  </td>
+              </tr>
+          </tbody>
+  </table>
+  <% calc_benefits = float(o.number_days_benefits) / 360.00000 %>
+  <% result =  total_integral*calc_benefits%>
+  <table width="100%" class="bottomBorder">  
+          <center><FONT FACE="raro, courier" SIZE=1><b>Utilidades ${o.number_days_benefits} Dias X ${formatLang(calc_benefits, digits=5)} =  ${formatLang(result)}</b></FONT></center>                    
+  </table>
+  <table width="100%" class="bottomBorder">  
+          <center><FONT FACE="raro, courier" SIZE=1><b>Total Remuneraciones ${formatLang(result)}</b></FONT></center>                    
+  </table>
+  <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+          <FONT FACE="raro, courier" SIZE=1>DEDUCCIONES</FONT>
+  </table>
+  <% inces =  result*0.005%>
+  <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+                    <tr>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>I.N.C.E.S</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>${formatLang(inces)}</FONT>
+                        </td>
+                    </tr>
+  </table>
+  <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+                    <tr>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>Prestamo Personal</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>${o.other_benefits_deductions}</FONT>
+                        </td>
+                    </tr>
+  </table>
+  <% total_deductions =  inces + o.other_benefits_deductions%>
+  <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+                    <tr>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>Total Deducciones</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>${formatLang(total_deductions)}</FONT>
+                        </td>
+                    </tr>
+  </table>
+  <% pay_utilites =  result - total_deductions%>
+  <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+                    <tr>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>Utilidades a pagar</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>${formatLang(pay_utilites)}</FONT>
+                        </td>
+                    </tr>
   </table>
   <table width="80%" style="margin: 0 auto;">
       <tr>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
 <!-- Add instructor field to existing view -->
@@ -9,13 +9,25 @@
 			<field name="arch" type="xml">
 				<field name="otherid" position="after">
                     <field name="vat"/>
-                    <field  name="withholding"/>
-                     <field name="salary"/>
-                     <field name="admission_date"/>
-                     <field name="date_exit"/>
-                     <field name="employment_benefit"/>
+                    <field name="withholding"/>
+                    <field name="salary"/>
+                    <field name="admission_date"/>
+                    <field name="date_exit"/>
+                    <field name="employment_benefit"/>
 		     		<field name="reference_bank"/>
                 </field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="hr_employee_extended_form_view2">
+			<field name="name">view.hr.employee.extended2</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2" />
+			<field name="arch" type="xml">
+				<xpath expr='//group[@string = "Contract"]/field[@name="vehicle_distance"]' position="after">
+				    <field name="number_days_benefits"/>
+				    <field name="other_benefits_deductions"/>
+				</xpath>
 			</field>
 		</record> 
 	</data>

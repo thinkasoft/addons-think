@@ -20,43 +20,41 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(EmployeeExtendedReport, self).__init__(cr, uid, name, context)
         self.localcontext.update({
-            'otra_cosa': self.otra_cosa,
+            'get_payslip_lines': self._get_payslip_lines,
         })
 
-    def otra_cosa(self, obj):
+    def _get_payslip_lines(self, obj):
         res = []
         dic = {}
-        list_month = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+        list_month_es = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
+                         'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+                         'Noviembre', 'Diciembre']
         payslip_line_obj = self.pool.get('hr.payslip.line')
         payslip_obj = self.pool.get('hr.payslip')
         today = datetime.datetime.now()
 
-        print obj.id, "Empleado: ", obj.name
-
         for month in xrange(1, 13):
-            dateMonthStart = "%s-%s-01" % (today.year, month)
-            dateMonthEnd = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year - 1, month)[1])
+            datemonthstart = "%s-%s-01" % (today.year, month)
+            datemonthend = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year - 1, month)[1])
 
-            dateMonthStart = datetime.datetime.strptime(dateMonthStart, "%Y-%m-%d")
-            dateMonthEnd = datetime.datetime.strptime(dateMonthEnd, "%Y-%m-%d")
-
-            print "Primer Dia: ", dateMonthStart, "Ultimo Dia: ", dateMonthEnd
+            datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
+            datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
 
             slip_ids = payslip_obj.search(self.cr, self.uid,
-                                          [('date_to', '>=', dateMonthStart), ('date_to', '<=', dateMonthEnd),
+                                          [('date_to', '>=', datemonthstart), ('date_to', '<=', datemonthend),
                                            ('employee_id', '=', obj.id)
                                            ],
                                           context=False)
-            print "Nominas slip_ids: ", slip_ids
+
             slip_line_ids = payslip_line_obj.search(self.cr, self.uid,
                                                     [('slip_id', 'in', slip_ids),
                                                      '|', '|', '|', '|', ('code', '=', '001'), ('code', '=', '003'),
                                                      ('code', '=', '002'), ('code', '=', '005'), ('code', '=', '039')
                                                      ],
                                                     order='code', context=False)
-            print "Nominas slip_line_ids: ", slip_line_ids
+
             dic = {
-                'month': list_month[month - 1],
+                'month': list_month_es[month - 1],
                 'basic': 0,
                 'integral': 0,
             }
