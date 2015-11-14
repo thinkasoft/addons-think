@@ -40,11 +40,10 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
             datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
             datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
 
-            slip_ids = payslip_obj.search(self.cr, self.uid,
-                                          [('date_to', '>=', datemonthstart), ('date_to', '<=', datemonthend),
-                                           ('employee_id', '=', obj.id)
-                                           ],
-                                          context=False)
+            condition_slip = [('date_to', '>=', datemonthstart), ('date_to', '<=', datemonthend),
+                              ('employee_id', '=', obj.id), ('state', '=', 'done'),
+                              ]
+            slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
 
             slip_line_ids = payslip_line_obj.search(self.cr, self.uid,
                                                     [('slip_id', 'in', slip_ids),
@@ -58,10 +57,9 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
                 'basic': 0,
                 'integral': 0,
             }
-
             for slip_browse in payslip_line_obj.browse(self.cr, self.uid, slip_line_ids, context=None):
                 if slip_browse.code != '039':
-                    dic['basic'] += slip_browse.amount
+                    dic['basic'] += slip_browse.amount * slip_browse.quantity
                 else:
                     dic['integral'] += slip_browse.amount
 

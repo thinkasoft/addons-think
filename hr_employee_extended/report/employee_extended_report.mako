@@ -115,10 +115,8 @@
   <table width="100%" class="bottomBorder" style="line-height:8pt;">
           <tbody >
               <tr>
-                  <td style="text-align:left;"/>
-                  <td style="text-align:left;"/>
-                  <td style="text-align:left;"/>
-                    ${formatLang(total_integral, digits=2)} 
+                  <td style="text-align:left;" />
+                    Total: ${formatLang(total_integral, digits=2)} 
                   </td>
               </tr>
           </tbody>
