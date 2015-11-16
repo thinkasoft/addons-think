@@ -150,6 +150,7 @@
           <FONT FACE="raro, courier" SIZE=1>DEDUCCIONES</FONT>
   </table>
   <% inces =  result*0.005%>
+  <% faov =  result*0.05%>
   <table width="100%" style="border:1px solid black;border-collapse:collapse;">
                     <tr>
                         <td style="border:1px solid black;" width="10%">
@@ -157,6 +158,16 @@
                         </td>
                         <td style="border:1px solid black;" width="10%">
                         <FONT FACE="raro, courier" SIZE=1>${formatLang(inces)}</FONT>
+                        </td>
+                    </tr>
+  </table>
+  <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+                    <tr>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>FAOV</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>${formatLang(faov)}</FONT>
                         </td>
                     </tr>
   </table>
