@@ -127,7 +127,7 @@
                   </tbody>
            % endif
         %endfor
-        <%total_integral += o.december_salary_aprox%>
+        <%total_integral += o.december_salary_aprox - o.withholding %>
   </table>
   <table width="100%" class="bottomBorder" style="line-height:8pt;">
           <tbody >
