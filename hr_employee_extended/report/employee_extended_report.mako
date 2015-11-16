@@ -128,7 +128,6 @@
            % endif
         %endfor
         <%total_integral += o.december_salary_aprox%>
-        <% total_integral = total_integral * (o.withholding/100)%>
   </table>
   <table width="100%" class="bottomBorder" style="line-height:8pt;">
           <tbody >
@@ -152,6 +151,7 @@
   </table>
   <% inces =  result*0.005%>
   <% faov =  result*0.05%>
+  <% isrl = total_integral * (o.withholding/100)%>
   <table width="100%" style="border:1px solid black;border-collapse:collapse;">
                     <tr>
                         <td style="border:1px solid black;" width="10%">
@@ -169,6 +169,16 @@
                         </td>
                         <td style="border:1px solid black;" width="10%">
                         <FONT FACE="raro, courier" SIZE=1>${formatLang(faov)}</FONT>
+                        </td>
+                    </tr>
+  </table>
+  <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+                    <tr>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>ISRL</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="10%">
+                        <FONT FACE="raro, courier" SIZE=1>${formatLang(isrl)}</FONT>
                         </td>
                     </tr>
   </table>
