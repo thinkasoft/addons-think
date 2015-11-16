@@ -27,8 +27,8 @@ class Payroll_extension(osv.Model):
         employee_obj = self.pool.get('hr.employee')
         today = datetime.datetime.now()
         suma = 0.0
-        
-        #for month in xrange(1, 13):
+
+        # for month in xrange(1, 13):
         #    datemonthstart = "%s-%s-01" % (today.year, month)
         #    datemonthend = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year - 1, month)[1])
 
@@ -43,10 +43,10 @@ class Payroll_extension(osv.Model):
         #    for slip_browse in payslip_line_obj.browse(cr, uid, slip_line_ids, context=None):
         #        suma += slip_browse.amount
 
-        #employee = employee_obj.browse(cr, uid, ids, context=None)
-        #res[employee[0].id] = suma
+        # employee = employee_obj.browse(cr, uid, ids, context=None)
+        # res[employee[0].id] = suma
 
-        #return res
+        # return res
 
     _columns = {
         'vat': fields.char('Vat', size=12, required=True),
@@ -60,6 +60,7 @@ class Payroll_extension(osv.Model):
         'other_benefits_deductions': fields.float('Other benefits deductions', size=7, digits=(5, 2)),
         'number_day_holidays': fields.integer('Number day holidays', size=2),
         'holidays_bonus': fields.integer('Holidays bonus', size=2),
+        'december_salary_aprox': fields.float('December salary aprox'),
         'valor': fields.float('Other benefits deductions', size=7, digits=(5, 2)),
     }
 
@@ -71,5 +72,6 @@ class Payroll_extension(osv.Model):
         'other_benefits_deductions': 0,
         'number_day_holidays': 15,
         'holidays_bonus': 15,
+        'december_salary_aprox': 0,
         'valor': _get_total_deductions
     }

@@ -34,23 +34,27 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
         today = datetime.datetime.now()
 
         for month in xrange(1, 13):
-            datemonthstart = "%s-%s-01" % (today.year, month)
-            datemonthend = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year - 1, month)[1])
+            slip_ids = []
+            slip_line_ids = []
 
-            datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
-            datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
+            if month < 12:
+                    datemonthstart = "%s-%s-01" % (today.year, month)
+                    datemonthend = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year - 1, month)[1])
 
-            condition_slip = [('date_to', '>=', datemonthstart), ('date_to', '<=', datemonthend),
-                              ('employee_id', '=', obj.id), ('state', '=', 'done'),
-                              ]
-            slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
+                    datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
+                    datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
 
-            slip_line_ids = payslip_line_obj.search(self.cr, self.uid,
-                                                    [('slip_id', 'in', slip_ids),
-                                                     '|', '|', '|', '|', ('code', '=', '001'), ('code', '=', '003'),
-                                                     ('code', '=', '002'), ('code', '=', '005'), ('code', '=', '039')
-                                                     ],
-                                                    order='code', context=False)
+                    condition_slip = [('date_to', '>=', datemonthstart), ('date_to', '<=', datemonthend),
+                                      ('employee_id', '=', obj.id), ('state', '=', 'done'),
+                                      ]
+                    slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
+
+                    slip_line_ids = payslip_line_obj.search(self.cr, self.uid,
+                                                            [('slip_id', 'in', slip_ids),
+                                                             '|', '|', '|', '|', ('code', '=', '001'), ('code', '=', '003'),
+                                                             ('code', '=', '002'), ('code', '=', '005'), ('code', '=', '039')
+                                                             ],
+                                                            order='code', context=False)
 
             dic = {
                 'month': list_month_es[month - 1],

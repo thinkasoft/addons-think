@@ -97,20 +97,37 @@
   <table width="100%" class="bottomBorder" style="line-height:8pt;">
         %for line in (get_payslip_lines(o)):
         <%total_integral += line['integral']%>
-          <tbody >
-              <tr>
-                  <td style="text-align:left;">
-                    ${line['month'] }
-                  </td>
-                  <td style="text-align:left;">
-                    ${formatLang(line['basic']) } 
-                  </td>
-                  <td style="text-align:left;">
-                    ${formatLang(line['integral']) } 
-                  </td>
-              </tr>
-          </tbody>
+          % if line['month'] != 'Diciembre':
+                  <tbody >
+                      <tr>
+                          <td style="text-align:left;">
+                            ${line['month'] }
+                          </td>
+                          <td style="text-align:left;">
+                            ${formatLang(line['basic']) } 
+                          </td>
+                          <td style="text-align:left;">
+                            ${formatLang(line['integral']) } 
+                          </td>
+                      </tr>
+                  </tbody>
+          % else:
+                  <tbody >
+                      <tr>
+                          <td style="text-align:left;">
+                            ${line['month'] }
+                          </td>
+                          <td style="text-align:left;">
+                            ${formatLang(o.december_salary_aprox) } 
+                          </td>
+                          <td style="text-align:left;">
+                            ${formatLang(o.december_salary_aprox) } 
+                          </td>
+                      </tr>
+                  </tbody>
+           % endif
         %endfor
+        <%total_integral += o.december_salary_aprox%>
   </table>
   <table width="100%" class="bottomBorder" style="line-height:8pt;">
           <tbody >
