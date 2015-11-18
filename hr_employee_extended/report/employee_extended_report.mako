@@ -138,10 +138,11 @@
               </tr>
           </tbody>
   </table>
-  <% calc_benefits = float(o.number_days_benefits) / 360.00000 %>
+  <% value = o.number_days_benefits / 360.0000 %>
+  <% calc_benefits = round(float('%.5f'%(value)),4) %>
   <% result =  total_integral*calc_benefits%>
   <table width="100%" class="bottomBorder">  
-          <center><FONT FACE="raro, courier" SIZE=1><b>Utilidades ${o.number_days_benefits} Dias X ${formatLang(calc_benefits, digits=5)} =  ${formatLang(result)}</b></FONT></center>                    
+          <center><FONT FACE="raro, courier" SIZE=1><b>Utilidades ${o.number_days_benefits} Dias X ${formatLang(calc_benefits, digits=4)} =  ${formatLang(result)}</b></FONT></center>                    
   </table>
   <table width="100%" class="bottomBorder">  
           <center><FONT FACE="raro, courier" SIZE=1><b>Total Remuneraciones ${formatLang(result)}</b></FONT></center>                    
@@ -150,8 +151,8 @@
           <FONT FACE="raro, courier" SIZE=1>DEDUCCIONES</FONT>
   </table>
   <% inces =  result*0.005%>
-  <% faov =  result*0.05%>
-  <% isrl = total_integral * (o.withholding/100)%>
+  <% faov =  result*0.01%>
+  <% isrl = result * (o.withholding/100)%>
   <table width="100%" style="border:1px solid black;border-collapse:collapse;">
                     <tr>
                         <td style="border:1px solid black;" width="10%">
@@ -192,7 +193,7 @@
                         </td>
                     </tr>
   </table>
-  <% total_deductions =  inces + o.other_benefits_deductions%>
+  <% total_deductions =  inces + faov +  isrl + o.other_benefits_deductions%>
   <table width="100%" style="border:1px solid black;border-collapse:collapse;">
                     <tr>
                         <td style="border:1px solid black;" width="10%">

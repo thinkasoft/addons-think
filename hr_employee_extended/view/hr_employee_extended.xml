@@ -30,6 +30,7 @@
 				    <field name="number_day_holidays"/>
 		     		<field name="holidays_bonus"/>
 		     		<field name="december_salary_aprox"/>
+		     		<field name="salary_yearly"/>
 				</xpath>
 			</field>
 		</record> 
