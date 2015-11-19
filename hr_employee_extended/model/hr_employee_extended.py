@@ -83,7 +83,8 @@ class Payroll_extension(osv.Model):
         'number_day_holidays': fields.function(_calc_days, type='integer', string='Number day holidays'),
         'holidays_bonus': fields.function(_calc_days, type='integer', string='Holidays bonus'),
         'december_salary_aprox': fields.float('December salary aprox'),
-        'salary_yearly': fields.function(_get_total_deductions, type='float', string='Salary Acum')
+        'salary_yearly': fields.function(_get_total_deductions, type='float', string='Salary yearly'),
+        'acum_social_benefits': fields.float('Acum social benefits'),
     }
 
     _defaults = {
@@ -93,4 +94,5 @@ class Payroll_extension(osv.Model):
         'other_benefits_deductions': 0,
         'number_days_benefits': 60,
         'december_salary_aprox': 0,
+        'acum_social_benefits': 0.00,
     }

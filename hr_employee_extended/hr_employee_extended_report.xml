@@ -238,4 +238,19 @@
         menu="True" 
         multi="False"/>
     </data>
+
+    <data> 
+        <report 
+        id="employee_social_benefits_report" 
+        name="employee.social.benefits.report" 
+        string="Employee social benefits" 
+        model="hr.employee" 
+        file="hr_employee_extended/report/employee_social_benefits_report.mako"
+        report_type="webkit" 
+        webkit_header="hr_webkit_header"
+        auto="False" 
+        header="False" 
+        menu="True" 
+        multi="False"/>
+    </data>
 </openerp>

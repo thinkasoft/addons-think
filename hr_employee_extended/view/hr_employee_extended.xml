@@ -31,6 +31,7 @@
 		     		<field name="holidays_bonus"/>
 		     		<field name="december_salary_aprox"/>
 		     		<field name="salary_yearly"/>
+		     		<field name="acum_social_benefits"/>
 				</xpath>
 			</field>
 		</record> 

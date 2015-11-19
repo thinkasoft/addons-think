@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-16 18:32+0000\n"
-"PO-Revision-Date: 2015-11-16 18:32+0000\n"
+"POT-Creation-Date: 2015-11-19 16:50+0000\n"
+"PO-Revision-Date: 2015-11-19 16:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,9 +26,14 @@ msgid "December salary aprox"
 msgstr "Salario diciembre aproximado"
 
 #. module: hr_employee_extended
-#: field:hr.employee,number_day_holidays:0
-msgid "Number day holidays"
-msgstr "Dias de vacaciones"
+#: model:ir.actions.report.xml,name:hr_employee_extended.employee_social_benefits_report
+msgid "Employee social benefits"
+msgstr "Reporte prestaciones sociales"
+
+#. module: hr_employee_extended
+#: field:hr.employee,salary_yearly:0
+msgid "Salary yearly"
+msgstr "Salario anual"
 
 #. module: hr_employee_extended
 #: field:hr.employee,holidays_bonus:0
@@ -46,9 +51,19 @@ msgid "Date Diacharge"
 msgstr "Fecha de Egreso"
 
 #. module: hr_employee_extended
+#: field:hr.employee,acum_social_benefits:0
+msgid "Acum social benefits"
+msgstr "Acumulado historico prestaciones"
+
+#. module: hr_employee_extended
 #: field:hr.employee,salary:0
 msgid "Monthly salary"
 msgstr "Salario Mensual"
+
+#. module: hr_employee_extended
+#: field:hr.employee,number_day_holidays:0
+msgid "Number day holidays"
+msgstr "Dias de vacaciones"
 
 #. module: hr_employee_extended
 #: model:ir.actions.report.xml,name:hr_employee_extended.employee_extended_report
@@ -72,7 +87,6 @@ msgstr "Rentencion de ISRL"
 
 #. module: hr_employee_extended
 #: field:hr.employee,other_benefits_deductions:0
-#: field:hr.employee,valor:0
 msgid "Other benefits deductions"
 msgstr "Deducciones en utilidades"
 
