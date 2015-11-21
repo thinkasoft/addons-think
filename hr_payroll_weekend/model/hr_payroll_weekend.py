@@ -85,6 +85,7 @@ class HrPayrollWeekend(osv.osv):
                     'contract_id': contract.id,
                 }
             elif contract.struct_id.code.lower() == 'vacaciones':
+
                 number_day = employee_obj._calc_days(cr, uid, [contract.employee_id.id], context)
                 number_day_holidays = {
                     'name': _('Number day holidays'),
@@ -105,7 +106,7 @@ class HrPayrollWeekend(osv.osv):
                     'amount': 0.0,
                     'contract_id': contract.id,
                 }
-            
+
             difference = {
                 'name': _('Payment Difference'),
                 'code': 'Difference',

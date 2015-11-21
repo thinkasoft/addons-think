@@ -30,7 +30,7 @@ class Payroll_extension(osv.Model):
 
         for month in xrange(1, 13):
             datemonthstart = "%s-%s-01" % (today.year, month)
-            datemonthend = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year - 1, month)[1])
+            datemonthend = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year, month)[1])
 
             datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
             datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")

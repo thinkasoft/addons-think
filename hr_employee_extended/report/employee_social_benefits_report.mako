@@ -80,7 +80,66 @@
                     </tr>
   </table>
   <br/>
-
+  <table width="100%" class="bottomBorder">
+                    <tr>
+                        <td width="5%">
+                            <FONT FACE="raro, courier" SIZE=1><b>Mes</b></FONT>
+                        </td>
+                        <td width="35%">
+                            <FONT FACE="raro, courier" SIZE=1><b>Monto cancelado mensual</b></FONT>
+                        </td>
+                        <td width="20%">
+                            <FONT FACE="raro, courier" SIZE=1><b>Salario Diario</b></FONT>
+                        </td>
+                        <td width="20%">
+                            <FONT FACE="raro, courier" SIZE=1><b>Alic. Utilidades</b></FONT>
+                        </td>
+                        <td width="20%">
+                            <FONT FACE="raro, courier" SIZE=1><b>Dias Aluc</b></FONT>
+                        </td>
+                        <td width="20%">
+                            <FONT FACE="raro, courier" SIZE=1><b>Bono Vacacional</b></FONT>
+                        </td>
+                        <td width="20%">
+                            <FONT FACE="raro, courier" SIZE=1><b>Salario Integral Diario</b></FONT>
+                        </td>
+                        <td width="20%">
+                            <FONT FACE="raro, courier" SIZE=1><b>Dias Antiguedad</b></FONT>
+                        </td>
+                    </tr>
+  </table>
+  <table width="100%" class="bottomBorder" style="line-height:8pt;">
+        %for line in (get_payslip_total_lines(o)):
+            <tbody >
+              <tr>
+                  <td style="text-align:left;">
+                      ${line['month'] }
+                  </td>
+                  <td style="text-align:left;">
+                      ${formatLang(line['integral']) } 
+                  </td>
+                  <td style="text-align:left;">
+                      ${formatLang(line['salary_daily']) } 
+                  </td>
+                  <td style="text-align:left;">
+                      ${formatLang(line['alic_benefit']) } 
+                  </td>
+                  <td style="text-align:left;">
+                      ${formatLang(line['days_alic']) } 
+                  </td>
+                  <td style="text-align:left;">
+                      ${formatLang(line['holidays_bonus']) } 
+                  </td>
+                  <td style="text-align:left;">
+                      ${formatLang(line['salary_integral']) } 
+                  </td>
+                  <td style="text-align:left;">
+                      ${formatLang(line['hitoric_day']) } 
+                  </td>
+              </tr>
+            </tbody>
+        %endfor
+  </table>
   %endfor 
 </body>
 </html>
