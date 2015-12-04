@@ -121,6 +121,18 @@ class islr_xml_wh_doc(osv.osv):
                     partner_vat, control_number, porcent_rete, concept_code, \
                         invoice_number, base, inv_id = line
                     fecha_contable_ai = datetime.datetime.strptime(obj_ai.browse(cr, uid, inv_id).date_invoice, "%Y-%m-%d").strftime("%d/%m/%Y")
+                    detalle = SubElement(root, "DetalleRetencion")
+                    inv_num = invoice_number.replace("-", "")
+                    con_num = control_number.replace("-", "").replace("/", "")
+                    SubElement(detalle, "RifRetenido").text = partner_vat
+                    SubElement(detalle, "NumeroFactura").text = inv_num
+                    SubElement(detalle, "NumeroControl").text = con_num
+                    SubElement(detalle, "FechaOperacion").text = \
+                        fecha_contable_ai
+                    SubElement(detalle, "CodigoConcepto").text = concept_code
+                    SubElement(detalle, "MontoOperacion").text = str(base)
+                    SubElement(detalle, "PorcentajeRetencion").text = \
+                        str(porcent_rete)
 
             # XML payroll
             for line_payroll in wh_brw.xml_payroll_ids:
