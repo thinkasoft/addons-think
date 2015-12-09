@@ -45,7 +45,8 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
                     datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
 
                     condition_slip = [('date_to', '>=', datemonthstart), ('date_to', '<=', datemonthend),
-                                      ('employee_id', '=', obj.id), ('state', '=', 'done'),
+                                      ('employee_id', '=', obj.id), '|', ('state', '=', 'done'),
+                                      ('state', '=', 'paid'),
                                       ]
                     slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
 

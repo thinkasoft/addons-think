@@ -63,7 +63,8 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
                 condition_slip = [('date_to', '>=', datemonthstart),
                                   ('date_to', '<=', datemonthend),
                                   ('employee_id', '=', employee_obj.id),
-                                  ('state', '=', 'done'),
+                                  '|', ('state', '=', 'done'),
+                                  ('state', '=', 'paid'),
                                   ]
                 slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
                 condition_slip_line = [('slip_id', 'in', slip_ids),
@@ -71,7 +72,7 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
                                        ]
 
                 slip_line_ids = payslip_line_obj.search(self.cr, self.uid, condition_slip_line, context=False)
-                dic = {'month': str(datemonthend.day)+"-"+str(datemonthend.month)+"-"+str(datemonthend.year),
+                dic = {'month': str(datemonthend.day) + "-" + str(datemonthend.month) + "-" + str(datemonthend.year),
                        'integral': 0}
 
                 if slip_line_ids:
