@@ -52,10 +52,10 @@
     <H1 style="text-align:center;">CONSTANCIA DE TRABAJO</H1>
     <H4 style="text-align:center;">A QUIEN PUEDA INTERESAR</H4>
     <br/>
-     %if o.Beneficio_laboral == True:
+     %if o.employment_benefit == True:
      	<p style="text-align:justify">Quien suscribe, Alcibiete Ricciardelli, en mi carácter de Gerente de Operaciones de la empresa ${o.company_id.partner_id.name}, por medio de la presente hago constar que los datos abajo suministrados corresponden a nuestro trabajador(a) ACTIVO por concepto de Beneficios Laborales</p>
      %else:
-	    %if o.Fecha_Egreso == "False":
+	    %if o.date_exit == "False":
 	    	<p style="text-align:justify">Quien suscribe, Alcibiete Ricciardelli, en mi carácter de Gerente de Operaciones de la empresa ${o.company_id.partner_id.name}, por medio de la presente hago constar que los datos abajo suministrados corresponden a nuestro trabajador(a) ACTIVO:</p>
 	    %else:
 	    	<p style="text-align:justify">Quien suscribe, Alcibiete Ricciardelli, en mi carácter de Gerente de Operaciones de la empresa ${o.company_id.partner_id.name}, por medio de la presente hago constar que los datos abajo suministrados corresponden a nuestro trabajador(a), quién prestó sus servicios laborales para esta institución: </p>
@@ -83,25 +83,25 @@
     		<td><b>CARGO</b></td>
     		<td><b>${ o.job_id.name }</b></td>
     	</tr>
-    	%if o.Fecha_Egreso == "False":
+    	%if o.date_exit == "False":
     		<tr>
     			<td><b>SALARIO MENSUAL</b></td>
-    			<td><b>${ o.sueldo } BS.</b></td>
+    			<td><b>${ o.salary } BS.</b></td>
     		</tr>
     	%else :
     		<tr>
     			<td><b> SALARIO MENSUAL</b></td>
-    			<td><b>${ o.sueldo } BS.</b></td>
+    			<td><b>${ o.salary } BS.</b></td>
     		</tr>
     	%endif
     	<tr>
     		<td><b>FECHA DE INGRESO</b></td>
-    		<td><b>${ o.Fecha_Ingreso }</b></td>
+    		<td><b>${ o.admission_date }</b></td>
     	</tr>
-    	 %if o.Fecha_Egreso != "False":
+    	 %if o.date_exit != "False":
     		<tr>
     			<td><b>FECHA DE EGRESO</b></td>
-    			<td><b>${ o.Fecha_Egreso }</b></td>
+    			<td><b>${ o.date_exit }</b></td>
     		</tr>
     	%endif
 

@@ -224,7 +224,27 @@
             <field name="name">HR Webkit Header</field>
         </record>
     </data>
-    <data> 
+    <data>
+    	<report 
+        id="employee_job_letter_report"
+        name="employee.job.letter.report.mako"
+        string="Job Letter" 
+        model="hr.employee" 
+        file="hr_employee_extended/report/employee_job_letter_report.mako"
+        report_type="webkit" 
+        webkit_header="hr_webkit_header"
+        menu="True"/>
+        
+        <report 
+        id="employee_bank_letter_report"
+        name="employee.bank.letter.report.mako"
+        string="Bank letter" 
+        model="hr.employee" 
+        file="hr_employee_extended/report/employee_bank_letter_report.mako"
+        report_type="webkit" 
+        webkit_header="hr_webkit_header"
+        menu="True"/>
+
         <report 
         id="employee_extended_report" 
         name="employee.extended.report" 
@@ -237,9 +257,7 @@
         header="False" 
         menu="True" 
         multi="False"/>
-    </data>
 
-    <data> 
         <report 
         id="employee_social_benefits_report" 
         name="employee.social.benefits.report" 
