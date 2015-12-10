@@ -52,6 +52,7 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
                         sum_days += 2
                     else:
                         invalid_year -= 1
+                        dic['hitoric_day'] = 5
                 else:
                     dic['hitoric_day'] = 5
 
@@ -86,7 +87,6 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
                     res.append(dic)
             ini_month = 1
             ini_year += 1
-
         return res
 
 report_sxw.report_sxw('report.employee.social.benefits.report',

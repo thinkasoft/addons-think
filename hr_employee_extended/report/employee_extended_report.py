@@ -24,6 +24,7 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
         })
 
     def _get_payslip_lines(self, obj):
+        import pdb; pdb.set_trace()
         res = []
         dic = {}
         list_month_es = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
