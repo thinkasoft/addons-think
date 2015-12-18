@@ -38,7 +38,8 @@ class Payroll_extension(osv.Model):
             condition_slip = [('date_to', '>=', datemonthstart),
                               ('date_to', '<=', datemonthend),
                               ('employee_id', 'in', ids),
-                              ('state', '=', 'done')]
+                              '|', ('state', '=', 'done'),
+                              ('state', '=', 'paid')]
 
             slip_ids = payslip_obj.search(cr, uid, condition_slip)
 
