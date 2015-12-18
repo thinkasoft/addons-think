@@ -18,6 +18,29 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################################
-import report
-import wizard
+
+import time
+from datetime import datetime
+from dateutil import relativedelta
+
+from openerp.osv import fields, osv
+
+class payslip_lines_contribution_register(osv.osv_memory):
+    
+    _inherit = 'payslip.lines.contribution.register'
+
+    def print_report(self, cr, uid, ids, context=None):
+        datas = {
+             'ids': context.get('active_ids', []),
+             'model': 'hr.contribution.register',
+             'form': self.read(cr, uid, ids, [], context=context)[0]
+        }
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'contribution.register.lines.webkit.inces',
+            'datas': datas,
+        }
+
+payslip_lines_contribution_register()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

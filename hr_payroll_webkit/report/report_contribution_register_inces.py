@@ -25,9 +25,9 @@ from dateutil import relativedelta
 from openerp.report import report_sxw
 
 
-class contribution_register_report(report_sxw.rml_parse):
+class contribution_register_report_inces(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
-        super(contribution_register_report, self).__init__(
+        super(contribution_register_report_inces, self).__init__(
             cr, uid, name, context
         )
         self.localcontext.update({
@@ -48,7 +48,7 @@ class contribution_register_report(report_sxw.rml_parse):
             )
             )[:10]
         )
-        return super(contribution_register_report, self).set_context(
+        return super(contribution_register_report_inces, self).set_context(
             objects,
             data,
             ids,
@@ -68,9 +68,9 @@ class contribution_register_report(report_sxw.rml_parse):
             "hr_employee AS he "
             "WHERE pl.slip_id = hp.id "
             "AND pl.employee_id = he.id "
-            "AND (%s <= hp.date_to) AND (hp.date_to <= %s) "
+            "AND (%s <= hp.date_to AND hp.date_to <= %s) "
             "AND pl.code = '039' "
-            "AND hp.state = 'done'"
+            "AND ( hp.state = 'done' OR hp.state = 'paid')"
             "ORDER BY he.identification_id",
             (self.date_from, self.date_to))
         payslip_lines = [x[0] for x in self.cr.fetchall()]
@@ -98,10 +98,10 @@ class contribution_register_report(report_sxw.rml_parse):
         return res
 
 report_sxw.report_sxw(
-    'report.contribution.register.lines.webkit',
+    'report.contribution.register.lines.webkit.inces',
     'hr.contribution.register',
-    'addons/hr_payroll_webkit/report/report_contribution_register_webkit.mako',
-    parser=contribution_register_report
+    'addons/hr_payroll_webkit/report/report_contribution_register_webkit_inces.mako',
+    parser=contribution_register_report_inces
 )
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

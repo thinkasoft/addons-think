@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
     <style type="text/css">
         ${css}
@@ -41,7 +41,7 @@
                             ${o.company_id.country_id.name}</FONT>
                     
                         </td>
-                        <td style="line-height:1pt;">RECIBO DE PAGO</td>
+                        <td style="line-height:1pt;">RECIBO DE PAGO VACACIONES</td>
                    </tr>
                 </table>
             </td>
@@ -71,15 +71,21 @@
                         <td style="border:1px solid black;" width="50%">
                             <FONT FACE="raro, courier" SIZE=1><b>${o.employee_id.identification_id}</b></FONT>
                         </td>
-                        <td style="border:1px solid black;" width="40%">
+                        <td style="border:1px solid black;" width="20%">
                             <FONT FACE="raro, courier" SIZE=1>Salario por Tabulador</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="20%">
+                            <FONT FACE="raro, courier" SIZE=1><b>${o.contract_id.wage} Bs.</b></FONT>
                         </td>
                     </tr>
 	</table>
 	<table width="100%" style="border:1px solid black;border-collapse:collapse;">
                     <tr>
-                        <td style="border:1px solid black;" width="32%">
-                        <FONT FACE="raro, courier" SIZE=1></FONT>
+                        <td style="border:1px solid black;" width="16%">
+                        <FONT FACE="raro, courier" SIZE=1>Fecha de Ingreso</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="16%">
+                            <FONT FACE="raro, courier" SIZE=1><b>${o.contract_id.date_start}</b></FONT>
                         </td>
                         <td style="border:1px solid black;" width="16%">
                             <FONT FACE="raro, courier" SIZE=1>Pago Desde</FONT>
@@ -95,6 +101,7 @@
                         </td>
                     </tr>
 	</table>
+	<br/>
 	<table width="100%" class="bottomBorder">
                     <tr>
                         <td width="5%">
@@ -114,7 +121,7 @@
                         </td>
                     </tr>
 	</table>
-	<table width="100%" class="bottomBorder" style="line-height:2pt;">
+	<table width="100%" class="bottomBorder" style="line-height:8pt;">
             %for line in (get_payslip_lines(o.line_ids)):
             %if line.code == "039" or line.code == "069" or line.code == "200":
             	<tr>
@@ -136,81 +143,42 @@
             	</tr>
             %else:
             	<tr>
-	                <td width="5%" style="font-size:50%;">
-	                	${line.code or ''|entity}
+	                <td width="5%"><FONT FACE="raro, courier" SIZE=0.5>
+	                	${line.code or ''|entity}</FONT>
 					 </td>
-            		<td width="35%" style="font-size:50%;">
-            			${line.name or '' |entity}
+            		<td width="35%"><FONT FACE="raro, courier" SIZE=0.5>
+            			${line.name or '' |entity}</FONT>
             		</td>
-            		<td width="20%" style="font-size:50%;">
-            			${formatLang(line.quantity) or '' |entity}
+            		<td width="20%" ><FONT FACE="raro, courier" SIZE=0.5>
+            			${formatLang(line.quantity) or '' |entity}</FONT>
             		</td>
             		%if line.code =="008" :
-            		<td width="20%" style="font-size:50%;">
-            			
+            		<td width="20%"><FONT FACE="raro, courier" SIZE=0.5>
+            			</FONT>
             		</td>
             		%else :
-            		<td width="20%" style="font-size:50%;">
-            			${formatLang(line.amount) or '' |entity}
+            		<td width="20%"><FONT FACE="raro, courier" SIZE=0.5>
+            			${formatLang(line.amount) or '' |entity}</FONT>
             		</td>
             		%endif
-            		<td width="20%" style="font-size:50%;">
-            			${formatLang(line.total, currency_obj = o.company_id and o.company_id.currency_id) or 0.0 |entity}
+            		<td width="20%"><FONT FACE="raro, courier" SIZE=0.5>
+            			${formatLang(line.total, currency_obj = o.company_id and o.company_id.currency_id) or 0.0 |entity}</FONT>
             		</td>
             	</tr>
             %endif
     		%endfor
 	</table>
-
-<table width="100%">
+		
+	</br>
+	</br>
+	<table width="80%" style="margin: 0 auto;">
 	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
+	        <td width="80%">
+	            <FONT FACE="raro, courier" SIZE=1><b>Recibe Conforme: _________________________  Cedula del Trabajador: _________________________ Huella: _________________________</b></FONT>
 	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-            <td width="100%" style="font-size:50%; line-height:2pt;">
-	            <b>Recibe Conforme:__________________________________________________Cedula del Trabajador: _________________________Huella: ____________________</b>
-	        </td>	    
 	    </tr>
 	</table>
-		<table width="100%">
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-            <td width="100%" style="font-size:100%; line-height:2pt;">
-	            <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
-	        </td>	    
-	    </tr>
-	</table>
+	</br>
 	<table width="100%">
         <tr>
             <td width="30%" style="text-align:left;" style="BOLD">
@@ -229,13 +197,13 @@
                             ${o.company_id.country_id.name}</FONT>
                     
                         </td>
-                        <td style="line-height:1pt;">RECIBO DE PAGO</td>
+                        <td style="line-height:1pt;">RECIBO DE PAGO VACACIONES</td>
                    </tr>
                 </table>
             </td>
         </tr>
 	</table>
-		<table width="100%" style="border:1px solid black;border-collapse:collapse;">
+	<table width="100%" style="border:1px solid black;border-collapse:collapse;">
                     <tr>
                         <td style="border:1px solid black;" width="10%">
                         <FONT FACE="raro, courier" SIZE=1>Trabajador</FONT>
@@ -259,15 +227,21 @@
                         <td style="border:1px solid black;" width="50%">
                             <FONT FACE="raro, courier" SIZE=1><b>${o.employee_id.identification_id}</b></FONT>
                         </td>
-                        <td style="border:1px solid black;" width="40%">
+                        <td style="border:1px solid black;" width="20%">
                             <FONT FACE="raro, courier" SIZE=1>Salario por Tabulador</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="20%">
+                            <FONT FACE="raro, courier" SIZE=1><b>${o.contract_id.wage} Bs.</b></FONT>
                         </td>
                     </tr>
 	</table>
 	<table width="100%" style="border:1px solid black;border-collapse:collapse;">
                     <tr>
-                        <td style="border:1px solid black;" width="32%">
-                        <FONT FACE="raro, courier" SIZE=1></FONT>
+                        <td style="border:1px solid black;" width="16%">
+                        <FONT FACE="raro, courier" SIZE=1>Fecha de Ingreso</FONT>
+                        </td>
+                        <td style="border:1px solid black;" width="16%">
+                            <FONT FACE="raro, courier" SIZE=1><b>${o.contract_id.date_start}</b></FONT>
                         </td>
                         <td style="border:1px solid black;" width="16%">
                             <FONT FACE="raro, courier" SIZE=1>Pago Desde</FONT>
@@ -283,6 +257,7 @@
                         </td>
                     </tr>
 	</table>
+	<br/>
 	<table width="100%" class="bottomBorder">
                     <tr>
                         <td width="5%">
@@ -302,7 +277,7 @@
                         </td>
                     </tr>
 	</table>
-	<table width="100%" class="bottomBorder" style="line-height:2pt;">
+	<table width="100%" class="bottomBorder" style="line-height:8pt;">
             %for line in (get_payslip_lines(o.line_ids)):
             %if line.code == "039" or line.code == "069" or line.code == "200":
             	<tr>
@@ -324,60 +299,39 @@
             	</tr>
             %else:
             	<tr>
-	                <td width="5%" style="font-size:50%;">
-	                	${line.code or ''|entity}
+	                <td width="5%"><FONT FACE="raro, courier" SIZE=0.5>
+	                	${line.code or ''|entity}</FONT>
 					 </td>
-            		<td width="35%" style="font-size:50%;">
-            			${line.name or '' |entity}
+            		<td width="35%"><FONT FACE="raro, courier" SIZE=0.5>
+            			${line.name or '' |entity}</FONT>
             		</td>
-            		<td width="20%" style="font-size:50%;">
-            			${formatLang(line.quantity) or '' |entity}
+            		<td width="20%" ><FONT FACE="raro, courier" SIZE=0.5>
+            			${formatLang(line.quantity) or '' |entity}</FONT>
             		</td>
             		%if line.code =="008" :
-            		<td width="20%" style="font-size:50%;">
+            		<td width="20%"><FONT FACE="raro, courier" SIZE=0.5>
+            			</FONT>
             		</td>
             		%else :
-            		<td width="20%" style="font-size:50%;">
-            			${formatLang(line.amount) or '' |entity}
+            		<td width="20%"><FONT FACE="raro, courier" SIZE=0.5>
+            			${formatLang(line.amount) or '' |entity}</FONT>
             		</td>
             		%endif
-            		<td width="20%" style="font-size:50%;">
-            			${formatLang(line.total, currency_obj = o.company_id and o.company_id.currency_id) or 0.0 |entity}
+            		<td width="20%"><FONT FACE="raro, courier" SIZE=0.5>
+            			${formatLang(line.total, currency_obj = o.company_id and o.company_id.currency_id) or 0.0 |entity}</FONT>
             		</td>
             	</tr>
             %endif
     		%endfor
 	</table>
-<table width="100%">
+	
+	</br>
+	</br>
+	<table width="80%" style="margin: 0 auto;">
 	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
+	        <td width="80%">
+	            <FONT FACE="raro, courier" SIZE=1><b>Recibe Conforme: _________________________  Cedula del Trabajador: _________________________ Huella: _________________________</b></FONT>
 	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td width="80%" style="font-size:50%; line-height:2pt;">
-	            <b></b>
-	        </td>
-	    </tr>
-	    <tr>
-            <td width="100%" style="font-size:50%; line-height:2pt;">
-	            <b>Recibe Conforme:__________________________________________________Cedula del Trabajador: _________________________Huella: ____________________</b>
-	        </td>	    
 	    </tr>
 	</table>
 	

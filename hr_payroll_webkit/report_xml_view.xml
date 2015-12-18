@@ -225,19 +225,17 @@
         </record>
     </data>
     <data>
-        <report auto="False" menu="False" id="contribution_register_webkit" model="hr.contribution.register" name="contribution.register.lines.webkit" file="hr_payroll_webkit/report/report_contribution_register_webkit.mako" string="PaySlip Lines" report_type="webkit" webkit_header="hr_webkit_header"/>
-        <report auto="False" id="hr_payroll.payslip_details_report" model="hr.payslip" name="paylip.details.webkit" file="hr_payroll_webkit/report/report_payslip_details_webkit.mako" string="PaySlip Details" report_type="webkit" webkit_header="hr_webkit_header"/>
-		<report auto="False" id="hr_payroll.payslip_report" model="hr.payslip" name="payslip.webkit" file="hr_payroll_webkit/report/report_payslip_webkit.mako" string="Employee PaySlip" report_type="webkit" webkit_header="hr_webkit_header"/>
+        <report auto="False" menu="False" id="contribution_register_webkit" model="hr.contribution.register" name="contribution.register.lines.webkit" file="hr_payroll_webkit/report/report_contribution_register_webkit.mako" string="Reporte Faov" report_type="webkit" webkit_header="hr_webkit_header"/>
 
-		<report
-        id="employee_report" 
-        name="employee.report" 
-        string="Admin payslip" 
-        model="hr.payslip"
-        auto="False"
-        menu="True"
-        file="hr_payroll_webkit/report/report_employee.mako" 
-        report_type="webkit" 
-        webkit_header="hr_webkit_header"/>
+        <report auto="False" id="hr_payroll.payslip_details_report" model="hr.payslip" name="paylip.details.webkit" file="hr_payroll_webkit/report/report_payslip_details_webkit.mako" string="PaySlip Details" report_type="webkit" webkit_header="hr_webkit_header"/>
+
+		<report auto="False" id="hr_payroll.payslip_report" model="hr.payslip" name="payslip.webkit" file="hr_payroll_webkit/report/report_payslip_webkit.mako" string="Employee PaySlip" report_type="webkit" webkit_header="hr_webkit_header"/> 
+
+		<report auto="False" id="hr_payroll.payslip_report_extra" model="hr.payslip" name="payslip.webkit.extra" file="hr_payroll_webkit/report/report_payslip_webkit_extra.mako" string="Employee PaySlip Administrativo - Obrero" report_type="webkit" webkit_header="hr_webkit_header"/>
+
+		<report auto="False" id="hr_payroll.payslip_report_vacaciones" model="hr.payslip" name="payslip.webkit.vacaciones" file="hr_payroll_webkit/report/report_payslip_webkit_vacaciones.mako" string="Recibo Vacaciones" report_type="webkit" webkit_header="hr_webkit_header"/>
+
+		<report auto="False" menu="False" id="contribution_register_webkit_inces" model="hr.contribution.register" name="contribution.register.lines.webkit.inces" file="hr_payroll_webkit/report/report_contribution_register_webkit_inces.mako" string="PaySlip Lines Inces" report_type="webkit" webkit_header="hr_webkit_header"/>
+
     </data>
 </openerp>
