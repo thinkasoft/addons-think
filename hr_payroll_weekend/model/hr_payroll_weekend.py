@@ -71,6 +71,31 @@ class HrPayrollWeekend(osv.osv):
     def calculate_other(self, cr, uid, contract_ids, date_from, date_to, context=None):
         inputs = []
         for contract in self.pool.get('hr.contract').browse(cr, uid, [contract_ids], context=context):
+            employee_obj = self.pool.get('hr.employee')
+            expenses = {}
+            profits = {}
+            number_day_holidays = {}
+            holidays_bonus = {}
+            salary_yearly = employee_obj._get_total_deductions(cr, uid, [contract.employee_id.id], context)
+            profits = {
+                'name': _('Profits'),
+                'code': 'Profits',
+                'amount': salary_yearly[contract.employee_id.id],
+                'contract_id': contract.id,
+            }
+            number_day = employee_obj._calc_days(cr, uid, [contract.employee_id.id], context)
+            number_day_holidays = {
+                'name': _('Number day holidays'),
+                'code': 'number_day_holidays',
+                'amount': number_day[contract.employee_id.id],
+                'contract_id': contract.id,
+            }
+            holidays_bonus = {
+                'name': _('Holidays bonus'),
+                'code': 'holidays_bonus',
+                'amount': number_day[contract.employee_id.id],
+                'contract_id': contract.id,
+            }
             expenses = {
                 'name': _('Expenses'),
                 'code': 'Expenses',
@@ -97,14 +122,14 @@ class HrPayrollWeekend(osv.osv):
                 'contract_id': contract.id,
             }
 
-            inputs = [expenses] + [difference] + [otherincomes] + [anticipio_advance]
+            inputs += [difference] + [otherincomes] + [anticipio_advance] + [expenses] + [profits] + [number_day_holidays] + [holidays_bonus]
 
         return inputs
 
     # Replace method onchange_employee_id located in hr_payroll line 641
     def onchange_employee_id_1(self, cr, uid, ids, date_from, date_to, employee_id=False, contract_id=False, context=None):
         res = super(HrPayrollWeekend, self).onchange_employee_id(cr, uid, ids, date_from, date_to, employee_id, contract_id, context)
-        print res
+
         if not contract_id:
             contract_id = res['value']['contract_id']
         weekend_id = self.calculate_weekend(cr, uid, ids, date_from, date_to, contract_id, context)
@@ -132,4 +157,3 @@ class HrPayrollWeekend(osv.osv):
         return self.onchange_employee_id_1(cr, uid, ids, date_from=date_from, date_to=date_to, employee_id=employee_id, contract_id=contract_id, context=context)
 
 HrPayrollWeekend()
- 
