@@ -70,7 +70,7 @@ class contribution_register_report(report_sxw.rml_parse):
             "AND pl.employee_id = he.id "
             "AND (%s <= hp.date_to) AND (hp.date_to <= %s) "
             "AND pl.code = '039' "
-            "AND hp.state = 'done'"
+            "AND (hp.state = 'done' OR hp.state = 'paid')"
             "ORDER BY he.identification_id",
             (self.date_from, self.date_to))
         payslip_lines = [x[0] for x in self.cr.fetchall()]
