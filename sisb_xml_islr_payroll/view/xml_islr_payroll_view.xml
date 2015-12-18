@@ -10,7 +10,7 @@
             <field name="arch" type="xml">
                 <xpath expr='//notebook/page[@string="Lines Withholding"]' position='after'>
                     <page string="Lines Withholding Payroll">
-                        <field name="xml_payroll_ids" nolabel="1" widget="many2many" domain="[('state','=','done'),('period_id','=',period_id)]" colspan='4' mode='tree'>
+                        <field name="xml_payroll_ids" nolabel="1" widget="many2many" domain="['|',('state','=','done'),('state','=','paid'),('period_id','=',period_id)]" colspan='4' mode='tree'>
                         </field>
                         <group col="2" colspan="2">
                                 <field name="amount_total_ret_payroll"/>
