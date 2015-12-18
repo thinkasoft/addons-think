@@ -59,7 +59,6 @@ class report_hr_payslip_extended(report_sxw.rml_parse):
     def _get_payslip_lines(self, obj):
         res = []
         dic = {}
-
         self.cr.execute(
             "SELECT he.identification_id, he.name_related, SUM(pl.amount), "
             "ROUND(SUM(pl.amount)/100, 2), ROUND((SUM(pl.amount)*2)/100, 2), "
@@ -69,7 +68,7 @@ class report_hr_payslip_extended(report_sxw.rml_parse):
             "AND pl.slip_id = hp.id "
             "AND pl.employee_id = he.id "
             "AND hp.date_to >= %s AND hp.date_to <= %s "
-            "AND hp.state = 'done' "
+            "AND ( hp.state = 'done' OR hp.state = 'paid' )"
             "GROUP by he.identification_id, he.name_related,pl.code "
             "ORDER by he.identification_id", (self.date_from, self.date_to))
 
