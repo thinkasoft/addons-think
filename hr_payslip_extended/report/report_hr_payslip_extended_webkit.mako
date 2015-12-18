@@ -69,7 +69,7 @@
 	    			<th style="text-align:right;" >${_("Monto")}</th>
     			</tr>
     		</thead>
-    		<% amount_total = faov_total = 0.0%>
+    		<% amount_total = faov_total = inces_total = 0.0%>
     		%for line in (get_payslip_lines(o)):
     			<tbody >
             	<tr>
@@ -82,17 +82,18 @@
             		<td style="text-align:center;"><FONT FACE="raro, courier" SIZE=1>
             			${formatLang(line['amount']) or 0.0 |entity} Bs.</FONT>
             		</td>
-            		<td style="text-align:center;"><FONT FACE="raro, courier" SIZE=1>
-            			${ 0.0 } Bs</FONT>
-            		</td>
+                    <td style="text-align:right;"><FONT FACE="raro, courier" SIZE=1>
+                        ${formatLang(line['inces_0.5']*0.005)} Bs</FONT>
+                    </td>
             		<td style="text-align:right;"><FONT FACE="raro, courier" SIZE=1>
             			${formatLang(line['faov']) or 0.0 |entity} Bs</FONT>
             		</td>
             		<td style="text-align:right;"><FONT FACE="raro, courier" SIZE=1>
-            			${formatLang(line['faov'])} Bs</FONT>
+            			${formatLang(line['faov'] - line['inces_0.5']*0.005)} Bs</FONT>
             		</td>
             	</tr>
             	</tbody>
+                <% inces_total += -line['inces_0.5']*0.005%>
             	<% faov_total += line['faov']%>
             	<% amount_total += line['amount']%>
     		%endfor
@@ -101,9 +102,9 @@
                                 <th style="text-align:left;"></th>
                                 <th style="text-align:left;"></th>
                                 <th style="text-align:left;">${amount_total} Bs</th>
-                                <th style="text-align:left;">${0.0} Bs</th>
+                                <th style="text-align:left;">${inces_total} Bs</th>
                                 <th style="text-align:left;" >${faov_total} Bs</th>
-                                <th style="text-align:left;" >${faov_total} Bs</th>
+                                <th style="text-align:left;" >${faov_total + inces_total} Bs</th>
                         </tr>
                 </thead>
     	</table>
