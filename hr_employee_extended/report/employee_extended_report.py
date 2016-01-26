@@ -70,7 +70,7 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
                     if slip_browse.code != '009':
                         dic['basic'] += slip_browse.amount * slip_browse.quantity
                     else:
-                        sum_holiday += slip_browse.amount
+                        sum_holiday += slip_browse.quantity
                 else:
                     dic['integral'] += slip_browse.amount
                     sum_integral += slip_browse.amount
