@@ -32,7 +32,7 @@ class Payroll_extension(osv.Model):
             holidays_browser = holidays_obj.browse(cr, uid, holidays_ids, context=None)[0]
             res[employee[0].id] = holidays_browser.public_holiday_days
         else:
-            res[employee[0].id] = 3
+            res[employee[0].id] = 0
 
         return res
 
