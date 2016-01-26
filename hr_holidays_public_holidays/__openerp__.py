@@ -25,7 +25,8 @@
     'author': "Ingenieria Thinkasoft de Venezuela",
     'category': "Payroll",
     'depends': [
-        "hr"
+        "hr",
+        "hr_employee_extended",
     ],
     'description': """\
     fields added:
