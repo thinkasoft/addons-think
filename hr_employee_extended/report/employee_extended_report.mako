@@ -89,7 +89,7 @@
                             <FONT FACE="raro, courier" SIZE=1><b>Devengado Basico</b></FONT>
                         </td>
                         <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Decengado Integral</b></FONT>
+                            <FONT FACE="raro, courier" SIZE=1><b>Devengado Integral</b></FONT>
                         </td>
                     </tr>
   </table>

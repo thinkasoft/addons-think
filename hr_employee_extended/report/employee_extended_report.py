@@ -50,12 +50,13 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
                                       ]
                     slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
 
-                    slip_line_ids = payslip_line_obj.search(self.cr, self.uid,
-                                                            [('slip_id', 'in', slip_ids),
-                                                             '|', '|', '|', '|', ('code', '=', '001'), ('code', '=', '003'),
-                                                             ('code', '=', '002'), ('code', '=', '005'), ('code', '=', '039')
-                                                             ],
-                                                            order='code', context=False)
+                    slip_line_ids = payslip_line_obj.search(
+                        self.cr, self.uid, [
+                            ('slip_id', 'in', slip_ids), '|', '|', '|', '|', '|',
+                            ('code', '=', '001'), ('code', '=', '003'), ('code', '=', '002'),
+                            ('code', '=', '005'), ('code', '=', '009'), ('code', '=', '039')],
+                        order='code', context=False
+                    )
 
             dic = {
                 'month': list_month_es[month - 1],
@@ -63,11 +64,17 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
                 'integral': 0,
             }
             for slip_browse in payslip_line_obj.browse(self.cr, self.uid, slip_line_ids, context=None):
+                sum_integral = 0
+                sum_holiday = 0
                 if slip_browse.code != '039':
-                    dic['basic'] += slip_browse.amount * slip_browse.quantity
+                    if slip_browse.code != '009':
+                        dic['basic'] += slip_browse.amount * slip_browse.quantity
+                    else:
+                        sum_holiday += slip_browse.amount
                 else:
                     dic['integral'] += slip_browse.amount
-
+                    sum_integral += slip_browse.amount
+            dic['integral'] += ((sum_holiday / 12) * (sum_integral / 30))
             res.append(dic)
         return res
 report_sxw.report_sxw('report.employee.extended.report',
