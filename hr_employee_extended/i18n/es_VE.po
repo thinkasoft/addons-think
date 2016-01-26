@@ -73,7 +73,12 @@ msgstr "Dias de vacaciones"
 #. module: hr_employee_extended
 #: model:ir.actions.report.xml,name:hr_employee_extended.employee_extended_report
 msgid "Payslip benefits employee"
-msgstr "Recibo de utilidades"
+msgstr "Recibo de utilidades Chofer"
+
+#. module: hr_employee_extended
+#: model:ir.actions.report.xml,name:hr_employee_extended.employee_extended_report_employee
+msgid "Payslip benefits employee admin"
+msgstr "Recibo de utilidades Obrero-Admin"
 
 #. module: hr_employee_extended
 #: model:ir.actions.report.xml,name:hr_employee_extended.employee_job_letter_report
