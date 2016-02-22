@@ -32,7 +32,8 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
         payslip_line_obj = self.pool.get('hr.payslip.line')
         payslip_obj = self.pool.get('hr.payslip')
         today = datetime.datetime.now()
-
+        sum_integral = 0
+        sum_holiday = 0
         for month in xrange(1, 13):
             slip_ids = []
             slip_line_ids = []
