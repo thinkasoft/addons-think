@@ -22,6 +22,7 @@
     </style>
 </head>
 <body>
+  <p>Esta es la fecha: ${start_date}</p>
   %for o in objects :
   <table width="100%">
         <tr>
@@ -95,7 +96,7 @@
   </table>
   <%total_integral = 0%>
   <table width="100%" class="bottomBorder" style="line-height:8pt;">
-        %for line in (get_payslip_lines(o)):
+        %for line in (get_payslip_lines(o,start_date,stop_date)):
         <%total_integral += line['integral']%>
           % if line['month'] != 'Diciembre':
                   <tbody >

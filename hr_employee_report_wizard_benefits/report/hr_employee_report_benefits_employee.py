@@ -17,6 +17,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+###########################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#
+#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
+#
 ##############################################################################
 
 import calendar
@@ -33,10 +41,23 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
             'get_payslip_lines': self._get_payslip_lines,
         })
 
-    def _get_payslip_lines(self, obj):
+    def set_context(self, objects, data, ids, report_type=None):
+        """Populate a ledger_lines attribute on each browse record that will
+           be used by mako template"""
+        start_date = data.get('form').get('init_date')
+        stop_date = data.get('form', {}).get('end_date')
+
+        self.localcontext.update({
+            'start_date': start_date,
+            'stop_date': stop_date,
+        })
+
+        return super(HrEmployeeReportBenefitsEmployee, self).set_context(
+            objects, data, ids, report_type=report_type)
+
+    def _get_payslip_lines(self, obj, start_date, stop_date):
         res = []
         dic = {}
-        print obj
         list_month_es = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
                          'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
                          'Noviembre', 'Diciembre']
