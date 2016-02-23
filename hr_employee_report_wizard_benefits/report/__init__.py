@@ -17,23 +17,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+###########################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#
+#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
+#
 ##############################################################################
 
-{
-    'name': "Benefits wizard report",
-    'version': "1.0",
-    'author': "Ingenieria Thinkasoft de Venezuela",
-    'category': "Human Resources",
-    'depends': [
-        "hr"
-    ],
-    'description': """\
-        Add report payslip benefits employee based on Webkit report""",
-    'data': [
-        'hr_employee_report_wizard_benefits_report.xml',
-        'wizard/hr_employee_report_wizard_benefits_employee.xml',
-    ],
-    'website': 'http://www.thinkasoft.com',
-    'installable': True,
-    'auto_install': False,
-}
+from . import hr_employee_report_benefits_employee

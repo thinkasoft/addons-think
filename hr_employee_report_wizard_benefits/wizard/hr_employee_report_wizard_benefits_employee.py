@@ -10,16 +10,15 @@ class hr_employee_report_wizard_benefits_employee(osv.osv_memory):
 
     def print_report(self, cr, uid, ids, context=None):
         datas = {
-            'ids': [],
+            'ids': context.get('active_ids', []),
             'active_ids': context['active_ids'],
             'model': 'hr.employee',
-            'form': self.read(cr, uid, ids)[0]
+            'form': self.read(cr, uid, ids, [], context=context)[0]
         }
-        return True
-        #return {
-        #    'type': 'ir.actions.report.xml',
-        #    'report_name': 'hr.attendance.allweeks',
-        #    'datas': datas,
-        #}
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'hr.employee.report.benefits.employee',
+            'datas': datas,
+        }
 
 hr_employee_report_wizard_benefits_employee()
