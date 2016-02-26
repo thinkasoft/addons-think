@@ -35,6 +35,11 @@ from openerp.tools.translate import _
 
 class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
 
+    global list_month_es
+    list_month_es = list(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
+                          'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+                          'Noviembre', 'Diciembre'])
+
     def __init__(self, cr, uid, name, context):
         super(HrEmployeeReportBenefitsEmployee, self).__init__(cr, uid, name, context)
         self.localcontext.update({
@@ -44,9 +49,11 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
     def set_context(self, objects, data, ids, report_type=None):
         """Populate a ledger_lines attribute on each browse record that will
            be used by mako template"""
-        start_date = data.get('form').get('init_date')
-        stop_date = data.get('form', {}).get('end_date')
 
+        start_date = datetime.datetime.strptime(
+            data.get('form').get('init_date'), "%Y-%m-%d").date()
+        stop_date = datetime.datetime.strptime(
+            data.get('form', {}).get('end_date'), "%Y-%m-%d").date()
         self.localcontext.update({
             'start_date': start_date,
             'stop_date': stop_date,
@@ -55,47 +62,47 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
         return super(HrEmployeeReportBenefitsEmployee, self).set_context(
             objects, data, ids, report_type=report_type)
 
-    def _get_payslip_lines(self, obj, start_date, stop_date):
-        res = []
-        dic = {}
-        list_month_es = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
-                         'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
-                         'Noviembre', 'Diciembre']
+    def _get_slip_line_ids(self, year, month, obj):
         payslip_line_obj = self.pool.get('hr.payslip.line')
         payslip_obj = self.pool.get('hr.payslip')
+
+        datemonthstart = "%s-%s-01" % (year, month)
+        datemonthend = "%s-%s-%s" % (year, month, calendar.monthrange(year, month)[1])
+
+        datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
+        datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
+
+        condition_slip = [('date_to', '>=', datemonthstart), ('date_to', '<=', datemonthend),
+                          ('employee_id', '=', obj.id),
+                          '|', ('state', '=', 'done'), ('state', '=', 'paid'),
+                          ]
+        slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
+
+        slip_line_ids = payslip_line_obj.search(
+            self.cr, self.uid, [
+                ('slip_id', 'in', slip_ids), '|', '|', '|', '|', '|',
+                ('code', '=', '001'), ('code', '=', '003'), ('code', '=', '002'),
+                ('code', '=', '005'), ('code', '=', '009'), ('code', '=', '039')],
+            order='code', context=False
+        )
+        return slip_line_ids
+
+    def _get_payslip_lines(self, obj, start_date, stop_date):
+        res = list()
+        dic = dict()
+        payslip_line_obj = self.pool.get('hr.payslip.line')
         today = datetime.datetime.now()
         sum_integral = 0
         sum_holiday = 0
         for month in xrange(1, 13):
-            slip_ids = []
-            slip_line_ids = []
 
             if month < 12:
-                    datemonthstart = "%s-%s-01" % (today.year, month)
-                    datemonthend = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year, month)[1])
+                slip_line_ids = self._get_slip_line_ids(start_date.year, month, obj)
 
-                    datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
-                    datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
+            dic = dict(month=list_month_es[month - 1],
+                       basic=0,
+                       integral=0,)
 
-                    condition_slip = [('date_to', '>=', datemonthstart), ('date_to', '<=', datemonthend),
-                                      ('employee_id', '=', obj.id),
-                                      '|', ('state', '=', 'done'), ('state', '=', 'paid'),
-                                      ]
-                    slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
-
-                    slip_line_ids = payslip_line_obj.search(
-                        self.cr, self.uid, [
-                            ('slip_id', 'in', slip_ids), '|', '|', '|', '|', '|',
-                            ('code', '=', '001'), ('code', '=', '003'), ('code', '=', '002'),
-                            ('code', '=', '005'), ('code', '=', '009'), ('code', '=', '039')],
-                        order='code', context=False
-                    )
-
-            dic = {
-                'month': list_month_es[month - 1],
-                'basic': 0,
-                'integral': 0,
-            }
             for slip_browse in payslip_line_obj.browse(self.cr, self.uid, slip_line_ids, context=None):
                 sum_integral = 0
                 sum_holiday = 0
