@@ -27,10 +27,11 @@
 #
 ##############################################################################
 
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
+import datetime
+import calendar
+from openerp.tools.translate import _
+from openerp.osv import osv
 
-from openerp.osv import fields, osv
 
 class hr_employee_report_wizard_benefits_employee(osv.osv_memory):
     _name = 'hr.employee.report.wizard.benefits.employee'
@@ -44,6 +45,29 @@ class hr_employee_report_wizard_benefits_employee(osv.osv_memory):
             'model': 'hr.employee',
             'form': self.read(cr, uid, ids, [], context=context)[0]
         }
+
+        start_date = datetime.datetime.strptime(
+            datas['form']['init_date'],
+            "%Y-%m-%d"
+        ).date()
+        stop_date = datetime.datetime.strptime(
+            datas['form']['end_date'],
+            "%Y-%m-%d"
+        ).date()
+
+        date_range = stop_date - start_date
+
+        if date_range.days < 1:
+            raise osv.except_osv(_('Incorrect range!'), _('Starting Date is greater than Ending Date!'))
+        elif date_range.days > 366:
+            raise osv.except_osv(_('Limit range!'), _('Limit range is 1 year!'))
+        elif date_range.days == 366:
+            days_february_start = calendar.monthrange(start_date.year, 2)[1]
+            days_february_stop = calendar.monthrange(stop_date.year, 2)[1]
+
+            if days_february_start == 28 and days_february_stop == 28:
+                raise osv.except_osv(_('Limit range!'), _('Limit range is 1 year!'))
+
         return {
             'type': 'ir.actions.report.xml',
             'report_name': 'hr.employee.report.benefits.employee',
