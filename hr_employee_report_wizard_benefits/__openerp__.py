@@ -25,7 +25,8 @@
     'author': "Ingenieria Thinkasoft de Venezuela",
     'category': "Human Resources",
     'depends': [
-        "hr"
+        "hr",
+        "hr_employee_extended",
     ],
     'description': """\
         Add report payslip benefits employee based on Webkit report""",

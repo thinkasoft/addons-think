@@ -3,7 +3,7 @@
     <data>
 
         <record id="view_hr_employee_report_wizard_benefits_employee" model="ir.ui.view">
-            <field name="name">Wizard 3</field>
+            <field name="name">Payslip Report benefits employee </field>
             <field name="model">hr.employee.report.wizard.benefits.employee</field>
             <field name="arch" type="xml">
             <form string="Print Attendance Report Weekly" version="7.0">
@@ -21,7 +21,7 @@
         </record>
 
         <record id="action_hr_employee_report_wizard_benefits_employee" model="ir.actions.act_window">
-            <field name="name">Wizard 2</field>
+            <field name="name">Payslip benefits employee </field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hr.employee.report.wizard.benefits.employee</field>
             <field name="view_type">form</field>
@@ -31,7 +31,7 @@
 
         <record model="ir.values" id="hr_employee_report_wizard_benefits_employee_values">
             <field name="model_id" ref="hr.model_hr_employee" />
-            <field name="name">Primer Wizard</field>
+            <field name="name">Payslip benefits employee</field>
             <field name="key2">client_print_multi</field>
             <field name="value" eval="'ir.actions.act_window,' + str(ref('action_hr_employee_report_wizard_benefits_employee'))" />
             <field name="key">action</field>
