@@ -62,12 +62,22 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
         return super(HrEmployeeReportBenefitsEmployee, self).set_context(
             objects, data, ids, report_type=report_type)
 
-    def _get_slip_line_ids(self, year, month, obj):
+    def _get_slip_line_ids(self, year, month, start_days, stop_days, obj):
         payslip_line_obj = self.pool.get('hr.payslip.line')
         payslip_obj = self.pool.get('hr.payslip')
 
-        datemonthstart = "%s-%s-01" % (year, month)
-        datemonthend = "%s-%s-%s" % (year, month, calendar.monthrange(year, month)[1])
+        if month == 12:
+            return list()
+
+        if start_days is not 0:
+            datemonthstart = "%s-%s-%s" % (year, month, start_days)
+        else:
+            datemonthstart = "%s-%s-01" % (year, month)
+
+        if stop_days is not 0:
+            datemonthend = "%s-%s-%s" % (year, month, stop_days)
+        else:
+            datemonthend = "%s-%s-%s" % (year, month, calendar.monthrange(year, month)[1])
 
         datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
         datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
@@ -87,35 +97,74 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
         )
         return slip_line_ids
 
+    def _calc_payslip_utilites(self, month, slip_line_ids):
+        payslip_line_obj = self.pool.get('hr.payslip.line')
+        dic = dict(month=list_month_es[month - 1],
+                   basic=0,
+                   integral=0,)
+
+        for slip_browse in payslip_line_obj.browse(self.cr, self.uid, slip_line_ids, context=None):
+            sum_integral = 0
+            sum_holiday = 0
+            if slip_browse.code != '039':
+                if slip_browse.code != '009':
+                    dic['basic'] += slip_browse.amount * slip_browse.quantity
+                else:
+                    sum_holiday += slip_browse.quantity
+            else:
+                dic['integral'] += slip_browse.amount
+                sum_integral += slip_browse.amount
+            dic['integral'] += ((sum_holiday / 12) * (sum_integral / 30))
+        return dic
+
     def _get_payslip_lines(self, obj, start_date, stop_date):
         res = list()
-        dic = dict()
-        payslip_line_obj = self.pool.get('hr.payslip.line')
-        today = datetime.datetime.now()
-        sum_integral = 0
-        sum_holiday = 0
-        for month in xrange(1, 13):
 
-            if month < 12:
-                slip_line_ids = self._get_slip_line_ids(start_date.year, month, obj)
+        if stop_date.year == start_date.year and stop_date.month == start_date.month:
+            slip_line_ids = self._get_slip_line_ids(
+                start_date.year,
+                start_date.month,
+                start_date.day,
+                stop_date.day,
+                obj)
+            res.append(self._calc_payslip_utilites(start_date.month, slip_line_ids))
+        else:
+            if start_date.month != 12:
+                slip_line_ids = self._get_slip_line_ids(
+                    start_date.year,
+                    start_date.month,
+                    start_date.day,
+                    0,
+                    obj)
+            else:
+                slip_line_ids = list()
+            res.append(self._calc_payslip_utilites(start_date.month, slip_line_ids))
 
-            dic = dict(month=list_month_es[month - 1],
-                       basic=0,
-                       integral=0,)
+            year_star = start_date.year
+            month_star = start_date.month + 1
+            month_end = 12 if year_star is not stop_date.year else stop_date.month
 
-            for slip_browse in payslip_line_obj.browse(self.cr, self.uid, slip_line_ids, context=None):
-                sum_integral = 0
-                sum_holiday = 0
-                if slip_browse.code != '039':
-                    if slip_browse.code != '009':
-                        dic['basic'] += slip_browse.amount * slip_browse.quantity
-                    else:
-                        sum_holiday += slip_browse.quantity
-                else:
-                    dic['integral'] += slip_browse.amount
-                    sum_integral += slip_browse.amount
-            dic['integral'] += ((sum_holiday / 12) * (sum_integral / 30))
-            res.append(dic)
+            while year_star <= stop_date.year:
+                for month in xrange(month_star, month_end):
+                    slip_line_ids = self._get_slip_line_ids(
+                        year_star,
+                        month,
+                        0,
+                        0,
+                        obj)
+                    res.append(self._calc_payslip_utilites(month, slip_line_ids))
+                year_star += 1
+                if month_end == 12:
+                    month_star = 1
+                    month_end = stop_date.month
+
+            slip_line_ids = self._get_slip_line_ids(
+                stop_date.year,
+                stop_date.month,
+                0,
+                stop_date.day,
+                obj)
+            res.append(self._calc_payslip_utilites(stop_date.month, slip_line_ids))
         return res
 
 report_sxw.report_sxw('report.hr.employee.report.benefits.employee',
