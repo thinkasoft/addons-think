@@ -159,7 +159,6 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
                 stop_date.day,
                 obj)
             res.append(self._calc_payslip_utilites(stop_date.month, slip_line_ids))
-            import pdb; pdb.set_trace()
         return res
 
 report_sxw.report_sxw('report.hr.employee.report.benefits.employee',
