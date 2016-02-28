@@ -113,19 +113,35 @@
                       </tr>
                   </tbody>
           % else:
-                  <tbody >
-                      <tr>
-                          <td style="text-align:left;">
-                            ${line['month'] }
-                          </td>
-                          <td style="text-align:left;">
-                            ${formatLang(o.december_salary_aprox) } 
-                          </td>
-                          <td style="text-align:left;">
-                            ${formatLang(o.december_salary_aprox) } 
-                          </td>
-                      </tr>
-                  </tbody>
+                    % if line['integral'] > 0:
+                            <tbody >
+                              <tr>
+                                  <td style="text-align:left;">
+                                    ${line['month'] }
+                                  </td>
+                                  <td style="text-align:left;">
+                                    ${formatLang(line['basic']) } 
+                                  </td>
+                                  <td style="text-align:left;">
+                                    ${formatLang(line['integral']) } 
+                                  </td>
+                              </tr>
+                            </tbody>
+                    % else:
+                            <tbody >
+                                <tr>
+                                    <td style="text-align:left;">
+                                      ${line['month'] }
+                                    </td>
+                                    <td style="text-align:left;">
+                                      ${formatLang(o.december_salary_aprox) } 
+                                    </td>
+                                    <td style="text-align:left;">
+                                      ${formatLang(o.december_salary_aprox) } 
+                                    </td>
+                                </tr>
+                            </tbody>
+                    % endif
            % endif
         %endfor
         <%total_integral += o.december_salary_aprox%>

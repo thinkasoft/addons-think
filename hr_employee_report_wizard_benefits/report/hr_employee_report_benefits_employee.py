@@ -66,9 +66,6 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
         payslip_line_obj = self.pool.get('hr.payslip.line')
         payslip_obj = self.pool.get('hr.payslip')
 
-        if month == 12:
-            return list()
-
         if start_days is not 0:
             datemonthstart = "%s-%s-%s" % (year, month, start_days)
         else:
@@ -129,15 +126,12 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
                 obj)
             res.append(self._calc_payslip_utilites(start_date.month, slip_line_ids))
         else:
-            if start_date.month != 12:
-                slip_line_ids = self._get_slip_line_ids(
-                    start_date.year,
-                    start_date.month,
-                    start_date.day,
-                    0,
-                    obj)
-            else:
-                slip_line_ids = list()
+            slip_line_ids = self._get_slip_line_ids(
+                start_date.year,
+                start_date.month,
+                start_date.day,
+                0,
+                obj)
             res.append(self._calc_payslip_utilites(start_date.month, slip_line_ids))
 
             year_star = start_date.year
@@ -165,6 +159,7 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
                 stop_date.day,
                 obj)
             res.append(self._calc_payslip_utilites(stop_date.month, slip_line_ids))
+            import pdb; pdb.set_trace()
         return res
 
 report_sxw.report_sxw('report.hr.employee.report.benefits.employee',
