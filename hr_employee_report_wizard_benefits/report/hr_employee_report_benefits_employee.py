@@ -26,7 +26,6 @@
 #    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
 #
 ##############################################################################
-
 import calendar
 import datetime
 from openerp.report import report_sxw
@@ -87,36 +86,26 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
 
         slip_line_ids = payslip_line_obj.search(
             self.cr, self.uid, [
-                ('slip_id', 'in', slip_ids), '|', '|', '|', '|', '|',
+                ('slip_id', 'in', slip_ids), '|', '|', '|', '|',
                 ('code', '=', '001'), ('code', '=', '003'), ('code', '=', '002'),
-                ('code', '=', '005'), ('code', '=', '009'), ('code', '=', '039')],
+                ('code', '=', '005'), ('code', '=', '039')],
             order='code', context=False
         )
         return slip_line_ids
 
-    def _calc_payslip_utilites(self, month, slip_line_ids):
+    def _calc_payslip_utilites(self, month, slip_line_ids, number_day_holidays):
         payslip_line_obj = self.pool.get('hr.payslip.line')
         dic = dict(month=list_month_es[month - 1],
                    basic=0,
                    integral=0,)
-
         for slip_browse in payslip_line_obj.browse(self.cr, self.uid, slip_line_ids, context=None):
-            sum_integral = 0
-            sum_holiday = 0
             if slip_browse.code != '039':
-                if slip_browse.code != '009':
-                    dic['basic'] += slip_browse.amount * slip_browse.quantity
-                else:
-                    sum_holiday += slip_browse.quantity
-            else:
-                dic['integral'] += slip_browse.amount
-                sum_integral += slip_browse.amount
-            dic['integral'] += ((sum_holiday / 12) * (sum_integral / 30))
+                dic['basic'] += slip_browse.amount * slip_browse.quantity
+        dic['integral'] += dic['basic'] + ((number_day_holidays / 12) * (dic['basic'] / 30))
         return dic
 
     def _get_payslip_lines(self, obj, start_date, stop_date):
         res = list()
-
         if stop_date.year == start_date.year and stop_date.month == start_date.month:
             slip_line_ids = self._get_slip_line_ids(
                 start_date.year,
@@ -124,7 +113,7 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
                 start_date.day,
                 stop_date.day,
                 obj)
-            res.append(self._calc_payslip_utilites(start_date.month, slip_line_ids))
+            res.append(self._calc_payslip_utilites(start_date.month, slip_line_ids, obj.number_day_holidays))
         else:
             slip_line_ids = self._get_slip_line_ids(
                 start_date.year,
@@ -132,7 +121,7 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
                 start_date.day,
                 0,
                 obj)
-            res.append(self._calc_payslip_utilites(start_date.month, slip_line_ids))
+            res.append(self._calc_payslip_utilites(start_date.month, slip_line_ids, obj.number_day_holidays))
 
             year_star = start_date.year
             month_star = start_date.month + 1
@@ -146,7 +135,7 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
                         0,
                         0,
                         obj)
-                    res.append(self._calc_payslip_utilites(month, slip_line_ids))
+                    res.append(self._calc_payslip_utilites(month, slip_line_ids, obj.number_day_holidays))
                 year_star += 1
                 if month_end == 12:
                     month_star = 1
@@ -158,7 +147,7 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
                 0,
                 stop_date.day,
                 obj)
-            res.append(self._calc_payslip_utilites(stop_date.month, slip_line_ids))
+            res.append(self._calc_payslip_utilites(stop_date.month, slip_line_ids, obj.number_day_holidays))
         return res
 
 report_sxw.report_sxw('report.hr.employee.report.benefits.employee',
