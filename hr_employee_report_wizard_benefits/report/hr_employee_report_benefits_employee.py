@@ -86,9 +86,9 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
 
         slip_line_ids = payslip_line_obj.search(
             self.cr, self.uid, [
-                ('slip_id', 'in', slip_ids), '|', '|', '|', '|',
+                ('slip_id', 'in', slip_ids), '|', '|', '|',
                 ('code', '=', '001'), ('code', '=', '003'), ('code', '=', '002'),
-                ('code', '=', '005'), ('code', '=', '039')],
+                ('code', '=', '005')],
             order='code', context=False
         )
         return slip_line_ids
@@ -97,10 +97,14 @@ class HrEmployeeReportBenefitsEmployee(report_sxw.rml_parse):
         payslip_line_obj = self.pool.get('hr.payslip.line')
         dic = dict(month=list_month_es[month - 1],
                    basic=0,
-                   integral=0,)
+                   integral=0,
+                   other=0,)
+        first_amount = False
         for slip_browse in payslip_line_obj.browse(self.cr, self.uid, slip_line_ids, context=None):
-            if slip_browse.code != '039':
-                dic['basic'] += slip_browse.amount * slip_browse.quantity
+            if slip_browse.code == '001' and not first_amount:
+                dic['other'] += slip_browse.amount * 30
+                first_amount = True
+            dic['basic'] += slip_browse.amount * slip_browse.quantity
         dic['integral'] += dic['basic'] + ((number_day_holidays / 12) * (dic['basic'] / 30))
         return dic
 

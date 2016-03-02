@@ -89,6 +89,9 @@
                     <td width="20%">
                         <FONT FACE="raro, courier" SIZE=1><b>Devengado Integral</b></FONT>
                     </td>
+                    <td width="20%">
+                        <FONT FACE="raro, courier" SIZE=1><b>Salario Diario</b></FONT>
+                    </td>
                 </tr>
             </thead>
             <%total_integral = 0%>
@@ -100,6 +103,7 @@
                             <td style="text-align:left;"> ${line['month'] } </td>
                             <td style="text-align:left;"> ${formatLang(line['basic']) } </td>
                             <td style="text-align:left;"> ${formatLang(line['integral']) } </td>
+                            <td style="text-align:left;"> ${formatLang(line['other']) } </td>
                         </tr>
                     % else:
                         % if line['integral'] > 0:
@@ -107,12 +111,14 @@
                                 <td style="text-align:left;"> ${line['month'] } </td>
                                 <td style="text-align:left;"> ${formatLang(line['basic']) } </td>
                                 <td style="text-align:left;"> ${formatLang(line['integral']) } </td>
+                                <td style="text-align:left;"> ${formatLang(line['other']) } </td>
                             </tr>
                         % else:
                             <tr>
                                 <td style="text-align:left;"> ${line['month'] } </td>
                                 <td style="text-align:left;"> ${formatLang(o.december_salary_aprox) } </td>
                                 <td style="text-align:left;"> ${formatLang(o.december_salary_aprox) } </td>
+                                <td style="text-align:left;"> ${formatLang(line['other']) } </td>
                             </tr>
                         % endif
                     % endif
