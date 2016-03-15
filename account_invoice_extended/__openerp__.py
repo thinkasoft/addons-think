@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': "Account invoice number extended",
-    'category': "Accounting",
+    'category': "Accounting & Finance",
     'version': "1.0",
     'depends': [
         "account"
@@ -34,6 +34,6 @@ Accounting invoice extended module adds:
     * Method onchange_reference: assigns the field "reference" the same information that contain's supplier_invoice_number.
 """,
     'website': 'http://www.thinkasoft.com',
-    'update_xml': ["view/account_invoice_extended.xml"],
+    'update_xml': ["views/account_invoice_extended.xml"],
     'installable': True,
 }
