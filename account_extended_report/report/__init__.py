@@ -25,3 +25,5 @@
 #    Developed by: thinkasoft , C.A.
 #    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
 ##############################################################################
+
+from . import account_print_invoiceRialca
