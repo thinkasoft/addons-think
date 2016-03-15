@@ -1,3 +1,4 @@
+# !/usr/bin/python
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -18,24 +19,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
+##############################################################################
 
-{
-    'name': "Payroll extension",
-    'version': "1.0",
-    'author': "Ingenieria Thinkasoft de Venezuela",
-    'category': "Payroll",
-    'depends': [
-        "hr"
-    ],
-    'description': """\
-fields added:
-        - Rif [Text]
-        - Retencion [integer]""",
-    'data': [
-        'report/hr_employee_extended_report.xml',
-        'views/hr_employee_extended.xml',
-    ],
-    'website': 'http://www.thinkasoft.com',
-    'installable': True,
-    'auto_install': False,
-}
+from . import hr_employee_extended
