@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': "Contract extension",
-    'category': "Accounting",
+    'category': "Human Resources",
     'version': "1.0",
     'depends': [
         "hr"
@@ -29,8 +29,8 @@
     'description': """
 Module Contract extension
 ====================================
-    add a new tab in the contract module, it contains:
-
+add a new tab in the contract module, it contains:
+--------------------------------------------------
     - Income wh
     - Insurance health wh
     - Perc Insurance health wh
@@ -38,6 +38,6 @@ Module Contract extension
     - Perc Saving wh
 """,
     'website': 'http://www.thinkasoft.com',
-    'update_xml': ["view/hr_contract_extended.xml"],
+    'update_xml': ["views/hr_contract_extended.xml"],
     'installable': True,
 }
