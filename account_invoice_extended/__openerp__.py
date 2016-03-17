@@ -34,6 +34,6 @@ Accounting invoice extended module adds:
     * Method onchange_reference: assigns the field "reference" the same information that contain's supplier_invoice_number.
 """,
     'website': 'http://www.thinkasoft.com',
-    'update_xml': ["views/account_invoice_extended.xml"],
+    'data': ['views/account_invoice_extended.xml'],
     'installable': True,
 }

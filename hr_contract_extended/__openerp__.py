@@ -38,6 +38,6 @@ add a new tab in the contract module, it contains:
     - Perc Saving wh
 """,
     'website': 'http://www.thinkasoft.com',
-    'update_xml': ["views/hr_contract_extended.xml"],
+    'data': ["views/hr_contract_extended.xml"],
     'installable': True,
 }
