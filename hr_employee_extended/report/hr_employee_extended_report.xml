@@ -246,19 +246,6 @@
         menu="True"/>
 
         <report 
-        id="employee_extended_report_employee" 
-        name="employee.extended.report.employee" 
-        string="Payslip benefits employee admin" 
-        model="hr.employee" 
-        file="hr_employee_extended/report/employee_extended_report_employee.mako"
-        report_type="webkit" 
-        webkit_header="hr_webkit_header"
-        auto="False" 
-        header="False" 
-        menu="True" 
-        multi="False"/>
-
-        <report 
         id="employee_social_benefits_report" 
         name="employee.social.benefits.report" 
         string="Employee social benefits" 
