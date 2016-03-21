@@ -37,7 +37,7 @@ class Payroll_extension(osv.Model):
     _inherit = 'hr.employee'
 
     def _get_total_deductions(self, cr, uid, ids, field_names, arg=None, context=None):
-        res = {}
+        res = dict()
         payslip_line_obj = self.pool.get('hr.payslip.line')
         payslip_obj = self.pool.get('hr.payslip')
         employee_obj = self.pool.get('hr.employee')
