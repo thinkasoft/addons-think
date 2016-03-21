@@ -72,7 +72,7 @@ class Payroll_extension(osv.Model):
         return res
 
     def _calc_days(self, cr, uid, ids, field_names, arg=None, context=None):
-        res = {}
+        res = dict()
         today = datetime.datetime.now()
         employee_obj = self.pool.get('hr.employee')
 

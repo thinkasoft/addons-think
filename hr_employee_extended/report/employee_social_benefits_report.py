@@ -40,8 +40,8 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
         })
 
     def _get_payslip_total_lines(self, employee_obj):
-        res = []
-        dic = {}
+        res = list()
+        dic = dict()
         days_alic = 15
         hitoric_day = 5
         sum_days = 0
@@ -49,7 +49,6 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
         payslip_obj = self.pool.get('hr.payslip')
         date_init = datetime.datetime.strptime(employee_obj.admission_date, "%Y-%m-%d")
         today = datetime.datetime.now()
-
         aluc_month = ini_month = date_init.month
         final_month = 13
         sum_days = 2
@@ -83,7 +82,7 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
                                   ]
                 slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
 
-                condition_slip_line_039 = [('slip_id', 'in', slip_ids),('code', '=', '039')]
+                condition_slip_line_039 = [('slip_id', 'in', slip_ids), ('code', '=', '039')]
                 slip_line_ids_039 = payslip_line_obj.search(self.cr, self.uid, condition_slip_line_039, context=False)
 
                 condition_slip_line_014 = [('slip_id', 'in', slip_ids), ('code', '=', '014')]
