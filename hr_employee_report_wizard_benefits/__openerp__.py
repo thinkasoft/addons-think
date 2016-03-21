@@ -31,8 +31,8 @@
     'description': """\
         Add report payslip benefits employee based on Webkit report""",
     'data': [
-        'hr_employee_report_wizard_benefits_report.xml',
-        'wizard/hr_employee_report_wizard_benefits_employee.xml',
+        'report/hr_employee_report_wizard_benefits_report.xml',
+        'wizards/hr_employee_report_wizard_benefits_employee.xml',
     ],
     'website': 'http://www.thinkasoft.com',
     'installable': True,
