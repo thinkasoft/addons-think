@@ -19,9 +19,9 @@
 #
 ############################################################################
 import time
+
 from datetime import datetime
 from dateutil import relativedelta
-
 from openerp.report import report_sxw
 
 
@@ -57,9 +57,9 @@ class contribution_register_report(report_sxw.rml_parse):
 
     def _get_payslip_lines(self, obj):
         payslip_line = self.pool.get('hr.payslip.line')
-        payslip_lines = []
-        res = []
-        dic = {}
+        payslip_lines = list()
+        res = list()
+        dic = dict()
         ids_ant = 0
         self.cr.execute(
             "SELECT pl.id from "
@@ -81,18 +81,18 @@ class contribution_register_report(report_sxw.rml_parse):
                 dic['faov'] = dic['amount'] * 2 / 100
                 dic['mount'] = dic['rpvh'] + dic['faov']
             else:
-                dic = {
-                    'payslip_name': line.slip_id.employee_id.name_related,
-                    'payslip_employeeid':
+                dic = dict(
+                    payslip_name=line.slip_id.employee_id.name_related,
+                    payslip_employeeid=
                     line.slip_id.employee_id.identification_id,
-                    'payslip_namerelated':
+                    payslip_namerelated=
                     line.slip_id.employee_id.name_related,
-                    'amount': line.total,
-                    'rpvh': float(line.amount) / 100,
-                    'faov': float(line.amount) * 2 / 100,
-                    'mount': (float(line.amount) / 100) +
+                    amount=line.total,
+                    rpvh=float(line.amount) / 100,
+                    faov=float(line.amount) * 2 / 100,
+                    mount=(float(line.amount) / 100) +
                     (float(line.amount) * 2) / 100
-                }
+                )
                 ids_ant = line.employee_id.id
                 res.append(dic)
         return res
