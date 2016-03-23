@@ -37,6 +37,11 @@ class Payroll_extension(osv.Model):
     _inherit = 'hr.employee'
 
     def _get_total_deductions(self, cr, uid, ids, field_names, arg=None, context=None):
+        """ 
+            Calculates the accumulated annually of the employee, this reset each Year
+            @param ids: id the employee selected.
+            @return: Dictionary with the sum fo the salary the employee yearly.
+        """
         res = dict()
         payslip_line_obj = self.pool.get('hr.payslip.line')
         payslip_obj = self.pool.get('hr.payslip')
@@ -44,39 +49,58 @@ class Payroll_extension(osv.Model):
         today = datetime.datetime.now()
         suma = 0.0
 
+        # Iterates by each month of the Year
         for month in xrange(1, 13):
+
+            # Takes the the first and lastest day of the month
             datemonthstart = "%s-%s-01" % (today.year, month)
             datemonthend = "%s-%s-%s" % (today.year, month, calendar.monthrange(today.year, month)[1])
 
+            # Converts of String to Datetime
             datemonthstart = datetime.datetime.strptime(datemonthstart, "%Y-%m-%d")
             datemonthend = datetime.datetime.strptime(datemonthend, "%Y-%m-%d")
 
+            # Defined query sql
             condition_slip = [('date_to', '>=', datemonthstart),
                               ('date_to', '<=', datemonthend),
                               ('employee_id', 'in', ids),
                               '|', ('state', '=', 'done'),
                               ('state', '=', 'paid')]
 
+            # Execute query, gets one list of ids (hr.payslip)
             slip_ids = payslip_obj.search(cr, uid, condition_slip)
 
+            # Defined query sql 2
             condition_slip_line = [('slip_id', 'in', slip_ids), ('code', '=', '039')]
 
+            # Execute query, gets one list of ids (hr.payslip.line)
             slip_line_ids = payslip_line_obj.search(cr, uid, condition_slip_line)
 
+            # Sum all slip_line founds and acumulate in "suma"
             for slip_browse in payslip_line_obj.browse(cr, uid, slip_line_ids, context=None):
                 suma += slip_browse.amount
 
+            # Finds the employee for insert the total sum
             employee = employee_obj.browse(cr, uid, ids, context=None)
             res[employee[0].id] = suma
 
         return res
 
     def _calc_days(self, cr, uid, ids, field_names, arg=None, context=None):
+        """ 
+            Calcualted the number day holidays and holidays bonus of a employee (Only for venezuela)
+            @param ids: id the employee selected.
+            @return: Dictionary with the sum fo the salary the employee yearly.
+        """
         res = dict()
-        today = datetime.datetime.now()
         employee_obj = self.pool.get('hr.employee')
 
+        # Gets date current
+        today = datetime.datetime.now()
+
+        # Searches for the employee object  that is related with ids
         for employee in employee_obj.browse(cr, uid, ids, context=None):
+            # Gets admission date and converted of String to Datetime
             date_employee = datetime.datetime.strptime(employee.admission_date, "%Y-%m-%d")
             result = 15 + today.year - date_employee.year - 1
             if result >= 15 and result <= 30:
@@ -88,20 +112,20 @@ class Payroll_extension(osv.Model):
         return res
 
     _columns = {
-        'vat': fields.char('Vat', size=12, required=True),
-        'withholding': fields.float('Income Withholding', size=5, digits=(2, 2), required=True),
-        'salary': fields.float('Monthly salary', required=True),
-        'admission_date': fields.date('Date Admission', required=False),
-        'date_exit': fields.date('Date Diacharge', required=False),
-        'employment_benefit': fields.boolean('Employment Benefit?'),
+        'vat': fields.char('Vat', size=12, required=True, help="Rif the employee"),
+        'withholding': fields.float('Income Withholding', size=5, digits=(2, 2), required=True, help="Retention rate ISRL"),
+        'salary': fields.float('Monthly salary', required=True, help="Monthly salary (for use of employment records only)"),
+        'admission_date': fields.date('Date Admission', required=False, help="Date Admission (for use of employment records and history of the worker only)"),
+        'date_exit': fields.date('Date Diacharge', required=False, help="Date Diacharge (for use of employment records and history of the worker only)"),
+        'employment_benefit': fields.boolean('Employment Benefit?', help="Monthly salary is integral (for use of employment records and history of the worker only)"),
         'reference_bank': fields.char('Reference Bank', size=50),
-        'number_days_benefits': fields.integer('Number days benefits', size= 3),
-        'other_benefits_deductions': fields.float('Other benefits deductions', size=7, digits=(5, 2)),
-        'number_day_holidays': fields.function(_calc_days, type='integer', string='Number day holidays'),
-        'holidays_bonus': fields.function(_calc_days, type='integer', string='Holidays bonus'),
-        'december_salary_aprox': fields.float('December salary aprox'),
-        'salary_yearly': fields.function(_get_total_deductions, type='float', string='Salary yearly'),
-        'acum_social_benefits': fields.float('Acum social benefits'),
+        'number_days_benefits': fields.integer('Number days benefits', size= 3, help="Only for venezuelathe la LOTTTS (ley organica del Trabajo de los trabajadores y trabajadoras Sociales) indica que debe comenzar en 60"),
+        'other_benefits_deductions': fields.float('Other benefits deductions', size=7, digits=(5, 2), help="during the liquidation of earnings, benefits or settlement if any additional expense for discounting is placed in this field (request of client)"),
+        'number_day_holidays': fields.function(_calc_days, type='integer', string='Number day holidays', help="Starts in 15 days continuous and increment 1 days for each year"),
+        'holidays_bonus': fields.function(_calc_days, type='integer', string='Holidays bonus', help="Starts in 15 days continuous and increment 1 days for each year"),
+        'december_salary_aprox': fields.float('December salary aprox', help=""),
+        'salary_yearly': fields.function(_get_total_deductions, type='float', string='Salary annually of employee'),
+        'acum_social_benefits': fields.float('Acum social benefits', help="If employee brings accumulated social benefits in his history"),
     }
 
     _defaults = {
