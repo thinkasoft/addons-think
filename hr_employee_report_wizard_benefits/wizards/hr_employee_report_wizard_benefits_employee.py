@@ -39,23 +39,35 @@ class hr_employee_report_wizard_benefits_employee(osv.osv_memory):
     _inherit = 'hr.attendance.week'
 
     def print_report(self, cr, uid, ids, context=None):
+        """
+            Gets the data in the view and validates if range is right
+        """
+
         datas = {
-            'ids': context.get('active_ids', []),
-            'active_ids': context['active_ids'],
-            'model': 'hr.employee',
-            'form': self.read(cr, uid, ids, [], context=context)[0]
+            'ids': context.get('active_ids', []), # id the view current
+            'active_ids': context['active_ids'], # id the view current
+            'model': 'hr.employee', # model current
+            'form': self.read(cr, uid, ids, [], context=context)[0] # Data of the view 
         }
 
+        # Gets field init_date and converted in Date format
         start_date = datetime.datetime.strptime(
             datas['form']['init_date'],
             "%Y-%m-%d"
         ).date()
+
+        # Gets field end_date and converted in Date format
         stop_date = datetime.datetime.strptime(
             datas['form']['end_date'],
             "%Y-%m-%d"
         ).date()
 
         date_range = stop_date - start_date
+
+        # Validates if:
+        #   start_date < stop_date
+        #   the range will not exceed one year
+        #   Nota: works with leap-year 
         if date_range.days < 1:
             raise osv.except_osv(_('Incorrect range!'), _('Starting Date is greater than Ending Date!'))
         elif date_range.days == 365:
