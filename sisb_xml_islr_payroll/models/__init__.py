@@ -26,4 +26,5 @@
 #    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
 ##############################################################################
 
-import models
+from . import xml_islr_payroll
+from . import hr_payroll
