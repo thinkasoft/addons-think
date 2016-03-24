@@ -33,8 +33,8 @@ HR Payroll Reports
     'depends' : [
         'hr_payroll',
         'report_webkit'],
-    'update_xml': [
-        'report_xml_view.xml',
+    'data': [
+        'report/report_xml_view.xml',
     ],
     'installable': True,
     'auto_install': False,
