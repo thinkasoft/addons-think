@@ -26,4 +26,4 @@
 #    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
 ##############################################################################
 
-import models
+import hr_salary_rule_extended
