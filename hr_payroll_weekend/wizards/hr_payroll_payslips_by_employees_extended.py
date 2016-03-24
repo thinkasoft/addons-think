@@ -1,3 +1,4 @@
+# !/usr/bin/python
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -18,9 +19,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
+##############################################################################
 
-
-import time
 from datetime import datetime
 from dateutil import relativedelta
 
@@ -36,8 +41,9 @@ class hr_payslip_employees_extended(osv.osv_memory):
     _columns = {
         'employee_ids': fields.many2many('hr.employee', 'hr_employee_group_rel', 'payslip_id', 'employee_id', 'Employees'),
     }
+
     def compute_sheet_1(self, cr, uid, ids, context=None):
-        
+
         emp_pool = self.pool.get('hr.employee')
         slip_pool = self.pool.get('hr.payslip')
         run_pool = self.pool.get('hr.payslip.run')
