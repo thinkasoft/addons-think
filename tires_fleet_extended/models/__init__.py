@@ -1,3 +1,4 @@
+# !/usr/bin/python
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -18,21 +19,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
+##############################################################################
 
-{
-    'name': "Tires Extención for Fleet Module",
-    'category': "Test",
-    'version': "1.0",
-    'depends': [
-        "fleet"
-    ],
-    'author': 'Ingenieria Thinkasoft de Venezuela',
-    'website': 'http://www.thinkasoft.com',
-    'description': """\
-        fields added:
-        - Serial [Text]
-        - posicion [Text]""",
-    'data': [
-        'views/tires_fleet_extended.xml',
-    ],
-}
+from . import tires_fleet_extended
