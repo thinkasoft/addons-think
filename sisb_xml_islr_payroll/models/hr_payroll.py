@@ -36,7 +36,7 @@ class hr_payslip(osv.osv):
     _inherit = 'hr.payslip'
 
     def _get_vat_fnc(self, cr, uid, ids, field_names, arg=None, context=None):
-        res = {}
+        res = dict()
         for hr_payslip_obj in self.browse(cr, uid, ids, context=context):
             res[hr_payslip_obj.id] = hr_payslip_obj.employee_id.vat
 
@@ -44,7 +44,7 @@ class hr_payslip(osv.osv):
 
     def _get_withholding_fnc(self, cr, uid, ids, field_names, arg=None,
                              context=None):
-        res = {}
+        res = dict()
         for hr_payslip_obj in self.browse(cr, uid, ids, context=context):
             res[hr_payslip_obj.id] = hr_payslip_obj.employee_id.withholding
 
@@ -53,7 +53,7 @@ class hr_payslip(osv.osv):
     def _get_ret_isrl_fnc(self, cr, uid, ids, field_names, arg=None,
                           context=None):
         hr_payslip_line_obj = self.pool.get('hr.payslip.line')
-        res = {}
+        res = dict()
         for hr_payslip in self.browse(cr, uid, ids, context=context):
             hr_payslip_line_ids = hr_payslip_line_obj.search(
                 cr, uid, [('slip_id', '=', hr_payslip.id),

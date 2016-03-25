@@ -46,7 +46,7 @@ class islr_xml_wh_doc(osv.osv):
 
     def _get_amount_total_payroll(self, cr, uid, ids, name, args,
                                   context=None):
-        res = {}
+        res = dict()
         for xml in self.browse(cr, uid, ids, context):
             res[xml.id] = 0.0
             for line in xml.xml_payroll_ids:
@@ -57,7 +57,7 @@ class islr_xml_wh_doc(osv.osv):
 
     def _get_amount_total_base_payroll(self, cr, uid, ids, name, args,
                                        context=None):
-        res = {}
+        res = dict()
         for xml in self.browse(cr, uid, ids, context):
             res[xml.id] = 0.0
             for line in xml.xml_payroll_ids:
@@ -100,7 +100,7 @@ class islr_xml_wh_doc(osv.osv):
     def action_done2(self, cr, uid, ids, context=None):
         """ Passes the document to state done
         """
-        context = context or {}
+        context = context or dict()
         root = self._xml2(cr, uid, ids)
         self._write_attachment(cr, uid, ids, root, context)
         self.write(cr, uid, ids, {'state': 'done'})
