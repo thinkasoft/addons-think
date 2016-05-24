@@ -63,17 +63,14 @@
                     <td>
                         <FONT FACE="raro, courier" SIZE=1><b>${_("Product")}</b></FONT>
                     </td>
-                    <td ">
+                    <td>
                         <FONT FACE="raro, courier" SIZE=1><b>${_("Quantity")}</b></FONT>
                     </td>
                     <td>
+                        <FONT FACE="raro, courier" SIZE=1><b>${_("Price Unit")}</b></FONT>
+                    </td>
+                    <td>
                         <FONT FACE="raro, courier" SIZE=1><b>${_("Amount")}</b></FONT>
-                    </td>
-                    <td>
-                        <FONT FACE="raro, courier" SIZE=1><b>${_("Tax")}</b></FONT>
-                    </td>
-                    <td>
-                        <FONT FACE="raro, courier" SIZE=1><b>${_("total")}</b></FONT>
                     </td>
                 </tr>
             </thead>
@@ -87,11 +84,10 @@
                         <td style="text-align:left;"> ${line['name_supplier']} </td>
                         <td style="text-align:left;"> ${line['name_product']} </td>
                         <td style="text-align:left;"> ${line['quantity']} </td>
-                        <td style="text-align:left;"> ${line['sub_total']} </td>
-                        <!-- TAX Amount * TAX.amount -->
-                        <td style="text-align:left;"> ${line['sub_total']*line['iva_amount']} </td>
-                        <!-- TAX Amount * (1 + TAX.amount ) -->
-                        <td style="text-align:left;"> ${line['sub_total']*(1 + line['iva_amount'])} </td>
+                        <td style="text-align:left;"> ${formatLang(line['price_unit'])} </td>
+                        <td style="text-align:left;"> ${formatLang(line['sub_total'])} </td>
+                        <!-- TAX Amount * (1 + TAX.amount ) 
+                        <td style="text-align:left;"> ${formatLang(line['sub_total']*(1 + line['iva_amount']))} </td>-->
                     </tr>
                 %endfor
             </tbody>
@@ -104,7 +100,7 @@
         <table width="80%" style="margin: 0 auto;">
             <tr>
                 <td width="80%">
-                <FONT FACE="raro, courier" SIZE=1><b> ${_("Receipt")}: _________________________  ${_("Vat Employee")}: _________________________ ${_("Footprint")}: _________________________</b></FONT>
+                <FONT FACE="raro, courier" SIZE=1><b> ${_("Receipt")}: _________________________ </FONT>
                 </td>
             </tr>
         </table>

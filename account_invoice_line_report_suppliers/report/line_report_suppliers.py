@@ -64,6 +64,7 @@ class line_report_suppliers(report_sxw.rml_parse):
             dic = dict(name_supplier=invoice_line.partner_id.name,
                        name_product=invoice_line.name,
                        sub_total=invoice_line.price_subtotal,
+                       price_unit=invoice_line.price_unit,
                        quantity=invoice_line.quantity,
                        iva_amount=invoice_line.invoice_line_tax_id[0].amount,
                        iva_description=invoice_line.invoice_line_tax_id[0].description,)
