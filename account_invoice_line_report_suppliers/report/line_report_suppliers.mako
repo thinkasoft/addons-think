@@ -97,7 +97,7 @@
                 <tr> <td style="text-align:right;" /> ${_("Total")}: ${formatLang(total)} </td> </tr>
             </table>
         </table>
-        <table width="80%" style="margin: 0 auto;">
+        <table width="80%" style="margin: 0 auto;" xml:space="preserve">
             <tr>
                 <td width="80%">
                 <FONT FACE="raro, courier" SIZE=1><b> ${_("Receipt")}: _________________________ </FONT>
