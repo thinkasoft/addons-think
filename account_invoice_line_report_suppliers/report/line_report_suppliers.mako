@@ -76,7 +76,7 @@
             </thead>
             <%total = iva_total = sub_total = 0%>
             <tbody >
-                %for line in (get_supplier_invoice_line(start_days, stop_days, o)):
+                %for line in (get_supplier_invoice_line(start_date, stop_date, o)):
                     <%sub_total += line['sub_total']%>
                     <%iva_total += line['sub_total']*line['iva_amount']%>
                     <%total += line['sub_total'] + (line['sub_total']*line['iva_amount'])%>
@@ -99,6 +99,7 @@
         </table>
         <table width="80%" style="margin: 0 auto;" xml:space="preserve">
             <tr>
+                <br/><br/><br/>
                 <td width="80%">
                 <FONT FACE="raro, courier" SIZE=1><b> ${_("Receipt")}: _________________________ </FONT>
                 </td>

@@ -28,7 +28,6 @@
 ##############################################################################
 import datetime
 from openerp.report import report_sxw
-from openerp.tools.translate import _
 
 
 class line_report_suppliers(report_sxw.rml_parse):
@@ -43,9 +42,10 @@ class line_report_suppliers(report_sxw.rml_parse):
         """Populate a ledger_lines attribute on each browse record that will
            be used by mako template"""
         start_date = datetime.datetime.strptime(
-            data.get('form').get('init_date'), "%Y-%m-%d").date()
+            data.get('form').get('init_date'), "%Y-%m-%d")
         stop_date = datetime.datetime.strptime(
-            data.get('form', {}).get('end_date'), "%Y-%m-%d").date()
+            data.get('form', {}).get('end_date'), "%Y-%m-%d")
+
         self.localcontext.update({
             'start_date': start_date,
             'stop_date': stop_date,
@@ -56,20 +56,22 @@ class line_report_suppliers(report_sxw.rml_parse):
 
     def _get_supplier_invoice_line(self, start_days, stop_days, obj):
         res = list()
-        invoice_line_obj = self.pool.get('account.invoice.line')
-        invoice_line_condition = [('partner_other_id', '=', obj.id)]
-        invoice_line_ids = invoice_line_obj.search(self.cr, self.uid, invoice_line_condition, context=False)
-
-        for invoice_line in invoice_line_obj.browse(self.cr, self.uid, invoice_line_ids, context=None):
-            dic = dict(name_supplier=invoice_line.partner_id.name,
-                       name_product=invoice_line.name,
-                       sub_total=invoice_line.price_subtotal,
-                       price_unit=invoice_line.price_unit,
-                       quantity=invoice_line.quantity,
-                       iva_amount=invoice_line.invoice_line_tax_id[0].amount,
-                       iva_description=invoice_line.invoice_line_tax_id[0].description,)
-            print dic
-            res.append(dic)
+        dic = dict()
+        account_invoice_obj = self.pool.get('account.invoice')
+        account_invoice_condition = [('date_document', '>=', start_days),
+                                     ('date_document', '<=', stop_days), ('state', '=', 'paid')]
+        account_invoice_ids = account_invoice_obj.search(self.cr, self.uid, account_invoice_condition, context=False)
+        for account_invoice_line in account_invoice_obj.browse(self.cr, self.uid, account_invoice_ids, context=None):
+            for invoice_line in account_invoice_line.invoice_line:
+                if invoice_line.partner_other_id.id == obj.id:
+                    dic = dict(name_supplier=invoice_line.partner_id.name,
+                               name_product=invoice_line.name,
+                               sub_total=invoice_line.price_subtotal,
+                               price_unit=invoice_line.price_unit,
+                               quantity=invoice_line.quantity,
+                               iva_amount=invoice_line.invoice_line_tax_id[0].amount,
+                               iva_description=invoice_line.invoice_line_tax_id[0].description,)
+                res.append(dic)
         return res
 
 report_sxw.report_sxw('report.line.report.suppliers',
