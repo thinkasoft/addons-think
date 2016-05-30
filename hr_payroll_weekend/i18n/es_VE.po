@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 15:30+0000\n"
-"PO-Revision-Date: 2015-10-02 15:30+0000\n"
+"POT-Creation-Date: 2015-12-17 16:37+0000\n"
+"PO-Revision-Date: 2015-12-17 16:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,76 +16,104 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: hr_payroll_weekend
-#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:69
-#, python-format
-msgid "Otherincomes"
-msgstr "Otras asignaciones"
-
-#. module: hr_payroll_weekend
-#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:47
-#, python-format
-msgid "Monday"
-msgstr "Lunes"
-
-#. module: hr_payroll_weekend
-#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:63
-#, python-format
-msgid "Expenses"
-msgstr "Viaticos"
-
-#. module: hr_payroll_weekend
-#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:82
-#, python-format
-msgid "Advance of salary"
-msgstr "Anticipo Salario"
-
-#. module: hr_payroll_weekend
-#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:38
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:40
 #, python-format
 msgid "Not Working days paid at 100% (Saturday - Sunday)"
-msgstr "Días de trabajo no pagados al 100% (Sabado - Domingo)"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:88
+#, python-format
+msgid "Number day holidays"
+msgstr "Dias de Vacaciones"
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:58
+#, python-format
+msgid "Monday"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:94
+#, python-format
+msgid "Holidays bonus"
+msgstr "Dias bono vacacional"
+
+#. module: hr_payroll_weekend
+#: field:hr.payslip.employees.extended,employee_ids:0
+msgid "Employees"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: model:ir.actions.act_window,name:hr_payroll_weekend.action_hr_payslip_by_employees_extended
+msgid "Generate Payslips"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:100
+#, python-format
+msgid "Expenses"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:119
+#, python-format
+msgid "Advance of salary"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: model:ir.model,name:hr_payroll_weekend.model_hr_payslip_employees_extended
+msgid "Generate payslips for all selected employees"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:81
+#, python-format
+msgid "Profits"
+msgstr "Salario devengado anual"
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:112
+#, python-format
+msgid "Otherincomes"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/wizard/hr_payroll_payslips_by_employees_extended.py:55
+#, python-format
+msgid "You must select employee(s) to generate payslip(s)."
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:106
+#, python-format
+msgid "Payment Difference"
+msgstr ""
 
 #. module: hr_payroll_weekend
 #: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:49
 #, python-format
 msgid "Not Working days paid at 100% (Sunday - Monday)"
-msgstr "Días de trabajo no pagados al 100% (Domingo - Lunes)"
-
-#. module: hr_payroll_weekend
-#: code:addons/hr_payroll_weekend/model/hr_payroll_weekend.py:75
-#, python-format
-msgid "Payment Difference"
-msgstr "Diferencia Pago de gastos"
+msgstr ""
 
 #. module: hr_payroll_weekend
 #: model:ir.model,name:hr_payroll_weekend.model_hr_payslip
 msgid "Pay Slip"
-msgstr "Nómina"
+msgstr ""
 
-#. module: base
-#: model:ir.module.module,shortdesc:base.module_hr_payroll_weekend
-msgid "Calculation Monday and weekends"
-msgstr "Calculo lunes y fin de semanas"
+#. module: hr_payroll_weekend
+#: view:hr.payslip.employees.extended:0
+msgid "Generate"
+msgstr ""
 
-#. module: base
-#: model:ir.module.module,description:base.module_hr_payroll_weekend
-msgid "\n"
-"Calculation weekends and Mondays\n"
-"================================\n"
-"    Calculate weekends and Mondays from a period of time.\n"
-"\n"
-"    fields:\n"
-"\n"
-"    date_from: start day of payroll to generate.\n"
-"    date_to: end day of payroll to generate.\n"
-""
-msgstr "\n"
-"Calculo de fines de semanas y lunes\n"
-"================================\n"
-"    Calcula cuantos fines de semana y lunes tiene un periodo de tiempo.\n"
-"\n"
-"    fields:\n"
-"\n"
-"    date_from: Fecha inicial tomada de seccion nómina de empleados.\n"
-"    date_to: Fecha final tomada de seccion nómina de empleados.\n"
+#. module: hr_payroll_weekend
+#: view:hr.payslip.run:0
+msgid "Generate Payslips 1"
+msgstr ""
+
+#. module: hr_payroll_weekend
+#: code:addons/hr_payroll_weekend/wizard/hr_payroll_payslips_by_employees_extended.py:55
+#, python-format
+msgid "Warning!"
+msgstr ""
 

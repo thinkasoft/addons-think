@@ -1,3 +1,4 @@
+# !/usr/bin/python
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -18,13 +19,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
+##############################################################################
 {
     'name': 'Invoice Rialca',
     'version': '1.1',
     'author': 'Ingenieria Thinkasoft de Venezuela',
     'category': 'Accounting & Finance',
     'description': """
-Reporte para empresas TRialca
+        Reporte para empresas TRialca
     """,
     'depends': ['account'],
     'data': [

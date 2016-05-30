@@ -1,18 +1,27 @@
-#!/usr/bin/python
-# -*- encoding: utf-8 -*-
-###########################################################################
-#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
-#    All Rights Reserved
-# ############## Credits ######################################################
-#    Developed by: thinkasoft , C.A.
-#
-#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
-#
+# -*- coding: utf-8 -*-
 ##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+############################################################################
 import time
+
 from datetime import datetime
 from dateutil import relativedelta
-
 from openerp.report import report_sxw
 
 
@@ -48,9 +57,9 @@ class contribution_register_report(report_sxw.rml_parse):
 
     def _get_payslip_lines(self, obj):
         payslip_line = self.pool.get('hr.payslip.line')
-        payslip_lines = []
-        res = []
-        dic = {}
+        payslip_lines = list()
+        res = list()
+        dic = dict()
         ids_ant = 0
         self.cr.execute(
             "SELECT pl.id from "
@@ -61,7 +70,7 @@ class contribution_register_report(report_sxw.rml_parse):
             "AND pl.employee_id = he.id "
             "AND (%s <= hp.date_to) AND (hp.date_to <= %s) "
             "AND pl.code = '039' "
-            "AND hp.state = 'done' "
+            "AND (hp.state = 'done' OR hp.state = 'paid')"
             "ORDER BY he.identification_id",
             (self.date_from, self.date_to))
         payslip_lines = [x[0] for x in self.cr.fetchall()]
@@ -72,18 +81,18 @@ class contribution_register_report(report_sxw.rml_parse):
                 dic['faov'] = dic['amount'] * 2 / 100
                 dic['mount'] = dic['rpvh'] + dic['faov']
             else:
-                dic = {
-                    'payslip_name': line.slip_id.employee_id.name_related,
-                    'payslip_employeeid':
+                dic = dict(
+                    payslip_name=line.slip_id.employee_id.name_related,
+                    payslip_employeeid=
                     line.slip_id.employee_id.identification_id,
-                    'payslip_namerelated':
+                    payslip_namerelated=
                     line.slip_id.employee_id.name_related,
-                    'amount': line.total,
-                    'rpvh': float(line.amount) / 100,
-                    'faov': float(line.amount) * 2 / 100,
-                    'mount': (float(line.amount) / 100) +
+                    amount=line.total,
+                    rpvh=float(line.amount) / 100,
+                    faov=float(line.amount) * 2 / 100,
+                    mount=(float(line.amount) / 100) +
                     (float(line.amount) * 2) / 100
-                }
+                )
                 ids_ant = line.employee_id.id
                 res.append(dic)
         return res

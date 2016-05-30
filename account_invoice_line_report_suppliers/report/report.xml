@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+        <report 
+        id="line_report_suppliers" 
+        name="line.report.suppliers" 
+        string="Line report suppliers" 
+        model="res.partner" 
+        file="account_invoice_line_report_suppliers/report/line_report_suppliers.mako"
+        report_type="webkit"
+        header="False" 
+        menu="False"/>
+    </data>
+</openerp>
