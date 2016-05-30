@@ -81,64 +81,93 @@
   </table>
   <br/>
   <table width="100%" class="bottomBorder">
-                    <tr>
-                        <td width="5%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Mes</b></FONT>
-                        </td>
-                        <td width="35%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Monto cancelado mensual</b></FONT>
-                        </td>
-                        <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Salario Diario</b></FONT>
-                        </td>
-                        <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Alic. Utilidades</b></FONT>
-                        </td>
-                        <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Dias Aluc</b></FONT>
-                        </td>
-                        <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Bono Vacacional</b></FONT>
-                        </td>
-                        <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Salario Integral Diario</b></FONT>
-                        </td>
-                        <td width="20%">
-                            <FONT FACE="raro, courier" SIZE=1><b>Dias Antiguedad</b></FONT>
-                        </td>
-                    </tr>
-  </table>
-  <table width="100%" class="bottomBorder" style="line-height:8pt;">
+        <thead>
+            <tr>
+                <th>
+                    <FONT FACE="raro, courier" SIZE=1><b>Mes</b></FONT>
+                </th>
+                <th>
+                    <FONT FACE="raro, courier" SIZE=1><b>Monto cancelado mensual</b></FONT>
+                </th>
+                <th>
+                    <FONT FACE="raro, courier" SIZE=1><b>Salario Diario</b></FONT>
+                </th>
+                <th>
+                    <FONT FACE="raro, courier" SIZE=1><b>Alic. Utilidades</b></FONT>
+                </th>
+                <th>
+                    <FONT FACE="raro, courier" SIZE=1><b>Dias Aluc</b></FONT>
+                </th>
+                <th>
+                    <FONT FACE="raro, courier" SIZE=1><b>Bono Vacacional</b></FONT>
+                </th>
+                <th>
+                    <FONT FACE="raro, courier" SIZE=1><b>Salario Integral Diario</b></FONT>
+                </th>
+                <th>
+                    <FONT FACE="raro, courier" SIZE=1><b>Dias Antiguedad</b></FONT>
+                </th>
+                <th>
+                  <FONT FACE="raro, courier" SIZE=1><b>Prest. del Mes</b></FONT>
+                </th>
+                <th style="text-align:right;">
+                  <FONT FACE="raro, courier" SIZE=1 ><b>Adelanto de Prest.</b></FONT>
+                </th>
+                <th style="text-align:right;">
+                  <FONT FACE="raro, courier" SIZE=1 ><b>Prest. Acumulado</b></FONT>
+                </th>
+            </tr>
+        </thead>
+        <tbody >
+        <% amount_total = loan_mont = 0.0%>
+        <% loan_acum = o.acum_social_benefits %>
         %for line in (get_payslip_total_lines(o)):
-            <tbody >
-              <tr>
-                  <td style="text-align:left;">
-                      ${line['month'] }
-                  </td>
-                  <td style="text-align:left;">
-                      ${formatLang(line['integral']) } 
-                  </td>
-                  <td style="text-align:left;">
-                      ${formatLang(line['salary_daily']) } 
-                  </td>
-                  <td style="text-align:left;">
-                      ${formatLang(line['alic_benefit']) } 
-                  </td>
-                  <td style="text-align:left;">
-                      ${formatLang(line['days_alic']) } 
-                  </td>
-                  <td style="text-align:left;">
-                      ${formatLang(line['holidays_bonus']) } 
-                  </td>
-                  <td style="text-align:left;">
-                      ${formatLang(line['salary_integral']) } 
-                  </td>
-                  <td style="text-align:left;">
-                      ${formatLang(line['hitoric_day']) } 
-                  </td>
-              </tr>
-            </tbody>
+          <% loan_mont = line['salary_integral'] * line['hitoric_day']%>
+          <% loan_acum += loan_mont - line['advancement']%>
+          <tr>
+              <td width="9%">
+                  ${line['month'] }
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(line['integral']) } 
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(line['salary_daily']) } 
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(line['alic_benefit']) } 
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(line['days_alic']) } 
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(line['holidays_bonus']) } 
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(line['salary_integral']) } 
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(line['hitoric_day']) } 
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(loan_mont) } 
+              </td>
+              <td style="text-align:center;">
+                  ${formatLang(line['advancement']) } 
+              </td>
+              <td style="text-align:right;">
+                  ${formatLang(loan_acum) } 
+              </td>
+          </tr>
         %endfor
+        </tbody>
+  </table>
+  <table class="list_table" width="100%" style="border-top:1px solid #ccc">
+    <thead>
+      <tr>
+        <td style="text-align:right;border-top:0px" >Total a pagar: ${formatLang(loan_acum) }</td>
+      </tr>
+    </thead>
   </table>
   %endfor 
 </body>

@@ -59,30 +59,34 @@ class report_hr_payslip_extended(report_sxw.rml_parse):
     def _get_payslip_lines(self, obj):
         res = []
         dic = {}
-
         self.cr.execute(
-            "SELECT he.identification_id, he.name_related, SUM(pl.amount), "
+            "SELECT distinct pl.code, he.identification_id, he.name_related, SUM(pl.amount), "
             "ROUND(SUM(pl.amount)/100, 2), ROUND((SUM(pl.amount)*2)/100, 2), "
             "ROUND(ROUND(SUM(pl.amount)/100, 2) + ROUND((SUM(pl.amount)*2)/100, 2), 2) "
             "FROM hr_payslip_line AS pl,hr_payslip AS hp,hr_employee AS he "
-            "WHERE pl.code = '039' "
+            "WHERE (pl.code = '039' OR pl.code = '047')"
             "AND pl.slip_id = hp.id "
             "AND pl.employee_id = he.id "
             "AND hp.date_to >= %s AND hp.date_to <= %s "
-            "AND hp.state = 'done' "
+            "AND ( hp.state = 'done' OR hp.state = 'paid' )"
             "GROUP by he.identification_id, he.name_related,pl.code "
             "ORDER by he.identification_id", (self.date_from, self.date_to))
 
         for x in self.cr.fetchall():
-            dic = {
-                'payslip_employeeid': x[0],
-                'payslip_namerelated': x[1],
-                'amount': x[2],
-                'rpvh': x[3],
-                'faov': x[4],
-                'mount': x[5]
-            }
-            res.append(dic)
+            if str(x[0]) == '039':
+                dic = {
+                    'payslip_employeeid': x[1],
+                    'payslip_namerelated': x[2],
+                    'amount': x[3],
+                    'rpvh': x[4],
+                    'faov': x[5],
+                    'mount': x[6],
+                    'inces_0.5': 0
+                }
+                res.append(dic)
+            else:
+                dic['inces_0.5'] = x[3]
+
         return res
 
 report_sxw.report_sxw(

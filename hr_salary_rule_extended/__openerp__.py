@@ -32,7 +32,7 @@
 """,
     'website': 'http://www.thinkasoft.com',
     'data': [
-        "view/hr_salary_rule_extended.xml"
+        "views/hr_salary_rule_extended.xml"
     ],
     'installable': True,
 }

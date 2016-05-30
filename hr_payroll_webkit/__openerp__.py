@@ -20,21 +20,21 @@
 ############################################################################
 
 {
-    'name': 'Payroll Reports',
-    'version': '1.1',
-    'author': 'Ingenieria Thinkasoft de Venezuela',
-    'category': 'HR management',
-    'description': """
+    'name' : 'Payroll Reports',
+    'version' : '1.1',
+    'author' : 'Thinkasoft',
+    'category' : 'HR management',
+    'description' : """
 HR Payroll Reports
 ====================================
     It is conversion of rml report to Webkit Report.
     """,
     'website': 'http://www.thinkasoft.com',
-    'depends': [
+    'depends' : [
         'hr_payroll',
         'report_webkit'],
     'data': [
-        'report_xml_view.xml',
+        'report/report_xml_view.xml',
     ],
     'installable': True,
     'auto_install': False,

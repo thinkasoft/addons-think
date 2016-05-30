@@ -42,6 +42,7 @@ Calculation weekends and Mondays
         'decimal_precision',
     ],
     'data': [
-        'wizard/hr_payroll_payslips_by_employees_extended.xml', 'view/hr_payroll_weekend.xml',
+        'wizards/hr_payroll_payslips_by_employees_extended.xml',
+        'views/hr_payroll_weekend.xml',
     ],
 }

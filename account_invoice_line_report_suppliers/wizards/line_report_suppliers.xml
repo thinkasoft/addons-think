@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_line_report_suppliers" model="ir.ui.view">
+            <field name="name">Line report suppliers</field>
+            <field name="model">line_report_suppliers</field>
+            <field name="arch" type="xml">
+            <form string="Print all lines of suppliers" version="7.0">
+                <group>
+                    <field name="init_date"/>
+                    <field name="end_date"/>
+                </group>    
+                <footer>
+                    <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_line_report_suppliers" model="ir.actions.act_window">
+            <field name="name">Line report suppliers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">line_report_suppliers</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="line_report_suppliers_values">
+            <field name="model_id" ref="account.model_res_partner" />
+            <field name="name">Line report suppliers</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_line_report_suppliers'))" />
+            <field name="key">action</field>
+            <field name="model">res.partner</field>
+        </record>
+
+    </data>
+</openerp>
