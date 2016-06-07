@@ -2,15 +2,24 @@
 <openerp>
     <data>
         <report
-            auto="False"
-            id="account_invoices"
-            model="account.invoice"
-            name="account.invoice2"
-            rml="account_extended_report/report/account_print_invoice2.rml"
+            id="account_invoices_rialca"
+            name="account.invoice.rialca"
             string="Invoices Rialca"
-            attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
-            attachment_use="True"
-            usage="default"
+            model="account.invoice"
+            file="account_extended_report/report/account_print_invoice_rialca.mako"
+            report_type="webkit"
+            header="False"
+            menu="True"
+            />
+
+        <report
+            id="account_print_invoices_rml"
+            name="account.prin.invoice.rml"
+            string="Invoices Rialca RML"
+            model="account.invoice"
+            rml="account_extended_report/report/account_print_invoice_rml.rml"
+            header="False"
+            menu="True"
             />
     </data>
 </openerp>

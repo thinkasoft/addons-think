@@ -35,9 +35,7 @@
     """,
     'depends': ['account'],
     'data': [
-
         'report/account_report.xml',
-
     ],
     'website': 'http://www.thinkasoft.com',
     'installable': True,

@@ -26,4 +26,26 @@
 #    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
 ##############################################################################
 
-from . import account_print_invoice_rialca
+import time
+from openerp.report import report_sxw
+
+
+class account_invoice(report_sxw.rml_parse):
+
+    def __init__(self, cr, uid, name, context):
+        super(account_invoice, self).__init__(cr, uid, name, context=context)
+        self.localcontext.update({
+            'time': time,
+            'debug_test': self._debug_test,
+        })
+
+    def _debug_test(self,o):
+    	import pdb; pdb.set_trace()
+
+report_sxw.report_sxw(
+    'report.account.invoice.rialca',
+    'account.invoice',
+    'account_extended_report/report/account_print_invoice_rialca.mako',
+    parser=account_invoice
+)
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

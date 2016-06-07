@@ -68,12 +68,9 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
                         sum_days += 2
                     else:
                         invalid_year -= 1
-<<<<<<< HEAD
                         dic['hitoric_day'] = 5
                 else:
                     dic['hitoric_day'] = 5
-=======
->>>>>>> 7.0-dev-openerp
 
                 datemonthstart = "%s-%s-01" % (ini_year, month)
                 datemonthend = "%s-%s-%s" % (ini_year, month, calendar.monthrange(ini_year, month)[1])
@@ -88,11 +85,9 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
                                   ]
                 slip_ids = payslip_obj.search(self.cr, self.uid, condition_slip, context=False)
 
-<<<<<<< HEAD
                 slip_line_ids = payslip_line_obj.search(self.cr, self.uid, condition_slip_line, context=False)
                 dic = {'month': str(datemonthend.day) + "-" + str(datemonthend.month) + "-" + str(datemonthend.year),
                        'integral': 0}
-=======
                 condition_slip_line_039 = [('slip_id', 'in', slip_ids), ('code', '=', '039')]
                 slip_line_ids_039 = payslip_line_obj.search(self.cr, self.uid, condition_slip_line_039, context=False)
 
@@ -106,7 +101,6 @@ class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
 
                 if slip_line_ids_039:
                     dic['integral'] = 0
->>>>>>> 7.0-dev-openerp
 
                     for slip_browse in payslip_line_obj.browse(self.cr, self.uid, slip_line_ids_039, context=None):
                         dic['integral'] += slip_browse.amount

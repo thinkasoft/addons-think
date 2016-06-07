@@ -1,80 +1,154 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <document filename="Invoices.pdf">
-    <template title="Invoices" author="OpenERP S.A.(sales@openerp.com)" allowSplitting="20">
-        <pageTemplate id="first">
+  <template title="Invoices" author="OpenERP S.A.(sales@openerp.com)" allowSplitting="20">
+    <pageTemplate id="first">
             <frame id="first" x1="33.0" y1="-125.0" width="21cm" height="786"/>
-            <pageGraphics>
-            <place x="15.0mm" y="-3mm" width="270.0mm"  height="54mm">
-                <blockTable colWidths="45.0,405.0,85.0" style="Table10">
-                    <tr>
-                        <td><para style="terp_default_8"><font color="white"> </font></para></td>
-                        <td><para style="terp_default_9"></para> </td>
-                        <td><para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed) ]]</para></td>
-                    </tr>
-                    <tr>
-                        <td><para style="terp_default_8"><font color="white"> </font></para></td>
-                        <td><para style="terp_default_9"></para></td>
-                        <td><para style="terp_default_Right_9">0.00</para></td>
-                    </tr>
-                    <tr>
-                        <td><para style="terp_default_8"><font color="white"> </font></para></td>
-                        <td><para style="terp_default_9"></para></td>
-                        <td><para style="terp_default_Right_9">0.00</para></td>
-                    </tr>
-                    <tr>
-                        <td><para style="terp_default_8"><font color="white"> </font></para></td>
-                        <td><para style="terp_default_9"></para></td>
-                        x rml openerp
-                        <td><para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed) ]]</para></td>
-                    </tr>
-                    <tr>
-                        <td><para style="terp_default_8"><font color="white"> </font></para></td>
-                        <td><para style="terp_default_9"></para></td>
-                        <td>
-                            <blockTable colWidths="-22.0,100.0" style="Table7">
-                                <tr>
-                                    <td><para style="terp_default_Right_9"><b>12% </b></para></td>
-                                    <td><para style="terp_default_Right_9">[[formatLang( o.amount_tax) ]]</para></td>
-                                </tr>
-                            </blockTable>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><para style="terp_default_8"><font color="white"> </font></para></td>
-                        <td><para style="terp_default_9"><b></b></para></td>
-                        <td><para style="terp_default_Right_9"><b>[[ formatLang(o.amount_total) ]]</b></para></td>
-                    </tr>
-                </blockTable>
-            <nextFrame/>
-            </place>
-            <drawString x="0.3cm" y="22.5cm">Valencia VALENCIA</drawString>
-            <drawString x="2.8cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[8:10]))]]</drawString>
-            <drawString x="3.7cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[5:7]))]]</drawString>
-            <drawString x="4.8cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[0:4]))]]</rawString>
 
-          	<place x="6cm" y="21.35cm" width="14cm"  height="1cm">
-        		    <blockTable colWidths="14cm" style="Table11">
-          			    <tr><td><para style="titname" vAlign="BOTTOM">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para></td></tr>
-          		  </blockTable>
-          	</place>
-       
-            <place x="3.7cm" y="19.9cm" width="16cm"  height="1.5cm">
-                <blockTable colWidths="14cm" style="Table11">
-                    <tr><td><para style="direccion">[[ o.partner_id.street + " " + o.partner_id.street2 + " " + o.partner_id.city + " " + o.partner_id.zip + " " + o.partner_id.state_id.name + " Venezuela"  ]]</para></td></tr>
-                </blockTable>
-            </place>
 
-            <place x="17.3cm" y="18.9cm" width="16cm"  height="1.5cm">
+   <pageGraphics>
+
+    <place x="15.0mm" y="2.0mm" width="270.0mm"  height="54mm">
+    <blockTable colWidths="45.0,400.0,85.0" style="Table10">
+      <tr>
+        <td>
+          <para style="terp_default_8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="terp_default_9"></para> 
+        </td>
+        <td>
+          <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed) ]]</para>
+        </td>
+      </tr>
+            <tr>
+        <td>
+          <para style="terp_default_8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="terp_default_9"></para>
+        </td>
+        <td>
+          <para style="terp_default_Right_9">0.00</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="terp_default_8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="terp_default_9"></para>
+        </td>
+        <td>
+          <para style="terp_default_Right_9">0.00</para>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <para style="terp_default_8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="terp_default_9"></para>
+       </td>
+x rml openerp
+        <td>
+          <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed) ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="terp_default_8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="terp_default_9"></para>
+        </td>
+        <td>
+		<blockTable colWidths="-30.0,108.0" style="Table7">
+      		<tr>
+        		<td>
+				<para style="terp_default_Right_9"><b>12% </b></para>
+			</td>
+
+        		<td>
+				<para style="terp_default_Right_9">[[formatLang( o.amount_tax) ]]</para>
+			</td>
+      		</tr>
+    		</blockTable>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="terp_default_8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="terp_default_9"><b></b></para>
+        </td>
+        <td>
+          <para style="terp_default_Right_9"><b>[[ formatLang(o.amount_total) ]]</b></para>
+        </td>
+      </tr>
+        </blockTable>
+        <nextFrame/>
+      </place>
+
+      
+     <drawString x="0.5cm" y="23.3cm">
+         Valencia
+     </drawString>
+     <drawString x="2.9cm" y="23.3cm">
+         [[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[8:10]))]]
+     </drawString>
+ 
+     <drawString x="3.8cm" y="23.3cm">
+         [[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[5:7]))]]
+     </drawString>
+
+     <drawString x="5cm" y="23.3cm">
+         [[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[0:4]))]]
+     </drawString>
+
+	<place x="6cm" y="22.0cm" width="14cm"  height="1cm">
+    		<blockTable colWidths="14cm" style="Table11">
+      			<tr><td><para style="titname">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para></td></tr>
+		</blockTable>
+	</place>
+
+	<place x="17.4cm" y="19.38cm" width="16cm"  height="1.55cm">
                 <blockTable colWidths="14cm" style="Table7">
-                    <tr><td><para style="terp_default_8"><b>[[ (o.partner_id.vat and ('        %s-%s-%s'%(o.partner_id.vat[2:3],o.partner_id.vat[3:11],o.partner_id.vat[11:12])) or removeParentNode('para'))  ]]</b></para></td></tr>
+                        <tr><td><para style="terp_default_8"><b>[[ (o.partner_id.vat and ('        %s-%s-%s'%(o.partner_id.vat[2:3],o.partner_id.vat[3:11],o.partner_id.vat[11:12])) or removeParentNode('para'))  ]]</b></para></td></tr>
                 </blockTable>
-            </place>
+        </place>
 
-            <place x="2.5cm" y="3.3cm" width="14cm"  height="1.5cm">
+	<place x="11cm" y="19.38cm" width="16cm"  height="1.5cm">
                 <blockTable colWidths="14cm" style="Table7">
-                    <tr><td><para style="terp_default_8"><b>[[ o.amount_to_text.replace("M. E."," ").replace("VEB","CON")  ]]</b></para></td></tr>
+                        <tr><td><para style="terp_default_8"><b>[[ o.partner_id.phone ]]</b></para></td></tr>
                 </blockTable>
-            </place>	
+        </place>
+	
+	<place x="5.2cm" y="19.38cm" width="16cm"  height="1.5cm">
+                <blockTable colWidths="14cm" style="Table7">
+                        <tr><td><para style="terp_default_8"><b>[[ (o.payment_term and o.payment_term.note and format(o.payment_term and o.payment_term.note)) or removeParentNode('para') ]]</b></para></td></tr>
+                </blockTable>
+        </place>
+
+	<place x="2cm" y="3cm" width="14cm"  height="1.5cm">
+                <blockTable colWidths="14cm" style="Table7">
+                        <tr><td><para style="terp_default_20"><b>[[ o.amount_to_text.replace("M. E."," ").replace("VEB","CON") ]]</b></para></td></tr>
+                </blockTable>
+        </place>
+
 
     </pageGraphics>
     </pageTemplate>
@@ -189,7 +263,8 @@
     <paraStyle name="Index"/>
 
     <paraStyle name="terp_header" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
-    <paraStyle name="terp_default_8" rightIndent="0.0" leftIndent="0.0" fontSize="9.0" leading="13" alignment="LEFT" spaceBefore="0" spaceAfter="0"/>
+    <paraStyle name="terp_default_8" rightIndent="0.0" leftIndent="0.0" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="1" spaceAfter="0"/>
+    <paraStyle name="terp_default_20" rightIndent="0.0" leftIndent="0.0" fontSize="7.5" leading="11" alignment="LEFT" spaceBefore="1" spaceAfter="0"/>
     <paraStyle name="Footer"/>
     <paraStyle name="Horizontal Line" fontSize="6.0" leading="8" spaceBefore="0.0" spaceAfter="14.0"/>
 
@@ -199,8 +274,8 @@
     <paraStyle name="terp_tblheader_General_Right" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="terp_tblheader_Details_Centre" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="terp_tblheader_Details_Right" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
-    <paraStyle name="comentario" rightIndent="190" LeftIndent="0" fontSize="8.0" leading="8" alignment="CENTER" spaceBefore="6.0" spaceAfter="9.0"/>
-    <paraStyle name="direccion" rightIndent="0.0" leftIndent="0.0" fontSize="9.0" leading="14" alignment="LEFT" spaceBefore="0" spaceAfter="0.0"/>
+    <paraStyle name="comentario" rightIndent="185" LeftIndent="0" fontSize="8.0" leading="8" alignment="CENTER" spaceBefore="6.0" spaceAfter="9.0"/>
+
     <paraStyle name="terp_default_Right_8" rightIndent="0.0" leftIndent="0.0" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="titname" rightIndent="0.0" leftIndent="0.0" fontSize="10.5" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_default_Centre_8" rightIndent="0.0" leftIndent="0.0" fontSize="6.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
@@ -228,28 +303,10 @@
     <para style="terp_default_8">[[ setLang(o.partner_id.lang) ]]</para>
  
 
-   <spacer length="1mm"/>
-<!--
-   <blockTable colWidths="140.0,373.0" style="Table10">
-      <tr>
-        <td>
-          <para style="terp_default_8">
-            <font color="white"> </font>
-          </para>
-        </td>
-       <td>
-          <para style="terp_default_8">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
-          <para style="terp_default_8">
-            <font color="white"> </font>
-          </para>         
-        </td>
-      </tr>
-    </blockTable>
+   <spacer length="12mm"/>
 
--->
-
-   <spacer length="27mm"/>
-<!--   <blockTable colWidths="70.0,450.0" style="Table10">
+   <spacer length="0mm"/>
+   <blockTable colWidths="30.0,490.0" style="Table10">
       <tr>
         <td>
           <para style="terp_default_8">
@@ -265,8 +322,7 @@
 
         </td>
       </tr>
-    </blockTable> -->
-
+    </blockTable> 
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
@@ -284,25 +340,13 @@
 
     </pto_header>
 
-    <blockTable colWidths="110.0,165.0,185.0,160.0" style="Table7">
-      <tr>
-        <td><para style="terp_default_8"><b> </b></para></td>
-
-        <td><para style="terp_default_8"><b>[[ (o.payment_term and o.payment_term.note and format(o.payment_term and o.payment_term.note)) or removeParentNode('para') ]] </b></para></td>
-        <td><para style="terp_default_8"><b>[[('%s'% (o.partner_id.phone) or removeParentNode('para')) ]]</b></para></td>
-		<td><para style="terp_default_8"><b></b></para></td>
-      </tr>
-    </blockTable>
 
 
 <spacer length="20mm"/>
-    <para style="comentario">"PRESTACION DEL SERVICIO DE 
-				TRANSPORTE CEMENTO ASFÁLTICO
-                                         VER ANEXOS:" </para>
     <section>
       <para style="terp_default_2">[[ repeatIn(o.invoice_line,'l') ]]</para>
 
-      <blockTable colWidths="5.0,215.0,35.0,80.0,85.0" style="Table8">
+      <blockTable colWidths="40.0,212.0,55.0,80.0,85.0" style="Table8">
         <tr>
           <td>
             <para style="terp_default_9">[[ ]]</para>
