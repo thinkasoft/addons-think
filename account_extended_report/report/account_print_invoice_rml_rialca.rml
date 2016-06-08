@@ -343,6 +343,9 @@ x rml openerp
 
 
 <spacer length="20mm"/>
+    <para style='comentario'>PRESTACION DEL SERVICIO DE
+     TRANSPORTE CEMENTO ASFÁLTICO
+                      VER ANEXOS:[[ (o.invoice_line[0].product_id.product_tmpl_id.type != 'service' and removeParentNode('para'))]] </para>
     <section>
       <para style="terp_default_2">[[ repeatIn(o.invoice_line,'l') ]]</para>
 

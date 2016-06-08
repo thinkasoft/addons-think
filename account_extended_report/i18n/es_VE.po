@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 19:56+0000\n"
-"PO-Revision-Date: 2015-10-07 19:56+0000\n"
+"POT-Creation-Date: 2016-06-08 22:00+0000\n"
+"PO-Revision-Date: 2016-06-08 22:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_extended_report
-#: report:account.invoice2:0
-msgid "Valencia VALENCIA"
-msgstr "Valencia VALENCIA"
+#: report:account.prin.invoice.rialca.rml:0
+msgid "Valencia"
+msgstr "Valencia"
 
 #. module: account_extended_report
-#: report:account.invoice2:0
+#: report:account.prin.invoice.rialca.rml:0
 msgid "0.00"
 msgstr "0.00"
 
 #. module: account_extended_report
-#: model:ir.actions.report.xml,name:account_extended_report.account_invoices
-msgid "Invoices Rialca"
-msgstr "Invoices Rialca"
+#: report:account.prin.invoice.rialca.rml:0
+msgid "PRESTACION DEL SERVICIO DE      TRANSPORTE CEMENTO ASFÁLTICO                       VER ANEXOS:"
+msgstr "PRESTACION DEL SERVICIO DE      TRANSPORTE CEMENTO ASFÁLTICO                       VER ANEXOS:"
 
 #. module: account_extended_report
-#: report:account.invoice2:0
-msgid "\"PRESTACION DEL SERVICIO DE  				TRANSPORTE CEMENTO ASFÁLTICO                                          VER ANEXOS:\""
-msgstr "\"PRESTACION DEL SERVICIO DE  				TRANSPORTE CEMENTO ASFÁLTICO                                          VER ANEXOS:\""
-
-#. module: account_extended_report
-#: report:account.invoice2:0
+#: report:account.prin.invoice.rialca.rml:0
 msgid "12%"
 msgstr "12%"
+
+#. module: account_extended_report
+#: model:ir.actions.report.xml,name:account_extended_report.account_print_invoices_rialca_rml
+msgid "Invoices Rialca"
+msgstr "Reporte Rialca"
 

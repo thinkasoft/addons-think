@@ -29,9 +29,9 @@ class account_invoice(report_sxw.rml_parse):
             'time': time,
         })
 report_sxw.report_sxw(
-    'account.print.invoices.rml',
+    'report.account.prin.invoice.rialca.rml',
     'account.invoice',
-    'account_extended_report/report/account_print_invoice_rml.rml',
+    'account_extended_report/report/account_print_invoice_rml_rialca.rml',
     parser=account_invoice
 )
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

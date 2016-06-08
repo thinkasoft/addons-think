@@ -2,22 +2,11 @@
 <openerp>
     <data>
         <report
-            id="account_invoices_rialca"
-            name="account.invoice.rialca"
+            id="account_print_invoices_rialca_rml"
+            name="account.prin.invoice.rialca.rml"
             string="Invoices Rialca"
             model="account.invoice"
-            file="account_extended_report/report/account_print_invoice_rialca.mako"
-            report_type="webkit"
-            header="False"
-            menu="True"
-            />
-
-        <report
-            id="account_print_invoices_rml"
-            name="account.prin.invoice.rml"
-            string="Invoices Rialca RML"
-            model="account.invoice"
-            rml="account_extended_report/report/account_print_invoice_rml.rml"
+            rml="account_extended_report/report/account_print_invoice_rml_rialca.rml"
             header="False"
             menu="True"
             />
