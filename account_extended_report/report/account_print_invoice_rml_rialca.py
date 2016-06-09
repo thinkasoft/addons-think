@@ -29,7 +29,7 @@ class account_invoice(report_sxw.rml_parse):
             'time': time,
         })
 report_sxw.report_sxw(
-    'report.account.prin.invoice.rialca.rml',
+    'report.account.print.invoice.rialca.rml',
     'account.invoice',
     'account_extended_report/report/account_print_invoice_rml_rialca.rml',
     parser=account_invoice
