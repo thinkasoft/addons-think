@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            auto="False"
+            id="customer_print_vat"
+            model="account.wh.iva"
+            name="account.wh.iva.vat"
+            rml="customer_print_vat/report/withholding_vat_report.rml"
+            string="Invoices Rialca"
+            usage="default"
+            />
+    </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="customer_print_vat_form_view">
+			<field name="name">view.customer.print.vat</field>
+			<field name="model">account.wh.iva</field>
+			<field name="inherit_id" ref="l10n_ve_withholding_iva.view_wh_iva_form_customer" />
+			<field name="arch" type="xml">
+				<xpath expr="//button[2]" position='replace'>
+					<button name="%(customer_print_vat)d" type="action" colspan="2" states="done" string="Print VAT Withholding" icon="gtk-execute"/>
+                </xpath>
+			</field>
+		</record>
+	</data>
+</openerp>
