@@ -129,7 +129,6 @@ COMPROBANTE DE RETENCION DEL IMPUESTO AL VALOR AGREGADO
 </td>
 <td>
 <para style="ITEMSCENTER">
-<b>No. COMPROBANTE</b>
 </para>
 </td>
 <td>
@@ -151,7 +150,6 @@ COMPROBANTE DE RETENCION DEL IMPUESTO AL VALOR AGREGADO
 </td>
 <td>
 <para style="ITEMSRIF2">
-<b>[[ o.number]]</b>
 </para>
 </td>
 <td>
