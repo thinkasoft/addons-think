@@ -39,12 +39,14 @@ class line_report_suppliers(report_sxw.rml_parse):
         })
 
     def set_context(self, objects, data, ids, report_type=None):
-        """Populate a ledger_lines attribute on each browse record that will
-           be used by mako template"""
+        """
+        It obtains the information deposited the wizard and 
+        they are assigned to the variable context to be used in the report.
+        """
         start_date = datetime.datetime.strptime(
             data.get('form').get('init_date'), "%Y-%m-%d")
         stop_date = datetime.datetime.strptime(
-            data.get('form', {}).get('end_date'), "%Y-%m-%d")
+            data.get('form').get('end_date'), "%Y-%m-%d")
 
         self.localcontext.update({
             'start_date': start_date,

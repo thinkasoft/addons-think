@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <!-- Modificacion sobre la pestaña de del docuemnto XML-->
+        <record model="ir.ui.view" id="view_hr_payslip_form_extended">
+            <field name="name">view.hr.payslip.form.extended</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form" />
+            <field name="arch" type="xml">
+                <xpath expr='//form/sheet/div/h1/field[@name="employee_id"]' position='replace'>
+                    <field name="employee_id"/>
+                    <field name="partner_vat"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_hr_payslip_tree_extended">
+            <field name="name">view.hr.payslip.tree.extended</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_tree" />
+            <field name="arch" type="xml">
+                <xpath expr='//tree/field[@name="number"]' position='before'>
+                    <field name="partner_vat"/>
+                </xpath>
+                <xpath expr='//tree/field[@name="name"]' position='replace'>
+                </xpath>
+                <xpath expr='//tree/field[@name="date_to"]' position='replace'>
+                    <field name="total_amount"/>
+                    <field name="withholding"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp> 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <!-- Modificacion sobre la pestaña de del docuemnto XML-->
+        <record model="ir.ui.view" id="view_xml_islr_join_payroll_form">
+            <field name="name">view.xml.islr.join.payroll.form</field>
+            <field name="model">islr.xml.wh.doc</field>
+            <field name="inherit_id" ref="l10n_ve_withholding_islr.view_xml_islr_form" />
+            <field name="arch" type="xml">
+                <xpath expr='//notebook/page[@string="Lines Withholding"]' position='after'>
+                    <page string="Lines Withholding Payroll">
+                        <field name="xml_payroll_ids" nolabel="1" widget="many2many" domain="['|',('state','=','done'),('state','=','paid'),('period_id','=',period_id)]" colspan='4' mode='tree'>
+                        </field>
+                        <group col="2" colspan="2">
+                                <field name="amount_total_ret_payroll"/>
+                                <field name="amount_total_base_payroll"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr='//notebook/page[@string="Lines Withholding"]/group/button[@name="action_confirm1"]' position='replace'>
+                    <button name="action_confirm2" string="Confirm" states="draft" type="object" icon="gtk-go-forward" colspan="4"/>
+                </xpath>
+                <xpath expr='//notebook/page[@string="Lines Withholding"]/group/button[@name="action_done1"]' position='replace'>
+                        <button name="action_done2" string="Validate XML" states="confirmed" type="object" icon="gtk-ok"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
