@@ -42,6 +42,8 @@ class line_report_suppliers(report_sxw.rml_parse):
         """
           It obtains the information deposited the wizard and 
           they are assigned to the variable context to be used in the report.
+          @param data: contain the information entered in the wizard.
+          @return: update the variably context with the new dates.
         """
         # Gets field init_date and converted in Date format
         start_date = datetime.datetime.strptime(
@@ -61,6 +63,10 @@ class line_report_suppliers(report_sxw.rml_parse):
     def _get_supplier_invoice_line(self, start_days, stop_days, obj):
         """
           All the lines of sales are obtained in this which involved the selected client
+          @param obj: Employe object used currently.
+          @param start_days: date init used for the search.
+          @param stop_days: date stop used for the search.
+          @return: update the variably context with the new dates.
         """
         res = list()
         dic = dict()
