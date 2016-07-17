@@ -42,7 +42,6 @@ class line_report_suppliers(osv.osv_memory):
         """
             Gets the data in the view and validates if range is right
         """
-
         datas = {
             'ids': context.get('active_ids', []), # id the view current
             'active_ids': context['active_ids'], # id the view current

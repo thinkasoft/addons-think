@@ -77,7 +77,7 @@
             <%total = iva_total = sub_total = 0%>
             <tbody >
                 %for line in (get_supplier_invoice_line(start_date, stop_date, o)):
-                    <%sub_total += line['sub_total']%>
+                    <% sub_total += line['sub_total'] %>
                     <%iva_total += line['sub_total']*line['iva_amount']%>
                     <%total += line['sub_total'] + (line['sub_total']*line['iva_amount'])%>
                     <tr>
@@ -86,8 +86,6 @@
                         <td style="text-align:left;"> ${line['quantity']} </td>
                         <td style="text-align:left;"> ${formatLang(line['price_unit'])} </td>
                         <td style="text-align:left;"> ${formatLang(line['sub_total'])} </td>
-                        <!-- TAX Amount * (1 + TAX.amount ) 
-                        <td style="text-align:left;"> ${formatLang(line['sub_total']*(1 + line['iva_amount']))} </td>-->
                     </tr>
                 %endfor
             </tbody>
