@@ -38,15 +38,15 @@ class payslip_details_report(report_sxw.rml_parse):
 
         def get_recursive_parent(rule_categories):
             if not rule_categories:
-                return []
+                return dict()
             if rule_categories[0].parent_id:
                 rule_categories.insert(0, rule_categories[0].parent_id)
                 get_recursive_parent(rule_categories)
             return rule_categories
 
-        res = []
-        result = {}
-        ids = []
+        res = list()
+        result = dict()
+        ids = list()
 
         for id in range(len(obj)):
             ids.append(obj[id].id)
@@ -71,28 +71,28 @@ class payslip_details_report(report_sxw.rml_parse):
                     category_total += line.total
                 level = 0
                 for parent in parents:
-                    res.append({
-                        'rule_category': parent.name,
-                        'name': parent.name,
-                        'code': parent.code,
-                        'level': level,
-                        'total': category_total,
-                    })
+                    res.append(dict(
+                        rule_category=parent.name,
+                        name=parent.name,
+                        code=parent.code,
+                        level=level,
+                        total=category_total,
+                    ))
                     level += 1
                 for line in payslip_line.browse(self.cr, self.uid, value):
-                    res.append({
-                        'rule_category': line.name,
-                        'name': line.name,
-                        'code': line.code,
-                        'total': line.total,
-                        'level': level
-                    })
+                    res.append(dict(
+                        rule_category=line.name,
+                        name=line.name,
+                        code=line.code,
+                        total=line.total,
+                        level=level
+                    ))
         return res
 
     def get_lines_by_contribution_register(self, obj):
         payslip_line = self.pool.get('hr.payslip.line')
-        result = {}
-        res = []
+        result = dict()
+        res = list()
 
         for id in range(len(obj)):
             if obj[id].register_id:
@@ -102,18 +102,18 @@ class payslip_details_report(report_sxw.rml_parse):
             register_total = 0
             for line in payslip_line.browse(self.cr, self.uid, value):
                 register_total += line.total
-            res.append({
-                'register_name': key,
-                'total': register_total,
-            })
+            res.append(dict(
+                register_name=key,
+                total=register_total,
+            ))
             for line in payslip_line.browse(self.cr, self.uid, value):
-                res.append({
-                    'name': line.name,
-                    'code': line.code,
-                    'quantity': line.quantity,
-                    'amount': line.amount,
-                    'total': line.total,
-                })
+                res.append(dict(
+                    name=line.name,
+                    code=line.code,
+                    quantity=line.quantity,
+                    amount=line.amount,
+                    total=line.total,
+                ))
         return res
 
 report_sxw.report_sxw(

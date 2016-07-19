@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C) 2011-2013 Serpent Consulting Services
+#    (<http://www.serpentcs.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,22 +20,19 @@
 #
 ############################################################################
 
-import time
-from datetime import datetime
-from dateutil import relativedelta
+from openerp.osv import osv
 
-from openerp.osv import fields, osv
 
 class payslip_lines_contribution_register(osv.osv_memory):
 
     _inherit = 'payslip.lines.contribution.register'
 
     def print_report(self, cr, uid, ids, context=None):
-        datas = {
-             'ids': context.get('active_ids', []),
-             'model': 'hr.contribution.register',
-             'form': self.read(cr, uid, ids, [], context=context)[0]
-        }
+        datas = dict(
+             ids=context.get('active_ids', []),
+             model='hr.contribution.register',
+             form=self.read(cr, uid, ids, [], context=context)[0]
+        )
         return {
             'type': 'ir.actions.report.xml',
             'report_name': 'contribution.register.lines.webkit',
