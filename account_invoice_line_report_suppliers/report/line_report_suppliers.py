@@ -26,6 +26,7 @@
 #    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
 #
 ##############################################################################
+
 import datetime
 from openerp.report import report_sxw
 

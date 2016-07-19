@@ -26,7 +26,6 @@
 #    Coded by: Aular Hector Manuel (aular.hector3@gmail.com)
 ##############################################################################
 
-
 from openerp.osv import osv
 
 

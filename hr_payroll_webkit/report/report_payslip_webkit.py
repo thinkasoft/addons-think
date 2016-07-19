@@ -19,6 +19,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
+############################################################################
 
 from openerp.report import report_sxw
 

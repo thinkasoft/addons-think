@@ -22,9 +22,7 @@
 #    All Rights Reserved
 # ############## Credits ######################################################
 #    Developed by: thinkasoft , C.A.
-#
 #    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
-#
 ##############################################################################
 
 from . import hr_employee_report_wizard_benefits_employee
