@@ -37,7 +37,7 @@ class Account_invoice_extended (osv.Model):
     _inherit = 'account.invoice'
 
     def onchange_reference(self, cr, uid, ids, supplier_invoice_number,
-            context=None):
+                           context=None):
         """
         Gets through of parameters the supplier_invoice_number value and insert
         into reference field
