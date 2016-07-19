@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-<!-- Add instructor field to existing view -->
         <record model="ir.ui.view" id="hr_employee_extended_form_view">
             <field name="name">view.hr.employee.extended</field>
             <field name="model">hr.employee</field>
