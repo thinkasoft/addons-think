@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-    <!-- Modificacion sobre la pestaña de del docuemnto XML-->
         <record model="ir.ui.view" id="view_hr_payslip_form_extended">
             <field name="name">view.hr.payslip.form.extended</field>
             <field name="model">hr.payslip</field>
