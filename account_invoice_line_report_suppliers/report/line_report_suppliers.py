@@ -62,7 +62,8 @@ class line_report_suppliers(report_sxw.rml_parse):
 
     def _get_supplier_invoice_line(self, start_days, stop_days, obj):
         """
-          All the lines of sales are obtained in this which involved the selected client
+          All the lines of sales are obtained in this which involved the
+          selected client
           @param obj: Employe object used currently.
           @param start_days: date init used for the search.
           @param stop_days: date stop used for the search.
@@ -73,27 +74,37 @@ class line_report_suppliers(report_sxw.rml_parse):
         account_invoice_obj = self.pool.get('account.invoice')
 
         # Declaring condition to realize search
-        account_invoice_condition = [('date_document', '>=', start_days),
-                                     ('date_document', '<=', stop_days), ('state', '=', 'paid')]
+        condition = [('date_document', '>=', start_days),
+                     ('date_document', '<=', stop_days),
+                     ('state', '=', 'paid')]
 
         # It returns all the id that fulfill the condition.
-        account_invoice_ids = account_invoice_obj.search(self.cr, self.uid, account_invoice_condition, context=False)
-        for account_invoice_line in account_invoice_obj.browse(self.cr, self.uid, account_invoice_ids, context=None):
-            # For every line it is necessary to validate if this belongs to the corresponding client
-            for invoice_line in account_invoice_line.invoice_line:
-                if invoice_line.partner_other_id.id == obj.id:
-                    # If the line belongs to the client the information and guard must be obtained in res
-                    dic = dict(name_supplier=invoice_line.partner_id.name,
-                               name_product=invoice_line.name,
-                               sub_total=invoice_line.price_subtotal,
-                               price_unit=invoice_line.price_unit,
-                               quantity=invoice_line.quantity,
-                               iva_amount=invoice_line.invoice_line_tax_id[0].amount,
-                               iva_description=invoice_line.invoice_line_tax_id[0].description,)
+        account_invoice_ids = account_invoice_obj.search(self.cr, self.uid,
+                                                         condition,
+                                                         context=False)
+        account_invoice_brw = account_invoice_obj.browse(self.cr, self.uid,
+                                                         account_invoice_ids,
+                                                         context=None)
+        for account_invoice_line in account_invoice_brw:
+            # For every line it is necessary to validate if this belongs to the
+            # corresponding client
+            for line in account_invoice_line.invoice_line:
+                if line.partner_other_id.id == obj.id:
+                    # If the line belongs to the client the information and
+                    # guard must be obtained in res
+                    dic = dict(name_supplier=line.partner_id.name,
+                               name_product=line.name,
+                               sub_total=line.price_subtotal,
+                               price_unit=line.price_unit,
+                               quantity=line.quantity,
+                               iva_amount=line.invoice_line_tax_id[0].amount,
+                               iva_description=line.invoice_line_tax_id[0].
+                               description,)
                     res.append(dic)
         return res
 
 report_sxw.report_sxw('report.line.report.suppliers',
                       'res.partner',
-                      'account_invoice_line_report_suppliers/report/line_report_suppliers.mako',
+                      'account_invoice_line_report_suppliers/report/'
+                      + 'line_report_suppliers.mako',
                       parser=line_report_suppliers)
