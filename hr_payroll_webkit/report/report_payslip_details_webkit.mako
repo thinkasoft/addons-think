@@ -21,10 +21,9 @@
 </head>
 <body>
 
-    %for o in objects : 
+    %for o in objects :
         <table width="100%" style="border:1px solid black;border-collapse:collapse;">
                 <tr>
-                    
                     <td style="border:1px solid black; text-align: center;" width="45%">
                         <FONT FACE="raro, courier" SIZE=4><b>${o.payslip_run_id.name}</b></FONT>
                     </td>
@@ -32,7 +31,7 @@
         </table>
         <% break %>
     %endfor
-		<table width="100%" style="border:1px solid black;border-collapse:collapse;">
+        <table width="100%" style="border:1px solid black;border-collapse:collapse;">
                 <tr>
                     <td style="border:1px solid black; text-align: center;" width="10%">
                     <FONT FACE="raro, courier" SIZE=1><b>Doc. Identidad</b></FONT>
@@ -53,9 +52,9 @@
                         <FONT FACE="raro, courier" SIZE=1><b>Total a Pagar</b></FONT>
                     </td>
                 </tr>
-		</table>
-	%for o in objects :	
-		<table width="100%" style="border:1px solid black;border-collapse:collapse;">
+        </table>
+    %for o in objects :
+        <table width="100%" style="border:1px solid black;border-collapse:collapse;">
                 <tr>
                     <td style="border:1px solid black;" width="10%">
                     <FONT FACE="raro, courier" SIZE=1>${o.employee_id.identification_id}</FONT>
@@ -67,29 +66,29 @@
                         <FONT FACE="raro, courier" SIZE=1>${o.number}</FONT>
                     </td>
                     %for line_r in (get_details_by_rule_category(o.details_by_salary_rule_category)):
-	                    %if line_r.get('code') == "039":
-		                    <td style="border:1px solid black; text-align: right;" width="15%">
-		                        <FONT FACE="raro, courier" SIZE=1>${formatLang(line_r.get('total')) or 0.0 |entity } Bs.</FONT>
-		                    </td>
-		          		<% suma1 += line_r.get('total') %>
-		                %endif
-		                %if line_r.get('code') == "069":
-		                    <td style="border:1px solid black; text-align: right;" width="15%">
-		                        <FONT FACE="raro, courier" SIZE=1>${formatLang(line_r.get('total')) or 0.0 |entity } Bs.</FONT>
-		                    </td>
-		                <% suma2 += line_r.get('total') %>
-		                %endif
-		                %if line_r.get('code') == "200":
-		                    <td style="border:1px solid black; text-align: right;" width="15%">
-		                        <FONT FACE="raro, courier" SIZE=1>${formatLang(line_r.get('total')) or 0.0 |entity } Bs.</FONT>
-		                    </td>
-		                <% suma3 += line_r.get('total') %>
-		                %endif
+                        %if line_r.get('code') == "039":
+                            <td style="border:1px solid black; text-align: right;" width="15%">
+                                <FONT FACE="raro, courier" SIZE=1>${formatLang(line_r.get('total')) or 0.0 |entity } Bs.</FONT>
+                            </td>
+                        <% suma1 += line_r.get('total') %>
+                        %endif
+                        %if line_r.get('code') == "069":
+                            <td style="border:1px solid black; text-align: right;" width="15%">
+                                <FONT FACE="raro, courier" SIZE=1>${formatLang(line_r.get('total')) or 0.0 |entity } Bs.</FONT>
+                            </td>
+                        <% suma2 += line_r.get('total') %>
+                        %endif
+                        %if line_r.get('code') == "200":
+                            <td style="border:1px solid black; text-align: right;" width="15%">
+                                <FONT FACE="raro, courier" SIZE=1>${formatLang(line_r.get('total')) or 0.0 |entity } Bs.</FONT>
+                            </td>
+                        <% suma3 += line_r.get('total') %>
+                        %endif
                     %endfor
                 </tr>
-		</table>
-	%endfor
-		<table width="100%" style="border:1px solid black;border-collapse:collapse;">
+        </table>
+    %endfor
+        <table width="100%" style="border:1px solid black;border-collapse:collapse;">
                 <tr>
                     <td style="border:1px solid black; text-align: center;" width="10%">
                     <FONT FACE="raro, courier" SIZE=1><b></b></FONT>
@@ -107,6 +106,6 @@
                         <FONT FACE="raro, courier" SIZE=1><b>${formatLang(suma3)} Bs.</b></FONT>
                     </td>
                 </tr>
-		</table>
+        </table>
 </body>
 </html>

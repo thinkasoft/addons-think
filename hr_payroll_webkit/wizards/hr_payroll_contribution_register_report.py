@@ -26,7 +26,7 @@ from dateutil import relativedelta
 from openerp.osv import fields, osv
 
 class payslip_lines_contribution_register(osv.osv_memory):
-    
+
     _inherit = 'payslip.lines.contribution.register'
 
     def print_report(self, cr, uid, ids, context=None):
