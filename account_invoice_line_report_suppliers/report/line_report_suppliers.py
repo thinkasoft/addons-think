@@ -40,7 +40,7 @@ class line_report_suppliers(report_sxw.rml_parse):
 
     def set_context(self, objects, data, ids, report_type=None):
         """
-          It obtains the information deposited the wizard and 
+          It obtains the information deposited the wizard and
           they are assigned to the variable context to be used in the report.
           @param data: contain the information entered in the wizard.
           @return: update the variably context with the new dates.

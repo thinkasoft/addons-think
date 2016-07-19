@@ -4,21 +4,21 @@
         ${css}
     </style>
     <style type="text/css">
-        table.bottomBorder { 
-          border-collapse: collapse; 
+        table.bottomBorder {
+          border-collapse: collapse;
           }
-        table.bottomBorder td, 
-        table.bottomBorder th { 
-          border-bottom: 1px dotted black; 
-          padding:5px; 
+        table.bottomBorder td,
+        table.bottomBorder th {
+          border-bottom: 1px dotted black;
+          padding:5px;
           }
           .page-break {
                 page-break-after: always;
             }
          p.saltodepagina
-		    {
-		    page-break-after: always;
-		    }
+            {
+            page-break-after: always;
+            }
     </style>
 </head>
 <body>
