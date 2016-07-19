@@ -51,13 +51,11 @@
             <drawString x="2.8cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[8:10]))]]</drawString>
             <drawString x="3.7cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[5:7]))]]</drawString>
             <drawString x="4.8cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[0:4]))]]</rawString>
-
-          	<place x="6cm" y="21.35cm" width="14cm"  height="1cm">
-        		    <blockTable colWidths="14cm" style="Table11">
-          			    <tr><td><para style="titname" vAlign="BOTTOM">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para></td></tr>
-          		  </blockTable>
-          	</place>
-       
+            <place x="6cm" y="21.35cm" width="14cm"  height="1cm">
+                    <blockTable colWidths="14cm" style="Table11">
+                        <tr><td><para style="titname" vAlign="BOTTOM">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para></td></tr>
+                  </blockTable>
+            </place>
             <place x="3.7cm" y="19.9cm" width="16cm"  height="1.5cm">
                 <blockTable colWidths="14cm" style="Table11">
                     <tr><td><para style="direccion">[[ o.partner_id.street + " " + o.partner_id.street2 + " " + o.partner_id.city + " " + o.partner_id.zip + " " + o.partner_id.state_id.name + " Venezuela"  ]]</para></td></tr>
@@ -74,8 +72,7 @@
                 <blockTable colWidths="14cm" style="Table7">
                     <tr><td><para style="terp_default_8"><b>[[ o.amount_to_text.replace("M. E."," ").replace("VEB","CON")  ]]</b></para></td></tr>
                 </blockTable>
-            </place>	
-
+            </place>
     </pageGraphics>
     </pageTemplate>
   </template>
@@ -217,55 +214,12 @@
     <paraStyle name="User Index 10" rightIndent="0.0" leftIndent="127.0"/>
     <paraStyle name="Preformatted Text" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="0.0"/>
     <images/>
-
-
   </stylesheet>
-
-
   <story>
-  
     <para style="terp_default_8">[[ repeatIn(objects,'o') ]]</para>
     <para style="terp_default_8">[[ setLang(o.partner_id.lang) ]]</para>
- 
-
    <spacer length="1mm"/>
-<!--
-   <blockTable colWidths="140.0,373.0" style="Table10">
-      <tr>
-        <td>
-          <para style="terp_default_8">
-            <font color="white"> </font>
-          </para>
-        </td>
-       <td>
-          <para style="terp_default_8">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
-          <para style="terp_default_8">
-            <font color="white"> </font>
-          </para>         
-        </td>
-      </tr>
-    </blockTable>
-
--->
-
    <spacer length="27mm"/>
-<!--   <blockTable colWidths="70.0,450.0" style="Table10">
-      <tr>
-        <td>
-          <para style="terp_default_8">
-            <font color="white"> </font>
-          </para>
-        </td>
-       <td>
-          <para style="terp_default_8">[[ o.partner_id.street]]</para>
-          <para style="terp_default_8">[[ o.partner_id.street2 + o.partner_id.city + " " + o.partner_id.zip + " Venezuela" ]]</para>
-          <para style="terp_default_8">
-            <font color="white"> </font>
-          </para>
-
-        </td>
-      </tr>
-    </blockTable> -->
 
     <para style="terp_default_8">
       <font color="white"> </font>
@@ -273,31 +227,19 @@
     <pto>
 
    <pto_header><!-- Must be after setLang() -->
-<!--    <blockTable colWidths="335,293,170" style="Table10">
-    <tr>"terp_default_8"
-        <td><para style="terp_default_8"><b>[[ (o.payment_term and o.payment_term.note and format(o.payment_term and o.payment_term.note)) or removeParentNode('para') ]] </b></para></td>
-        <td><para style="terp_default_8"><b>[[('%s'% (o.partner_id.phone) or removeParentNode('para')) ]]</b></para></td>
-        <td><para style="terp_default_8"><b>[[ (o.company_id.partner_id.vat and ('        %s-%s-%s'%(o.company_id.partner_id.vat[2:3],o.company_id.partner_id.vat[3:11],o.company_id.partner_id.vat[11:12])) or removeParentNode('para')) ]]</b></para></td>
-    
-    </tr>
-    </blockTable>-->
-
-    </pto_header>
-
+   </pto_header>
     <blockTable colWidths="110.0,165.0,185.0,160.0" style="Table7">
       <tr>
         <td><para style="terp_default_8"><b> </b></para></td>
-
         <td><para style="terp_default_8"><b>[[ (o.payment_term and o.payment_term.note and format(o.payment_term and o.payment_term.note)) or removeParentNode('para') ]] </b></para></td>
         <td><para style="terp_default_8"><b>[[('%s'% (o.partner_id.phone) or removeParentNode('para')) ]]</b></para></td>
-		<td><para style="terp_default_8"><b></b></para></td>
+        <td><para style="terp_default_8"><b></b></para></td>
       </tr>
     </blockTable>
 
-
 <spacer length="20mm"/>
     <para style="comentario">"PRESTACION DEL SERVICIO DE 
-				TRANSPORTE CEMENTO ASFÁLTICO
+                TRANSPORTE CEMENTO ASFÁLTICO
                                          VER ANEXOS:" </para>
     <section>
       <para style="terp_default_2">[[ repeatIn(o.invoice_line,'l') ]]</para>
@@ -323,11 +265,8 @@
       </blockTable>
     </section>
     </pto>
-    
-    
     <para style="Text body">
       <font color="white"> </font>
     </para>
-    
   </story>
 </document>
