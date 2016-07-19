@@ -4,21 +4,21 @@
         ${css}
     </style>
     <style type="text/css">
-        table.bottomBorder { 
-          border-collapse: collapse; 
+        table.bottomBorder {
+          border-collapse: collapse;
           }
-        table.bottomBorder td, 
-        table.bottomBorder th { 
-          border-bottom: 1px dotted black; 
-          padding:5px; 
+        table.bottomBorder td,
+        table.bottomBorder th {
+          border-bottom: 1px dotted black;
+          padding:5px;
           }
           .page-break {
                 page-break-after: always;
             }
          p.saltodepagina
-		    {
-		    page-break-after: always;
-		    }
+            {
+            page-break-after: always;
+            }
     </style>
 </head>
 <body>
@@ -39,7 +39,6 @@
                             <FONT FACE="raro, courier" SIZE=1>${o.company_id.city}
                             ${o.company_id.state_id.name}
                             ${o.company_id.country_id.name}</FONT>
-                    
                         </td>
                         <td style="line-height:1pt;">RECIBO DE PAGO</td>
                    </tr>
@@ -129,34 +128,34 @@
                   ${line['month'] }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(line['integral']) } 
+                  ${formatLang(line['integral']) }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(line['salary_daily']) } 
+                  ${formatLang(line['salary_daily']) }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(line['alic_benefit']) } 
+                  ${formatLang(line['alic_benefit']) }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(line['days_alic']) } 
+                  ${formatLang(line['days_alic']) }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(line['holidays_bonus']) } 
+                  ${formatLang(line['holidays_bonus']) }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(line['salary_integral']) } 
+                  ${formatLang(line['salary_integral']) }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(line['hitoric_day']) } 
+                  ${formatLang(line['hitoric_day']) }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(loan_mont) } 
+                  ${formatLang(loan_mont) }
               </td>
               <td style="text-align:center;">
-                  ${formatLang(line['advancement']) } 
+                  ${formatLang(line['advancement']) }
               </td>
               <td style="text-align:right;">
-                  ${formatLang(loan_acum) } 
+                  ${formatLang(loan_acum) }
               </td>
           </tr>
         %endfor
@@ -169,7 +168,7 @@
       </tr>
     </thead>
   </table>
-  %endfor 
+  %endfor
 </body>
 </html>
 </html>

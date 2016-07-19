@@ -37,7 +37,7 @@ class Payroll_extension(osv.Model):
     _inherit = 'hr.employee'
 
     def _get_total_deductions(self, cr, uid, ids, field_names, arg=None, context=None):
-        """ 
+        """
             Calculates the accumulated annually of the employee, this reset each Year
             @param ids: id the employee selected.
             @return: Dictionary with the sum fo the salary the employee yearly.
@@ -87,7 +87,7 @@ class Payroll_extension(osv.Model):
         return res
 
     def _calc_days(self, cr, uid, ids, field_names, arg=None, context=None):
-        """ 
+        """
             Calcualted the number day holidays and holidays bonus of a employee (Only for venezuela)
             @param ids: id the employee selected.
             @return: Dictionary with the sum fo the salary the employee yearly.
