@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C) 2011-2013 Serpent Consulting Services
+#    (<http://www.serpentcs.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -83,10 +84,9 @@ class contribution_register_report(report_sxw.rml_parse):
             else:
                 dic = dict(
                     payslip_name=line.slip_id.employee_id.name_related,
-                    payslip_employeeid=
-                    line.slip_id.employee_id.identification_id,
-                    payslip_namerelated=
-                    line.slip_id.employee_id.name_related,
+                    payslip_employeeid=line.slip_id.employee_id.
+                    identification_id,
+                    payslip_namerelated=line.slip_id.employee_id.name_related,
                     amount=line.total,
                     rpvh=float(line.amount) / 100,
                     faov=float(line.amount) * 2 / 100,

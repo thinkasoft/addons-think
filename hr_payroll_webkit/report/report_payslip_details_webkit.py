@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C) 2011-2013 Serpent Consulting Services
+#    (<http://www.serpentcs.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,7 +20,7 @@
 #
 ############################################################################
 from openerp.report import report_sxw
-from openerp.tools import amount_to_text_en
+
 
 class payslip_details_report(report_sxw.rml_parse):
 
@@ -27,7 +28,8 @@ class payslip_details_report(report_sxw.rml_parse):
         super(payslip_details_report, self).__init__(cr, uid, name, context)
         self.localcontext.update({
             'get_details_by_rule_category': self.get_details_by_rule_category,
-            'get_lines_by_contribution_register': self.get_lines_by_contribution_register,
+            'get_lines_by_contribution_register': self.
+            get_lines_by_contribution_register,
         })
 
     def get_details_by_rule_category(self, obj):
@@ -49,16 +51,20 @@ class payslip_details_report(report_sxw.rml_parse):
         for id in range(len(obj)):
             ids.append(obj[id].id)
         if ids:
-            self.cr.execute('''SELECT pl.id, pl.category_id FROM hr_payslip_line as pl \
-                LEFT JOIN hr_salary_rule_category AS rc on (pl.category_id = rc.id) \
+            self.cr.execute(
+                '''SELECT pl.id, pl.category_id FROM hr_payslip_line as pl \
+                LEFT JOIN hr_salary_rule_category AS rc \
+                on (pl.category_id = rc.id) \
                 WHERE pl.id in %s \
                 GROUP BY rc.parent_id, pl.sequence, pl.id, pl.category_id \
-                ORDER BY pl.sequence, rc.parent_id''',(tuple(ids),))
+                ORDER BY pl.sequence, rc.parent_id''', (tuple(ids),)
+            )
             for x in self.cr.fetchall():
                 result.setdefault(x[1], [])
                 result[x[1]].append(x[0])
             for key, value in result.iteritems():
-                rule_categories = rule_cate_obj.browse(self.cr, self.uid, [key])
+                rule_categories = rule_cate_obj.browse(self.cr, self.uid,
+                                                       [key])
                 parents = get_recursive_parent(rule_categories)
                 category_total = 0
                 for line in payslip_line.browse(self.cr, self.uid, value):
@@ -110,9 +116,8 @@ class payslip_details_report(report_sxw.rml_parse):
                 })
         return res
 
-
-
-report_sxw.report_sxw('report.paylip.details.webkit',
+report_sxw.report_sxw(
+    'report.paylip.details.webkit',
     'hr.payslip',
     'hr_payroll_webkit/report/report_payslip_details_webkit.mako',
     parser=payslip_details_report
