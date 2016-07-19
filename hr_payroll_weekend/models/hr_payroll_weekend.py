@@ -39,19 +39,26 @@ class HrPayrollWeekend(osv.osv):
     _inherit = 'hr.payslip'
 
     # Caculate weekend and Mondays
-    def calculate_weekend(self, cr, uid, ids, date_from, date_to, contract_ids, context=None):
+    def calculate_weekend(self, cr, uid, ids, date_from, date_to, contract_ids,
+                          context=None):
         weekend = [5, 6]
         weekend2 = [0, 6]
         sunday = [0]
 
-        for contract in self.pool.get('hr.contract').browse(cr, uid, [contract_ids], context=context):
+        contract_brw = self.pool.get('hr.contract').browse(cr, uid,
+                                                           [contract_ids],
+                                                           context=context)
+        for contract in contract_brw:
 
             date_from = datetime.strptime(date_from, "%Y-%m-%d")
             date_to = datetime.strptime(date_to, "%Y-%m-%d")
 
-            totalweekemd = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=weekend)
-            totalweekemd2 = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=weekend2)
-            totalsunday = rrule.rrule(rrule.DAILY, dtstart=date_from, until=date_to, byweekday=sunday)
+            totalweekemd = rrule.rrule(rrule.DAILY, dtstart=date_from,
+                                       until=date_to, byweekday=weekend)
+            totalweekemd2 = rrule.rrule(rrule.DAILY, dtstart=date_from,
+                                        until=date_to, byweekday=weekend2)
+            totalsunday = rrule.rrule(rrule.DAILY, dtstart=date_from,
+                                      until=date_to, byweekday=sunday)
 
             res = list()
             attendances_weekend = dict(
@@ -86,18 +93,25 @@ class HrPayrollWeekend(osv.osv):
             res.append(attendances_sunday)
         return res
 
-    def calculate_other(self, cr, uid, contract_ids, date_from, date_to, context=None):
+    def calculate_other(self, cr, uid, contract_ids, date_from, date_to,
+                        context=None):
         inputs = list()
-        for contract in self.pool.get('hr.contract').browse(cr, uid, [contract_ids], context=context):
+        for contract in self.pool.get('hr.contract').browse(cr, uid,
+                                                            [contract_ids],
+                                                            context=context):
             employee_obj = self.pool.get('hr.employee')
-            salary_yearly = employee_obj._get_total_deductions(cr, uid, [contract.employee_id.id], context)
+            salary_yearly = employee_obj.\
+                _get_total_deductions(cr, uid, [contract.employee_id.id],
+                                      context)
             profits = dict(
                 name=_('Profits'),
                 code='Profits',
                 amount=salary_yearly[contract.employee_id.id],
                 contract_id=contract.id,
             )
-            number_day = employee_obj._calc_days(cr, uid, [contract.employee_id.id], context)
+            number_day = employee_obj._calc_days(cr, uid,
+                                                 [contract.employee_id.id],
+                                                 context)
             number_day_holidays = dict(
                 name=_('Number day holidays'),
                 code='number_day_holidays',
@@ -142,13 +156,19 @@ class HrPayrollWeekend(osv.osv):
         return inputs
 
     # Replace method onchange_employee_id located in hr_payroll line 641
-    def onchange_employee_id_1(self, cr, uid, ids, date_from, date_to, employee_id=False, contract_id=False, context=None):
-        res = super(HrPayrollWeekend, self).onchange_employee_id(cr, uid, ids, date_from, date_to, employee_id, contract_id, context)
+    def onchange_employee_id_1(self, cr, uid, ids, date_from, date_to,
+                               employee_id=False, contract_id=False,
+                               context=None):
+        res = super(HrPayrollWeekend, self).\
+            onchange_employee_id(cr, uid, ids, date_from, date_to, employee_id,
+                                 contract_id, context)
 
         if not contract_id:
             contract_id = res['value']['contract_id']
-        weekend_id = self.calculate_weekend(cr, uid, ids, date_from, date_to, contract_id, context)
-        other_line = self.calculate_other(cr, uid, contract_id, date_from, date_to, context)
+        weekend_id = self.calculate_weekend(cr, uid, ids, date_from, date_to,
+                                            contract_id, context)
+        other_line = self.calculate_other(cr, uid, contract_id, date_from,
+                                          date_to, context)
 
         res['value']['worked_days_line_ids'] += weekend_id
         res['value']['input_line_ids'] += other_line
@@ -171,6 +191,12 @@ class HrPayrollWeekend(osv.osv):
         context.update({'contract': True})
         if not contract_id:
             res['value'].update({'struct_id': False})
-        return self.onchange_employee_id_1(cr, uid, ids, date_from=date_from, date_to=date_to, employee_id=employee_id, contract_id=contract_id, context=context)
+        return self.onchange_employee_id_1(
+            cr, uid, ids,
+            date_from=date_from, date_to=date_to,
+            employee_id=employee_id,
+            contract_id=contract_id,
+            context=context
+        )
 
 HrPayrollWeekend()

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!-- this view of stock.partial.picking wizard is dedicated to internal picking. The fields_view_get is ovveridden in order to change the label of the process button and the separator. -->
         <record id="view_hr_payslip_by_employees_extended" model="ir.ui.view">
             <field name="name">hr_payroll_payslip_employees_extended</field>
             <field name="model">hr.payslip.employees.extended</field>
