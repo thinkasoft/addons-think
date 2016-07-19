@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-	<data>
-		
+    <data>
     <record id="view_hr_payslip_extended" model="ir.ui.view">
             <field name="name">hr.payslip.extended</field>
             <field name="model">hr.payslip.extended</field>
@@ -35,6 +34,6 @@
             <field name="value" eval="'ir.actions.act_window,' + str(ref('action_hr_payslip_extended'))" />
             <field name="key">action</field>
             <field name="model">hr.contribution.register</field>
-        </record>
-	</data>
+    </record>
+    </data>
 </openerp>

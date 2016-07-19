@@ -53,27 +53,27 @@
             ${css}
         </style>
     </head>
-    <body style="border:0; margin: 15;" onload="subst()"> 
+    <body style="border:0; margin: 15;" onload="subst()">
         <table class="header" style="border-bottom: 1px solid black; width: 100%">
-            <tr > 
+            <tr >
                      <td style="text-align:left;font-size:12;" width="20%">${ helper.embed_image('png',company.logo,200,50)|n }</td>
                      <td style="text-align:right;font-size:12;" width="80%"></br></br>${ company.rml_header1 }</td>
                  </tr>
              </table> ${_debug or ''|n} </body>
-             <p style="text-align:left;font-size:12;">${company.name}</p></br></br></br>  
+             <p style="text-align:left;font-size:12;">${company.name}</p></br></br></br>
              <table width="100%">
           <tr>
             <td style="text-align:left;font-size:10;" width="25%">
                   Phone: ${company.phone or ''}
-            </td>  
-        <td width="75%"></td>       
+            </td>
+        <td width="75%"></td>
           </tr>
           <tr>
             <td style="text-align:left;font-size:10px; border-bottom: 1px solid black;" width="25%">
-                Mail:        ${company.email}  
+                Mail:        ${company.email}
             </td>
-            <td width="75%"></td>   
-          </tr>      
+            <td width="75%"></td>
+          </tr>
         </table> ${_debug or ''|n} </body>
 </html>]]>
             </field>
@@ -84,14 +84,10 @@
       body {
       font-family:Verdana;
       font-size:12px;
-      
       }
-      
-      
       .dest_address {
       margin-right:60%;
       font-size:12;
-      
       }
       .header {
       margin-right:0;
@@ -99,29 +95,24 @@
       width:300px;
       font-size:12;
       }
-      
       .title {
       font-size:16;
       font-weight: bold;
       }
-            
       .basic_table{
       border:1px solid lightGrey;
       border-collapse: collapse;
       }
       .basic_table td {
       border:1px solid lightGrey;
-      font-size:11px;  
+      font-size:11px;
       padding-left:5px;
       padding-top:3px;
-      
       }
-      
       .list_table {
       border-color:black;
       text-align:center;
       border-collapse: collapse;
-      
       }
       .list_table td {
       border-color:gray;
@@ -133,7 +124,6 @@
       padding-top:3px;
       padding-bottom:3px;
       }
-      
       .list_table th {
       border-bottom:2px solid black;
       text-align:right;
@@ -141,8 +131,7 @@
       font-weight:bold;
       padding-left:7px;
       padding-right:3px;
-      } 
-      
+      }
       .list_tabe thead {
           display:table-header-group;
       }
@@ -150,7 +139,7 @@
               text-align:right;
               font-size:12px;
         font-weight:bold;
-        }            
+        }
       .total {
       width:100%;
       }
@@ -166,45 +155,45 @@
       }
       .tax {
       width:50%;
-      } 
+      }
       table {
                     display: table;
                     width: 100%;
                   }
-                  
+
                   table thead {
                     display: table-header-group;
                   }
-                  
+
                   table tbody {
                     display: table-row-group;
                   }
-                  
+
                   table tfoot {
                     display: table-footer-group;
                   }
-                  
+
                   table tr {
                     display: table-row;
                     height: auto;
                   }
-                  
+
                   table th,
                   table td {
                     display: table-cell;
                     overflow: visible;
                   }
-                  
+
                   table th,
                   table td {
                     height: 1px; /* Do the trick to make div.nobrk fill td height */
                   }
-                  
+
                   table tr.singlecell td,
                   table tr.singlecell th {
                     height: auto; /* Reset trick for a full row td */
                   }
-                  
+
                   .nobrk {
                     page-break-inside: avoid;
                     orphans: 10;
@@ -215,7 +204,7 @@
                     line-height: 14px;
                     height: 100%;
                   }
-                  
+
                   table tbody td .nobrk {
                   min-height: 5px;
                   }
@@ -226,7 +215,7 @@
     </data>
     <data>
 <!-- Definition of the report-->
-      <report 
+      <report
           auto="False"
           menu="False"
           id="report_report_hr_payslip_extended"
