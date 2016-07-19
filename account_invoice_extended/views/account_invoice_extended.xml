@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="account.invoice_supplier_form" />
             <field name="arch" type="xml">
                 <xpath expr="/form/sheet/group/group/field[@name='supplier_invoice_number']" position='replace'>
-                	<field name="supplier_invoice_number" on_change="onchange_reference(supplier_invoice_number)"/>
+                    <field name="supplier_invoice_number" on_change="onchange_reference(supplier_invoice_number)"/>
                 </xpath>
             </field>
         </record>
