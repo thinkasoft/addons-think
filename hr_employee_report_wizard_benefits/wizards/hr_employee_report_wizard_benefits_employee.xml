@@ -10,7 +10,7 @@
                 <group>
                     <field name="init_date"/>
                     <field name="end_date"/>
-                </group>    
+                </group>
                 <footer>
                     <button name="print_report" string="Print" type="object" class="oe_highlight"/>
                     or

@@ -67,7 +67,7 @@ class hr_employee_report_wizard_benefits_employee(osv.osv_memory):
         # Validates if:
         #   start_date < stop_date
         #   the range will not exceed one year
-        #   Nota: works with leap-year 
+        #   Nota: works with leap-year
         if date_range.days < 1:
             raise osv.except_osv(_('Incorrect range!'), _('Starting Date is greater than Ending Date!'))
         elif date_range.days == 365:
