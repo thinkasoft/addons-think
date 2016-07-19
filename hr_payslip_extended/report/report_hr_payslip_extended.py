@@ -2,8 +2,6 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -60,9 +58,11 @@ class report_hr_payslip_extended(report_sxw.rml_parse):
         res = []
         dic = {}
         self.cr.execute(
-            "SELECT distinct pl.code, he.identification_id, he.name_related, SUM(pl.amount), "
+            "SELECT distinct "
+            "pl.code, he.identification_id, he.name_related, SUM(pl.amount), "
             "ROUND(SUM(pl.amount)/100, 2), ROUND((SUM(pl.amount)*2)/100, 2), "
-            "ROUND(ROUND(SUM(pl.amount)/100, 2) + ROUND((SUM(pl.amount)*2)/100, 2), 2) "
+            "ROUND(ROUND(SUM(pl.amount)/100, 2) + "
+            "ROUND((SUM(pl.amount)*2)/100, 2), 2) "
             "FROM hr_payslip_line AS pl,hr_payslip AS hp,hr_employee AS he "
             "WHERE (pl.code = '039' OR pl.code = '047')"
             "AND pl.slip_id = hp.id "
@@ -92,7 +92,8 @@ class report_hr_payslip_extended(report_sxw.rml_parse):
 report_sxw.report_sxw(
     'report.hr.payslip.extended.mako',
     'hr.payslip.extended',
-    'addons-think/hr_payslip_extended/report/report_hr_payslip_extended_webkit.mako',
+    'addons-think/hr_payslip_extended/report/'
+    + 'report_hr_payslip_extended_webkit.mako',
     parser=report_hr_payslip_extended
 )
 

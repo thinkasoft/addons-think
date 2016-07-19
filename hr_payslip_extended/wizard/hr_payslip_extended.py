@@ -27,7 +27,10 @@ class hr_payslip_extended(osv.osv):
 
     _defaults = {
         'date_from': lambda *a: time.strftime('%Y-%m-01'),
-        'date_to': lambda *a: str(datetime.now() + relativedelta.relativedelta(months=+1, day=1, days=-1))[:10],
+        'date_to': lambda *a: str(datetime.now() +
+                                  relativedelta.relativedelta(months=+1,
+                                                              day=1,
+                                                              days=-1))[:10],
     }
 
     def print_report(self, cr, uid, ids, context=None):
