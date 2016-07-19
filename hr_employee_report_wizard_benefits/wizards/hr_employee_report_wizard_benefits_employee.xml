@@ -6,17 +6,17 @@
             <field name="name">Payslip Report benefits employee</field>
             <field name="model">hr.employee.report.wizard.benefits.employee</field>
             <field name="arch" type="xml">
-            <form string="Print Attendance Report Weekly" version="7.0">
-                <group>
-                    <field name="init_date"/>
-                    <field name="end_date"/>
-                </group>
-                <footer>
-                    <button name="print_report" string="Print" type="object" class="oe_highlight"/>
-                    or
-                    <button string="Cancel" class="oe_link" special="cancel" />
-                </footer>
-            </form>
+                <form string="Print Attendance Report Weekly" version="7.0">
+                    <group>
+                        <field name="init_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
             </field>
         </record>
 
