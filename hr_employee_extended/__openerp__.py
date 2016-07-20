@@ -25,7 +25,10 @@
     'author': "Ingenieria Thinkasoft de Venezuela",
     'category': "Payroll",
     'depends': [
-        "hr"
+        "hr",
+        "hr_contract",
+        "hr_payroll",
+        "report_webkit",
     ],
     'description': """\
 fields added:
