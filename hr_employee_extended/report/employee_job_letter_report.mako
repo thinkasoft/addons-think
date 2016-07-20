@@ -22,8 +22,10 @@
                             </td>
                             <td style="line-height:1pt;">
                                 <h3>${o.company_id.partner_id.name}</h3>
-                                <h6>R.I.F: ${o.company_id.partner_id.vat[2:]}</h6>
                                 <h6>${o.company_id.street}
+                                %if o.company_id.partner_id.vat != False:                                                                                   
+                                    <h6>R.I.F: ${o.company_id.partner_id.vat[2:]}</h6/>                                 
+                                %endif
                                 ${o.company_id.street2}</h6>
                                 <h6>${o.company_id.city}
                                 ${o.company_id.state_id.name}

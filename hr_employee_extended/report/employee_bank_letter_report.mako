@@ -20,7 +20,9 @@
                             <td rowspan="0"> ${helper.embed_image('jpeg',str(o.company_id.logo),180, 120)} </td>
                             <td style="line-height:1pt;">
                                 <h3>${o.company_id.partner_id.name}</h3>
-                                <h6>R.I.F: ${o.company_id.partner_id.vat[2:]}</h6>
+                                %if o.company_id.partner_id.vat != False:                                                                                   
+                                    <h6>R.I.F: ${o.company_id.partner_id.vat[2:]}</h6/>                                 
+                                %endif
                                 <h6>${o.company_id.street} ${o.company_id.street2}</h6>
                                 <h6>${o.company_id.city} ${o.company_id.state_id.name} ${o.company_id.country_id.name}</h6>
                             </td>
