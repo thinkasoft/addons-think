@@ -23,7 +23,8 @@
     'category': "Human Resources",
     'version': "1.0",
     'depends': [
-        "hr"
+        "hr",
+        "hr_contract",
     ],
     'author': "Ingenieria Thinkasoft de Venezuela",
     'description': """
