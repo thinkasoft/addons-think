@@ -71,7 +71,6 @@ class Payroll_extension(osv.Model):
                               ('employee_id', 'in', ids),
                               '|', ('state', '=', 'done'),
                               ('state', '=', 'paid')]
-
             # Execute query, gets one list of ids (hr.payslip)
             slip_ids = payslip_obj.search(cr, uid, condition_slip)
 
@@ -108,7 +107,9 @@ class Payroll_extension(osv.Model):
         today = datetime.datetime.now()
 
         # Searches for the employee object  that is related with ids
-        for employee in employee_obj.browse(cr, uid, ids, context=None):
+        employee = employee_obj.browse(cr, uid, ids, context=None)[0]
+        res[employee.id] = 0
+        if employee.admission_date:
             # Gets admission date and converted of String to Datetime
             date_employee = datetime.datetime.strptime(employee.admission_date,
                                                        "%Y-%m-%d")
