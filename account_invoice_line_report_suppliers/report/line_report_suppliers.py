@@ -75,13 +75,12 @@ class line_report_suppliers(report_sxw.rml_parse):
         account_invoice_obj = self.pool.get('account.invoice')
 
         # Declaring condition to realize search
-        condition = [('date_document', '>=', start_days),
-                     ('date_document', '<=', stop_days),
-                     ('state', '=', 'paid')]
-
+        acct_condition = [('date_document', '>=', start_days),
+                          ('date_document', '<=', stop_days),
+                          ('state', '=', 'paid')]
         # It returns all the id that fulfill the condition.
         account_invoice_ids = account_invoice_obj.search(self.cr, self.uid,
-                                                         condition,
+                                                         acct_condition,
                                                          context=False)
         account_invoice_brw = account_invoice_obj.browse(self.cr, self.uid,
                                                          account_invoice_ids,

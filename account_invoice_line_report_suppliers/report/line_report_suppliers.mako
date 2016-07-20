@@ -34,7 +34,9 @@
                             </td>
                             <td style="line-height:8pt;">
                                 <FONT FACE="raro, courier" SIZE=5>${o.company_id.partner_id.name}</FONT><br/>
-                                <FONT FACE="raro, courier" SIZE=1>R.I.F: ${o.company_id.partner_id.vat[2:]}</FONT><br/>
+                                %if o.company_id.partner_id.vat != False:
+                                    <FONT FACE="raro, courier" SIZE=1>R.I.F: ${o.company_id.partner_id.vat[2:]}</FONT><br/>
+                                %endif
                                 <FONT FACE="raro, courier" SIZE=1>${o.company_id.street} ${o.company_id.street2}</FONT><br/>
                                 <FONT FACE="raro, courier" SIZE=1>${o.company_id.city} ${o.company_id.state_id.name} ${o.company_id.country_id.name}</FONT>
                             </td>
