@@ -19,10 +19,10 @@
 #
 ##############################################################################
 {
-    'name': 'Agregar Partner a tms',
+    'name': 'Partner into TMS',
     'version': '0.1',
     'category': 'Managing vehicles and contracts',
-    'description': 'Asinga campo partner en fleete',
+    'description': 'Assign partner field fleece',
     'author': 'Ingenieria Thinkasoft de Venezuela',
     'depends': [
                 'fleet',
