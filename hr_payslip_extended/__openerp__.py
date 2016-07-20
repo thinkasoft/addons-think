@@ -23,7 +23,8 @@
     'category': "Payroll",
     'version': "1.0",
     'depends': [
-        "hr_payroll"
+        "hr_payroll",
+        "report_webkit",
     ],
     'description': """
         fields added:

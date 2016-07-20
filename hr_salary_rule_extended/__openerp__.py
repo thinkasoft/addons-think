@@ -25,6 +25,7 @@
     'depends': [
         "hr",
         "crm",
+        "hr_payroll",
     ],
     'author': "Ingenieria Thinkasoft de Venezuela",
     'description': """
