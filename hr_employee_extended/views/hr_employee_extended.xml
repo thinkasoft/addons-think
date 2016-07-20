@@ -10,7 +10,7 @@
                     <field name="vat"/>
                     <field name="withholding"/>
                     <field name="salary"/>
-                    <field name="admission_date"/>
+                    <field name="admission_date" required="1"/>
                     <field name="date_exit"/>
                     <field name="employment_benefit"/>
                     <field name="reference_bank"/>

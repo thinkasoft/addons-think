@@ -29,6 +29,7 @@
 import calendar
 import datetime
 from openerp.report import report_sxw
+# from openerp.tools.translate import _
 
 
 class EmployeeSocialBenefitsReport(report_sxw.rml_parse):
