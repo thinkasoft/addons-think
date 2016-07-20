@@ -23,8 +23,11 @@
     'category': "Accounting & Finance",
     'version': "1.0",
     'depends': [
+        "report_webkit",
         "account",
-        "account_invoice_line"
+        "account_invoice_line",
+        "l10n_ve_fiscal_requirements",
+        "hr_attendance",
     ],
     'author': "Ingenieria Thinkasoft de Venezuela",
     'description': """ """,
