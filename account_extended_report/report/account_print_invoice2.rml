@@ -50,7 +50,7 @@
                 <drawString x="0.3cm" y="22.5cm">Valencia VALENCIA</drawString>
                 <drawString x="2.8cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[8:10]))]]</drawString>
                 <drawString x="3.7cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[5:7]))]]</drawString>
-                <drawString x="4.8cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[0:4]))]]</rawString>
+                <drawString x="4.8cm" y="22.5cm">[[ formatLang(o.date_invoice,date=True) and ('%s '%(o.date_invoice[0:4]))]]</drawString>
                 <place x="6cm" y="21.35cm" width="14cm"  height="1cm">
                     <blockTable colWidths="14cm" style="Table11">
                         <tr><td><para style="titname" vAlign="BOTTOM">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para></td></tr>
