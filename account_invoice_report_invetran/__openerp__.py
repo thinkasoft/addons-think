@@ -4,7 +4,7 @@
 {
     'name': 'Invoice Invetran',
     'version': '1',
-    'category': 'account',
+    'category': 'Accounting & Finance',
     'sequence': 1,
     'author': 'Ingenieria Thinkasoft de Venezuela',
     'website': 'http://www.thinkasoft.com',
@@ -16,6 +16,9 @@
     """,
     'depends': [
         'account',
+    ],
+    'data': [
+        'report/report.xml',
     ],
     'application': True,
     'installable': True,
