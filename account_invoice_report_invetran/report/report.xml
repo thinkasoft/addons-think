@@ -5,7 +5,7 @@
             auto="False"
             id="account_invoices_invetran"
             model="account.invoice"
-            name="account.invoice"
+            name="account.invoice_invetran"
             rml="account_invoice_report_invetran/report/report_invoice_invetran.rml"
             string="Invoices Invetran"
             attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
