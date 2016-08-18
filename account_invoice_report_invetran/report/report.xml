@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            auto="False"
+            id="account_invoices_invetran"
+            model="account.invoice"
+            name="account.invoice"
+            rml="account_invoice_report_invetran/report/report_invoice_invetran.rml"
+            string="Invoices Invetran"
+            attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+            attachment_use="True"
+            usage="default"
+            />
+    </data>
+</openerp>
+
