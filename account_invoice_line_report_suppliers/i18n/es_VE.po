@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-25 12:12+0000\n"
-"PO-Revision-Date: 2016-05-25 12:12+0000\n"
+"POT-Creation-Date: 2016-07-25 10:43+0000\n"
+"PO-Revision-Date: 2016-07-25 10:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Starting Date"
 msgstr "Fecha inicial"
 
 #. module: account_invoice_line_report_suppliers
-#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:64
+#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:66
 msgid "Product"
 msgstr "Productos"
 
@@ -36,19 +36,18 @@ msgid "Ending Date"
 msgstr "Fecha Final"
 
 #. module: account_invoice_line_report_suppliers
-#: model:ir.model,name:account_invoice_line_report_suppliers.model_account_invoice_line_report_suppliers
 #: model:ir.model,name:account_invoice_line_report_suppliers.model_line_report_suppliers
 #: view:line_report_suppliers:0
 msgid "Print all lines of suppliers"
 msgstr "Imprime todas las lineas del proveedor"
 
 #. module: account_invoice_line_report_suppliers
-#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:61
+#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:63
 msgid "Suppliers"
 msgstr "Proveedores"
 
 #. module: account_invoice_line_report_suppliers
-#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:103
+#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:104
 msgid "Receipt"
 msgstr "Recibo Conforme"
 
@@ -58,7 +57,7 @@ msgid "Tax"
 msgstr "Iva"
 
 #. module: account_invoice_line_report_suppliers
-#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:41
+#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:43
 msgid "PAYSLIP"
 msgstr "RECIBO DE PAGO"
 
@@ -73,12 +72,12 @@ msgid "Print"
 msgstr "Imprimir"
 
 #. module: account_invoice_line_report_suppliers
-#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:73
+#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:75
 msgid "Amount"
 msgstr "Monto"
 
 #. module: account_invoice_line_report_suppliers
-#: code:addons/account_invoice_line_report_suppliers/wizards/line_report_suppliers.py:72
+#: code:addons/account_invoice_line_report_suppliers/wizards/line_report_suppliers.py:73
 #, python-format
 msgid "Starting Date is greater than Ending Date!"
 msgstr "Fecha inicial debe ser menor que Fecha Final!"
@@ -89,7 +88,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: account_invoice_line_report_suppliers
-#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:50
+#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:52
 msgid "Partner"
 msgstr "Afiliado"
 
@@ -111,12 +110,12 @@ msgid "Subtotal"
 msgstr "Subtotal"
 
 #. module: account_invoice_line_report_suppliers
-#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:70
+#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:72
 msgid "Price Unit"
 msgstr "Precio unidad"
 
 #. module: account_invoice_line_report_suppliers
-#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:67
+#: report:addons/account_invoice_line_report_suppliers/report/line_report_suppliers.mako:69
 msgid "Quantity"
 msgstr "Cantidad"
 
