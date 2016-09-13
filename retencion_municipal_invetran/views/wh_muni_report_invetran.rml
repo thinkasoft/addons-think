@@ -154,6 +154,7 @@
                 </td>
                 <td>
                     <para style="P2">[[o.partner_id.street]]</para>
+                    <para style="P2">[[o.partner_id.street2]]</para>
                 </td>
             </tr>
             <tr>

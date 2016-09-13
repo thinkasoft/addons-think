@@ -15,7 +15,7 @@ class account_invoice(report_sxw.rml_parse):
             'time': time,
         })
 report_sxw.report_sxw(
-    'report.account.invoice_invetran',
+    'report.account_invoice_invetran',
     'account.invoice',
     'account_invoice_report_invetran/report/report_invoice_invetran.rml',
     parser=account_invoice
