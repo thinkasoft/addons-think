@@ -33,13 +33,22 @@
                     </blockTable>
                 </place>
 
-                <place x="14cm" y="21.35cm" width="1.3cm"  height="1cm">
-                    <blockTable colWidths="1.3cm" style="Table11">
+                <place x="14.3cm" y="21.35cm" width="1.5cm"  height="1cm">
+                    <blockTable colWidths="1.5cm" style="Table11">
                         <tr>
                             <td>
                                 <para style="titname" vAlign="BOTTOM">
                                     R.I.F.:
                                 </para>
+                            </td>
+                        </tr>
+                    </blockTable>
+                </place>
+                <place x="15.5cm" y="21.35cm" width="3.4cm"  height="1cm">
+                    <blockTable colWidths="3.4cm" style="Table11">
+                        <tr>
+                            <td>
+                                <para style="titname" vAlign="BOTTOM">[[ o.partner_id.vat  or ''  ]]</para>
                             </td>
                         </tr>
                     </blockTable>
