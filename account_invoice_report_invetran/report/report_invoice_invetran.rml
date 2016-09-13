@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
+<<<<<<< HEAD
 <document filename="Factura_Invoices.pdf">
   <template title="Invoices Invetran" author="OpenERP S.A.(sales@openerp.com)" allowSplitting="20">
     <pageTemplate id="first_invetran">
+=======
+<document filename="Factura_Invetran.pdf">
+  <template title="Invoices Invetran" author="OpenERP S.A.(sales@openerp.com)" allowSplitting="20">
+>>>>>>> 46a7e240001884dbe9519e2e057290d145ac33ed
             <frame id="first" x1="33.0" y1="-125.0" width="21cm" height="786"/>
 
 
@@ -283,7 +288,10 @@
        </place>
 
     </pageGraphics>
+<<<<<<< HEAD
     </pageTemplate>
+=======
+>>>>>>> 46a7e240001884dbe9519e2e057290d145ac33ed
   </template>
   <stylesheet>
     <blockTableStyle id="Standard_Outline">

@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C) 2011-2013 Serpent Consulting Services
+#    (<http://www.serpentcs.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,24 +19,30 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
+############################################################################
 
 from openerp.report import report_sxw
-from openerp.tools import amount_to_text_en
+
 
 class payslip_report(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context):
         super(payslip_report, self).__init__(cr, uid, name, context)
-        self.localcontext.update({
-            'get_payslip_lines': self.get_payslip_lines,
-        })
+        self.localcontext.update(dict(
+            get_payslip_lines=self.get_payslip_lines,
+        ))
 
     def get_payslip_lines(self, obj):
         payslip_line = self.pool.get('hr.payslip.line')
-        res = []
-        ids = []
+        res = list()
+        ids = list()
         for id in range(len(obj)):
-            if obj[id].appears_on_payslip == True:
+            if obj[id].appears_on_payslip is True:
                 ids.append(obj[id].id)
         if ids:
             res = payslip_line.browse(self.cr, self.uid, ids)

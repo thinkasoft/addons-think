@@ -34,5 +34,7 @@ class Tms_partner(osv.osv):
     _inherit = 'fleet.vehicle'
 
     _columns = {
-        'partner_other_id': fields.many2one('res.partner', 'Suppliers', store=True, help='List all existing customer'),
+        'partner_other_id': fields.many2one('res.partner', 'Suppliers',
+                                            store=True,
+                                            help='List all existing customer'),
     }

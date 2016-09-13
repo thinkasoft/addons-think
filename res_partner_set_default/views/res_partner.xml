@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-	<data>
-<!-- Add instructor field to existing view -->
-		<record model="ir.ui.view" id="res_partner_set_default_form_view">
-			<field name="name">view.res.partner.set.default</field>
-			<field name="model">res.partner</field>
-			<field name="inherit_id" ref="base.view_partner_form"/>
-			<field name="arch" type="xml">
-				<xpath expr='//field[@name="customer"]' position="replace">
-					<field name="customer"/>
-				</xpath>
-				<xpath expr='//field[@name="supplier"]' position="replace">
-					<field name="supplier"/>
-				</xpath>
-			</field>
-		</record>
-	</data>
+    <data>
+        <record model="ir.ui.view" id="res_partner_set_default_form_view">
+            <field name="name">view.res.partner.set.default</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//field[@name="customer"]' position="replace">
+                    <field name="customer"/>
+                </xpath>
+                <xpath expr='//field[@name="supplier"]' position="replace">
+                    <field name="supplier"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
 </openerp>

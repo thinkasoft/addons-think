@@ -39,6 +39,7 @@ Calculation weekends and Mondays
         'hr_payroll',
         'hr_contract',
         'hr_holidays',
+        'hr_employee_extended',
         'decimal_precision',
     ],
     'data': [

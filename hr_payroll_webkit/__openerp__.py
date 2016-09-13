@@ -22,7 +22,7 @@
 {
     'name' : 'Payroll Reports',
     'version' : '1.1',
-    'author' : 'Thinkasoft',
+    'author' : 'Ingenieria Thinkasoft de Venezuela',
     'category' : 'HR management',
     'description' : """
 HR Payroll Reports

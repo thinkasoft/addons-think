@@ -1,6 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <openerp>
     <data>
-        <report id="list_report_withholding_islr" menu="True" model="islr.xml.wh.doc" name="list.wh.islr2" rml="sisb_xml_islr_payroll/report/list_wh_islr_report.rml" string="Income Withholding" auto="True" header="False"/>
+        <report
+            id="list_report_withholding_islr"
+            menu="True"
+            model="islr.xml.wh.doc"
+            name="list.wh.islr2"
+            rml="sisb_xml_islr_payroll/report/list_wh_islr_report.rml"
+            string="Income Withholding"
+            auto="True"
+            header="False"/>
     </data>
-</openerp> 
+</openerp>

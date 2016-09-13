@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form" />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='code']" position='replace'>
-                	<field name="code" on_change="onchange_sequence(code)"/>
+                    <field name="code" on_change="onchange_sequence(code)"/>
                 </xpath>
             </field>
         </record>

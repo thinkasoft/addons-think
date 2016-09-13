@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+###########################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
 ############################################################################
+
 import time
 from datetime import datetime
 from dateutil import relativedelta
@@ -57,9 +64,9 @@ class contribution_register_report_inces(report_sxw.rml_parse):
 
     def _get_payslip_lines(self, obj):
         payslip_line = self.pool.get('hr.payslip.line')
-        payslip_lines = []
-        res = []
-        dic = {}
+        payslip_lines = list()
+        res = list()
+        dic = dict()
         ids_ant = 0
         self.cr.execute(
             "SELECT pl.id from "
@@ -81,18 +88,17 @@ class contribution_register_report_inces(report_sxw.rml_parse):
                 dic['faov'] = dic['amount'] * 2 / 100
                 dic['mount'] = dic['rpvh'] + dic['faov']
             else:
-                dic = {
-                    'payslip_name': line.slip_id.employee_id.name_related,
-                    'payslip_employeeid':
-                    line.slip_id.employee_id.identification_id,
-                    'payslip_namerelated':
-                    line.slip_id.employee_id.name_related,
-                    'amount': line.total,
-                    'rpvh': float(line.amount) / 100,
-                    'faov': float(line.amount) * 2 / 100,
-                    'mount': (float(line.amount) / 100) +
-                    (float(line.amount) * 2) / 100
-                }
+                dic = dict(
+                    payslip_name=line.slip_id.employee_id.name_related,
+                    payslip_employeeid=line.slip_id.employee_id.
+                    identification_id,
+                    payslip_namerelated=line.slip_id.employee_id.name_related,
+                    amount=line.total,
+                    rpvh=float(line.amount) / 100,
+                    faov=float(line.amount) * 2 / 100,
+                    mount=(float(line.amount) / 100) + (float(line.amount) * 2)
+                    / 100
+                )
                 ids_ant = line.employee_id.id
                 res.append(dic)
         return res
@@ -100,7 +106,8 @@ class contribution_register_report_inces(report_sxw.rml_parse):
 report_sxw.report_sxw(
     'report.contribution.register.lines.webkit.inces',
     'hr.contribution.register',
-    'addons/hr_payroll_webkit/report/report_contribution_register_webkit_inces.mako',
+    'addons/hr_payroll_webkit/report/'
+    + 'report_contribution_register_webkit_inces.mako',
     parser=contribution_register_report_inces
 )
 

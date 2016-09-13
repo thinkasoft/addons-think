@@ -34,6 +34,13 @@ class res_partner(osv.osv):
     _inherit = 'res.partner'
 
     _columns = {
-        'customer': fields.boolean('Customer',change_default=True, help="Check this box if this contact is a customer."),
-        'supplier': fields.boolean('Supplier',change_default=True, help="Check this box if this contact is a supplier. If it's not checked, purchase people will not see it when encoding a purchase order."),
+        'customer': fields.boolean(
+            'Customer', change_default=True,
+            help="Check this box if this contact is a customer."
+        ),
+        'supplier': fields.boolean(
+            'Supplier', change_default=True,
+            help="""Check this box if this contact is a supplier. If it's not
+            checked, purchase people will not see it when encoding a purchase
+            order."""),
     }

@@ -44,10 +44,11 @@ class hr_employee_report_wizard_benefits_employee(osv.osv_memory):
         """
 
         datas = {
-            'ids': context.get('active_ids', []), # id the view current
-            'active_ids': context['active_ids'], # id the view current
-            'model': 'hr.employee', # model current
-            'form': self.read(cr, uid, ids, [], context=context)[0] # Data of the view 
+            'ids': context.get('active_ids', []),  # id the view current
+            'active_ids': context['active_ids'],  # id the view current
+            'model': 'hr.employee',  # model current
+            'form': self.read(cr, uid, ids, [], context=context)[0]  # Data of
+                                                                     # the view
         }
 
         # Gets field init_date and converted in Date format
@@ -67,20 +68,26 @@ class hr_employee_report_wizard_benefits_employee(osv.osv_memory):
         # Validates if:
         #   start_date < stop_date
         #   the range will not exceed one year
-        #   Nota: works with leap-year 
+        #   Nota: works with leap-year
         if date_range.days < 1:
-            raise osv.except_osv(_('Incorrect range!'), _('Starting Date is greater than Ending Date!'))
+            raise osv.except_osv(
+                _('Incorrect range!'),
+                _('Starting Date is greater than Ending Date!')
+            )
         elif date_range.days == 365:
             days_february_start = calendar.monthrange(start_date.year, 2)[1]
             days_february_stop = calendar.monthrange(stop_date.year, 2)[1]
 
             if start_date.month <= 2 and days_february_start == 28:
-                raise osv.except_osv(_('Limit range!'), _('Limit range is 1 year!'))
+                raise osv.except_osv(_('Limit range!'),
+                                     _('Limit range is 1 year!'))
 
             if stop_date.month >= 2 and days_february_stop == 28:
-                raise osv.except_osv(_('Limit range!'), _('Limit range is 1 year!'))
+                raise osv.except_osv(_('Limit range!'),
+                                     _('Limit range is 1 year!'))
         elif date_range.days > 364:
-            raise osv.except_osv(_('Limit range!'), _('Limit range is 1 year!'))
+            raise osv.except_osv(_('Limit range!'),
+                                 _('Limit range is 1 year!'))
 
         return {
             'type': 'ir.actions.report.xml',

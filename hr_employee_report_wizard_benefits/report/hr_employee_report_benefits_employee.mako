@@ -4,21 +4,21 @@
         ${css}
     </style>
     <style type="text/css">
-        table.bottomBorder { 
-          border-collapse: collapse; 
+        table.bottomBorder {
+          border-collapse: collapse;
           }
-        table.bottomBorder td, 
-        table.bottomBorder th { 
-          border-bottom: 1px dotted black; 
-          padding:5px; 
+        table.bottomBorder td,
+        table.bottomBorder th {
+          border-bottom: 1px dotted black;
+          padding:5px;
           }
           .page-break {
                 page-break-after: always;
             }
          p.saltodepagina
-		    {
-		    page-break-after: always;
-		    }
+            {
+            page-break-after: always;
+            }
     </style>
 </head>
 <body>
@@ -132,10 +132,10 @@
         <% value = o.number_days_benefits / 360.0000 %>
         <% calc_benefits = round(float('%.5f'%(value)),4) %>
         <% result =  total_integral*calc_benefits%>
-        <table width="100%" class="bottomBorder">  
-            <center><FONT FACE="raro, courier" SIZE=1><b>Utilidades ${o.number_days_benefits} Dias X ${formatLang(calc_benefits, digits=4)} =  ${formatLang(result)}</b></FONT></center>                    
+        <table width="100%" class="bottomBorder">
+            <center><FONT FACE="raro, courier" SIZE=1><b>Utilidades ${o.number_days_benefits} Dias X ${formatLang(calc_benefits, digits=4)} =  ${formatLang(result)}</b></FONT></center>
         </table>
-        <table width="100%" class="bottomBorder">  
+        <table width="100%" class="bottomBorder">
             <center><FONT FACE="raro, courier" SIZE=1><b>Total Remuneraciones ${formatLang(result)}</b></FONT></center>
         </table>
         <table width="100%" style="border:1px solid black;border-collapse:collapse;">

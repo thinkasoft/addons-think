@@ -26,6 +26,7 @@
 #    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
 #
 ##############################################################################
+
 import datetime
 from openerp.report import report_sxw
 
@@ -39,13 +40,19 @@ class line_report_suppliers(report_sxw.rml_parse):
         })
 
     def set_context(self, objects, data, ids, report_type=None):
-        """Populate a ledger_lines attribute on each browse record that will
-           be used by mako template"""
+        """
+          It obtains the information deposited the wizard and
+          they are assigned to the variable context to be used in the report.
+          @param data: contain the information entered in the wizard.
+          @return: update the variably context with the new dates.
+        """
+        # Gets field init_date and converted in Date format
         start_date = datetime.datetime.strptime(
             data.get('form').get('init_date'), "%Y-%m-%d")
         stop_date = datetime.datetime.strptime(
-            data.get('form', {}).get('end_date'), "%Y-%m-%d")
+            data.get('form').get('end_date'), "%Y-%m-%d")
 
+        # assigned to the variable context
         self.localcontext.update({
             'start_date': start_date,
             'stop_date': stop_date,
@@ -55,26 +62,49 @@ class line_report_suppliers(report_sxw.rml_parse):
             objects, data, ids, report_type=report_type)
 
     def _get_supplier_invoice_line(self, start_days, stop_days, obj):
+        """
+          All the lines of sales are obtained in this which involved the
+          selected client
+          @param obj: Employe object used currently.
+          @param start_days: date init used for the search.
+          @param stop_days: date stop used for the search.
+          @return: update the variably context with the new dates.
+        """
         res = list()
         dic = dict()
         account_invoice_obj = self.pool.get('account.invoice')
-        account_invoice_condition = [('date_document', '>=', start_days),
-                                     ('date_document', '<=', stop_days), ('state', '=', 'paid')]
-        account_invoice_ids = account_invoice_obj.search(self.cr, self.uid, account_invoice_condition, context=False)
-        for account_invoice_line in account_invoice_obj.browse(self.cr, self.uid, account_invoice_ids, context=None):
-            for invoice_line in account_invoice_line.invoice_line:
-                if invoice_line.partner_other_id.id == obj.id:
-                    dic = dict(name_supplier=invoice_line.partner_id.name,
-                               name_product=invoice_line.name,
-                               sub_total=invoice_line.price_subtotal,
-                               price_unit=invoice_line.price_unit,
-                               quantity=invoice_line.quantity,
-                               iva_amount=invoice_line.invoice_line_tax_id[0].amount,
-                               iva_description=invoice_line.invoice_line_tax_id[0].description,)
-                res.append(dic)
+
+        # Declaring condition to realize search
+        acct_condition = [('date_document', '>=', start_days),
+                          ('date_document', '<=', stop_days),
+                          ('state', '=', 'paid')]
+        # It returns all the id that fulfill the condition.
+        account_invoice_ids = account_invoice_obj.search(self.cr, self.uid,
+                                                         acct_condition,
+                                                         context=False)
+        account_invoice_brw = account_invoice_obj.browse(self.cr, self.uid,
+                                                         account_invoice_ids,
+                                                         context=None)
+        for account_invoice_line in account_invoice_brw:
+            # For every line it is necessary to validate if this belongs to the
+            # corresponding client
+            for line in account_invoice_line.invoice_line:
+                if line.partner_other_id.id == obj.id:
+                    # If the line belongs to the client the information and
+                    # guard must be obtained in res
+                    dic = dict(name_supplier=line.partner_id.name,
+                               name_product=line.name,
+                               sub_total=line.price_subtotal,
+                               price_unit=line.price_unit,
+                               quantity=line.quantity,
+                               iva_amount=line.invoice_line_tax_id[0].amount,
+                               iva_description=line.invoice_line_tax_id[0].
+                               description,)
+                    res.append(dic)
         return res
 
 report_sxw.report_sxw('report.line.report.suppliers',
                       'res.partner',
-                      'account_invoice_line_report_suppliers/report/line_report_suppliers.mako',
+                      'account_invoice_line_report_suppliers/report/'
+                      + 'line_report_suppliers.mako',
                       parser=line_report_suppliers)

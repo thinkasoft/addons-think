@@ -25,7 +25,7 @@
     'category': 'Contabilidad',
     'description': 'Incorpora las retenciones aplicadas a los trabajadores en\
     la generación del archivo xml de islr.',
-    'author': 'Hector Manuel',
+    'author': 'Ingenieria Thinkasoft de Venezuela',
     'depends': [
                 'l10n_ve_withholding_islr',
                 'hr_payroll',

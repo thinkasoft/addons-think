@@ -51,7 +51,7 @@
                             ${line.get('payslip_employeeid') or '' |entity}
                         </td>
                         <td style="text-align:left; font-size:80%;">
-                            ${line['payslip_name'] or '' |entity} 
+                            ${line['payslip_name'] or '' |entity}
                         </td>
                         <td style="text-align:right; font-size:80%;">
                             ${formatLang(line['amount']) or 0.0 |entity} Bs
@@ -60,7 +60,7 @@
                             ${formatLang(line['rpvh']) or 0.0 |entity} Bs
                         </td>
                         <td style="text-align:right; font-size:80%;">
-                            ${formatLang(line['faov']) or 0.0 |entity} Bs 
+                            ${formatLang(line['faov']) or 0.0 |entity} Bs
                         </td>
                         <td style="text-align:right; font-size:80%;">
                             ${formatLang(line['mount'], currency_obj = o.company_id and o.company_id.currency_id) or 0.0}
@@ -80,7 +80,7 @@
                 </tr>
             </tbody>
         </table>
-        <p style="page-break-after:always"></p>		
+        <p style="page-break-after:always"></p>
     %endfor
 </body>
 </html>

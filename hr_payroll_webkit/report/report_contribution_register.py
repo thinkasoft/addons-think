@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-############################################################################
+###########################################################################
+#    Copyright (C) 2015 thinkasoft , C.A. (www.thinkasoft.com)
+#    All Rights Reserved
+# ############## Credits ######################################################
+#    Developed by: thinkasoft , C.A.
+#    Coded by:  Aular Hector Manuel (aular.hector3@gmail.com)
+##############################################################################
+
 import time
 
 from datetime import datetime
@@ -83,10 +90,9 @@ class contribution_register_report(report_sxw.rml_parse):
             else:
                 dic = dict(
                     payslip_name=line.slip_id.employee_id.name_related,
-                    payslip_employeeid=
-                    line.slip_id.employee_id.identification_id,
-                    payslip_namerelated=
-                    line.slip_id.employee_id.name_related,
+                    payslip_employeeid=line.slip_id.employee_id.
+                    identification_id,
+                    payslip_namerelated=line.slip_id.employee_id.name_related,
                     amount=line.total,
                     rpvh=float(line.amount) / 100,
                     faov=float(line.amount) * 2 / 100,

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     retencion_municipal_inv for Openerp
+     Copyright (C) 2016 Hector Manuel Aular <aular.hector3@gmail.com>-->
+<openerp>
+    <data>
+        <!-- Report is inherited from l10n_ve_withholding_muni -->
+        <report
+            id="l10n_ve_withholding_muni.report_wh_muni"
+            model="account.wh.munici"
+            name="l10n_ve_withholding_muni.wh.muni.report"
+            string=" "
+            rml="retencion_municipal_invetran/views/wh_muni_report_invetran.rml"
+            />
+    </data>
+</openerp>

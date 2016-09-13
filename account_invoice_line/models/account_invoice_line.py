@@ -36,9 +36,9 @@ class Account_invoice_line(osv.osv):
     _inherit = 'account.invoice.line'
 
     _columns = {
-
-        'partner_other_id': fields.many2one('res.partner', 'Suppliers', store=True, help='List all existing customer'),
-
+        'partner_other_id': fields.many2one('res.partner', 'Suppliers',
+                                            store=True,
+                                            help='List all existing customer'),
     }
 
 Account_invoice_line()

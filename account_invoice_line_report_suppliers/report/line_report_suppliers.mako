@@ -4,21 +4,21 @@
         ${css}
     </style>
     <style type="text/css">
-        table.bottomBorder { 
-          border-collapse: collapse; 
+        table.bottomBorder {
+          border-collapse: collapse;
           }
-        table.bottomBorder td, 
-        table.bottomBorder th { 
-          border-bottom: 1px dotted black; 
-          padding:5px; 
+        table.bottomBorder td,
+        table.bottomBorder th {
+          border-bottom: 1px dotted black;
+          padding:5px;
           }
           .page-break {
                 page-break-after: always;
             }
          p.saltodepagina
-		    {
-		    page-break-after: always;
-		    }
+            {
+            page-break-after: always;
+            }
     </style>
 </head>
 <body>
@@ -34,7 +34,9 @@
                             </td>
                             <td style="line-height:8pt;">
                                 <FONT FACE="raro, courier" SIZE=5>${o.company_id.partner_id.name}</FONT><br/>
-                                <FONT FACE="raro, courier" SIZE=1>R.I.F: ${o.company_id.partner_id.vat[2:]}</FONT><br/>
+                                %if o.company_id.partner_id.vat != False:
+                                    <FONT FACE="raro, courier" SIZE=1>R.I.F: ${o.company_id.partner_id.vat[2:]}</FONT><br/>
+                                %endif
                                 <FONT FACE="raro, courier" SIZE=1>${o.company_id.street} ${o.company_id.street2}</FONT><br/>
                                 <FONT FACE="raro, courier" SIZE=1>${o.company_id.city} ${o.company_id.state_id.name} ${o.company_id.country_id.name}</FONT>
                             </td>
@@ -77,7 +79,7 @@
             <%total = iva_total = sub_total = 0%>
             <tbody >
                 %for line in (get_supplier_invoice_line(start_date, stop_date, o)):
-                    <%sub_total += line['sub_total']%>
+                    <% sub_total += line['sub_total'] %>
                     <%iva_total += line['sub_total']*line['iva_amount']%>
                     <%total += line['sub_total'] + (line['sub_total']*line['iva_amount'])%>
                     <tr>
@@ -86,8 +88,6 @@
                         <td style="text-align:left;"> ${line['quantity']} </td>
                         <td style="text-align:left;"> ${formatLang(line['price_unit'])} </td>
                         <td style="text-align:left;"> ${formatLang(line['sub_total'])} </td>
-                        <!-- TAX Amount * (1 + TAX.amount ) 
-                        <td style="text-align:left;"> ${formatLang(line['sub_total']*(1 + line['iva_amount']))} </td>-->
                     </tr>
                 %endfor
             </tbody>

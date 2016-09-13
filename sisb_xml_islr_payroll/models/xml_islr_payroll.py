@@ -139,7 +139,9 @@ class islr_xml_wh_doc(osv.osv):
                 for line in xml_lines:
                     partner_vat, control_number, porcent_rete, concept_code, \
                         invoice_number, base, inv_id = line
-                    fecha_contable_ai = datetime.datetime.strptime(obj_ai.browse(cr, uid, inv_id).date_invoice, "%Y-%m-%d").strftime("%d/%m/%Y")
+                    fecha_contable_ai = datetime.datetime.strptime(
+                        obj_ai.browse(cr, uid, inv_id).
+                        date_invoice, "%Y-%m-%d").strftime("%d/%m/%Y")
                     detalle = SubElement(root, "DetalleRetencion")
                     inv_num = invoice_number.replace("-", "")
                     con_num = control_number.replace("-", "").replace("/", "")

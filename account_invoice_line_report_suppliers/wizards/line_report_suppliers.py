@@ -28,7 +28,6 @@
 ##############################################################################
 
 import datetime
-import calendar
 from openerp.tools.translate import _
 from openerp.osv import osv
 
@@ -42,13 +41,13 @@ class line_report_suppliers(osv.osv_memory):
         """
             Gets the data in the view and validates if range is right
         """
-
-        datas = {
-            'ids': context.get('active_ids', []), # id the view current
-            'active_ids': context['active_ids'], # id the view current
-            'model': 'res.partner', # model current
-            'form': self.read(cr, uid, ids, [], context=context)[0] # Data of the view 
-        }
+        datas = dict(
+            ids=context.get('active_ids', []),  # id the view current
+            active_ids=context['active_ids'],  # id the view current
+            model='res.partner',  # model current
+            form=self.read(cr, uid, ids, [], context=context)[0]  # Data of the
+                                                                  # view
+        )
 
         # Gets field init_date and converted in Date format
         start_date = datetime.datetime.strptime(
@@ -69,7 +68,10 @@ class line_report_suppliers(osv.osv_memory):
         #   the range will not exceed one year
         #   Nota: works with leap-year
         if date_range.days < 1:
-            raise osv.except_osv(_('Incorrect range!'), _('Starting Date is greater than Ending Date!'))
+            raise osv.except_osv(
+                _('Incorrect range!'),
+                _('Starting Date is greater than Ending Date!')
+            )
 
         return {
             'type': 'ir.actions.report.xml',
