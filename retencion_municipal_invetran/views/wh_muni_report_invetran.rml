@@ -153,7 +153,7 @@
                     <para style="P8">Dirección Fiscal</para>
                 </td>
                 <td>
-                    <para style="P2">[[o.partner_id.id]]</para>
+                    <para style="P2">[[o.partner_id.street]]</para>
                 </td>
             </tr>
             <tr>
@@ -188,13 +188,13 @@
             <blockTable colWidths="55.0,70.0,80.0,70.0,70.0,70.0,70.0,100.0,50.0">
                 <tr>
                     <td> <para style="P20"><font face="Helvetica" size="9.0">[[ l.invoice_id.supplier_invoice_number ]]</font></para> </td>
-                    <td> <para style="P20">[[ l.invoice_id.number ]]</para> </td>
+                    <td> <para style="P20" alignment="CENTER">[[ l.invoice_id.nro_ctrl]]</para> </td>
                     <td> <para style="P20" alignment="RIGHT">[[ l.invoice_id.amount_total ]]</para> </td>
-                    <td> <para style="P20">[[ l.invoice_id.amount_untaxed ]]</para> </td>
-                    <td> <para style="P20">[[ l.wh_loc_rate ]]</para> </td>
-                    <td> <para style="P20">0,00</para> </td>
-                    <td> <para style="P20">[[ o.amount ]]</para> </td>
-                    <td> <para style="P20">[[ o.amount ]]</para> </td>
+                    <td> <para style="P20" alignment="RIGHT">[[ l.invoice_id.amount_untaxed ]]</para> </td>
+                    <td> <para style="P20" alignment="RIGHT">[[ l.wh_loc_rate ]]</para> </td>
+                    <td> <para style="P20" alignment="RIGHT">0,00</para> </td>
+                    <td> <para style="P20" alignment="RIGHT">[[ o.amount ]]</para> </td>
+                    <td> <para style="P20" alignment="RIGHT">[[ o.amount ]]</para> </td>
                     <td> <para style="P20"></para> </td>
                 </tr>
             </blockTable>
