@@ -8,8 +8,8 @@
         <report
             id="l10n_ve_withholding_muni.report_wh_muni"
             model="account.wh.munici"
-            name="l10n_ve_withholding_muni.wh.muni.report"
-            string=" "
+            name="wh.muni.report.invetran"
+            string="Invetran"
             rml="retencion_municipal_invetran/views/wh_muni_report_invetran.rml"
             />
     </data>

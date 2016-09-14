@@ -139,9 +139,7 @@
             <tr>
                 <td>
                     <para style="P1">
-                        <font face="Times-Roman" size="11.0">Razón Social</font>
-                        <font face="Times-Roman"/>
-                        <font face="Times-Roman"/>
+                        Razón Social
                     </para>
                 </td>
                 <td>
@@ -200,11 +198,18 @@
                 </tr>
             </blockTable>
         </section>
-        <blockTable rowHeights="2.70cm" colWidths="327.0,200.0" style="Tabla2">
+        <blockTable rowHeights="1.0cm"  colWidths="600.0">
+            <tr>
+                <td>
+                    <para style="P7" alignment="RIGHT">Unidad Tributaria:[[ get_atribute() ]]</para>
+                </td>
+            </tr>
+        </blockTable>
+        <blockTable rowHeights="2.20cm" colWidths="327.0,250.0" style="Tabla2">
             <tr>
                 <td>
                     <para style="P12">
-                        <font color="white"> </font>
+                        <font color="white"> </font> 
                     </para>
                 </td>
             </tr>
