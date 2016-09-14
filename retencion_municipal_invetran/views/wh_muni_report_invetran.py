@@ -2,11 +2,7 @@
 # Copyright 2016 Aular Hector Manuel <aular.hector3@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import time
 from openerp.report import report_sxw
-from openerp.osv import osv
-import openerp.pooler
-from openerp.tools.translate import _
 
 
 class wh_muni_report_invetran(report_sxw.rml_parse):
