@@ -83,18 +83,10 @@ class EmployeeExtendedReport(report_sxw.rml_parse):
                                  ('code', '=', '039'), ]
 
                     slip_line_ids = payslip_line_obj.search(self.cr, self.uid,
-<<<<<<< HEAD
-                                                            [('slip_id', 'in', slip_ids),
-                                                             '|', '|', '|', '|', ('code', '=', '001'), ('code', '=', '003'),
-                                                             ('code', '=', '002'), ('code', '=', '005'), ('code', '=', '039')
-                                                             ],
-                                                            order='code', context=False)
-=======
                                                             cond_line,
                                                             order='code',
                                                             context=False)
 
->>>>>>> 46a7e240001884dbe9519e2e057290d145ac33ed
             dic = {
                 'month': list_month_es[month - 1],
                 'basic': 0,
