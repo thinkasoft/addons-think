@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_contract_witholding
+#	* hr_contract_extended
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-11 16:54+0000\n"
-"PO-Revision-Date: 2016-10-11 16:54+0000\n"
+"POT-Creation-Date: 2016-10-11 18:32+0000\n"
+"PO-Revision-Date: 2016-10-11 18:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,61 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: hr_contract_witholding
-#: selection:hr.contract,cal_withol:0
-#: selection:hr.contract,lph_wh:0
-msgid "Biweekly"
-msgstr "Quincenales"
+#. module: hr_contract_extended
+#: model:ir.model,name:hr_contract_extended.model_hr_contract
+msgid "Employee Contract"
+msgstr "Contrato de empleado"
 
-#. module: hr_contract_witholding
-#: model:ir.model,name:hr_contract_witholding.model_hr_contract
-msgid "Contract"
-msgstr "Contratos"
+#. module: hr_contract_extended
+#: model:ir.model.fields,field_description:hr_contract_extended.field_hr_contract_average_wage
+msgid "Quaterage"
+msgstr "Sueldo trimestral"
 
-#. module: hr_contract_witholding
-#: model:ir.model.fields,field_description:hr_contract_witholding.field_hr_contract_inces_wh
-msgid "Inces wh"
-msgstr "Ret de INCES"
-
-#. module: hr_contract_witholding
-#: model:ir.model.fields,field_description:hr_contract_witholding.field_hr_contract_lph_wh
-msgid "Lph wh"
-msgstr "Ret Faov"
-
-#. module: hr_contract_witholding
-#: selection:hr.contract,cal_withol:0
-#: selection:hr.contract,lph_wh:0
-msgid "Monthly"
-msgstr "Mensuales"
-
-#. module: hr_contract_witholding
-#: model:ir.model.fields,field_description:hr_contract_witholding.field_hr_contract_mod_income_wh
-msgid "Perc Income wh"
-msgstr "Porc Ret de ISLR"
-
-#. module: hr_contract_witholding
-#: model:ir.model.fields,field_description:hr_contract_witholding.field_hr_contract_mod_ins_health_wh
-msgid "Perc Insurance health wh"
-msgstr "Monto ret seguro privado"
-
-#. module: hr_contract_witholding
-#: model:ir.model.fields,field_description:hr_contract_witholding.field_hr_contract_mod_saving_wh
-msgid "Perc Saving wh"
-msgstr "Porc Ret caja de ahorro"
-
-#. module: hr_contract_witholding
-#: selection:hr.contract,cal_withol:0
-#: selection:hr.contract,lph_wh:0
-msgid "Weekly"
-msgstr "Semanales"
-
-#. module: hr_contract_witholding
-#: model:ir.model.fields,field_description:hr_contract_witholding.field_hr_contract_cal_withol
-msgid "Withholding period"
-msgstr "Calculo de retención"
-
-#. module: hr_contract_witholding
-#: model:ir.ui.view,arch_db:hr_contract_witholding.view_hr_contract__withoulding_from
+#. module: hr_contract_extended
+#: model:ir.ui.view,arch_db:hr_contract_extended.view_hr_contract__withoulding_from
 msgid "Witholding"
 msgstr "Retenciones"
 

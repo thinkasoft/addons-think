@@ -2,7 +2,7 @@
 # Copyright 2016 Héctor Manuel Aular Osorio <aular.hector3@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
-    "name": "Hr contract witholding",
+    "name": "Retención y Sueldo Trimestra",
     "summary": "Agrega sección de retenciones en contratos",
     "version": "10.0",
     "category": "HR",
