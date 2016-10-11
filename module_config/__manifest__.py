@@ -18,6 +18,7 @@
         "hr",
         "hr_contract",
         "hr_payroll",
+        "l10n_ve",
         "sale",
         "purchase",
         "fleet",
