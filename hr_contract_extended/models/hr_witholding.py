@@ -11,12 +11,10 @@ class HrWitholding(models.Model):
 
     option = ('1', 'Weekly'), ('2', 'Biweekly'), ('3', 'Monthly')
 
-    nhs_wh = fields.Selection(option, 'NHS wh')
+    cal_withol = fields.Selection(option, 'Withholding period')
     lph_wh = fields.Selection(option, 'Lph wh')
-    ins_health_wh = fields.Selection(option, 'Insurance health wh')
-    saving_wh = fields.Selection(option, 'Saving wh ')
-    income_wh = fields.Selection(option, 'Income wh')
     mod_income_wh = fields.Float('Perc Income wh',)
     mod_ins_health_wh = fields.Float('Perc Insurance health wh')
     mod_saving_wh = fields.Float('Perc Saving wh')
     inces_wh = fields.Boolean('Inces wh')
+    average_wage = fields.Float('Quaterage')

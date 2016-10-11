@@ -9,10 +9,7 @@
                 <page string="Witholding">
                     <separator sting="Data" colspan="4"/>
                     <group col="4" >
-                                <field name="income_wh"/>
-                                <field name="ins_health_wh"/>
-                                <field name="saving_wh"/>
-                                <field name="nhs_wh"/>
+                                <field name="cal_withol"/>
                                 <field digits="(2, 2)" name="mod_income_wh"/>
                                 <field digits="(2, 2)" name="mod_ins_health_wh"/>
                                 <field digits="(2, 2)" name="mod_saving_wh"/>
@@ -20,6 +17,9 @@
                                 <field name="inces_wh"/>
                     </group>
                 </page>
+            </xpath>
+            <xpath expr="//field[@name='wage']" position="after">
+                <field name="average_wage"/>
             </xpath>
         </field>
     </record>
