@@ -17,6 +17,7 @@
         "account",
         "hr",
         "hr_contract",
+        "hr_payroll",
         "sale",
         "purchase",
         "fleet",
