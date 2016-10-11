@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Declarando vista hr.contract.withoulding. Hereda de vista hr.contract  -->
     <record id="view_hr_contract__withoulding_from" model="ir.ui.view">
         <field name="name">hr.contract.withoulding</field>
         <field name="model">hr.contract</field>
@@ -10,10 +11,9 @@
                     <separator sting="Data" colspan="4"/>
                     <group col="4" >
                                 <field name="cal_withol"/>
-                                <field digits="(2, 2)" name="mod_income_wh"/>
-                                <field digits="(2, 2)" name="mod_ins_health_wh"/>
-                                <field digits="(2, 2)" name="mod_saving_wh"/>
-                                <field name="lph_wh"/>
+                                <field name="mod_income_wh"/>
+                                <field name="mod_ins_health_wh"/>
+                                <field name="mod_saving_wh"/>
                                 <field name="inces_wh"/>
                     </group>
                 </page>

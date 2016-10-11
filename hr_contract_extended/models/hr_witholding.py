@@ -12,7 +12,6 @@ class HrWitholding(models.Model):
     option = ('1', 'Weekly'), ('2', 'Biweekly'), ('3', 'Monthly')
 
     cal_withol = fields.Selection(option, 'Withholding period')
-    lph_wh = fields.Selection(option, 'Lph wh')
     mod_income_wh = fields.Float('Perc Income wh',)
     mod_ins_health_wh = fields.Float('Perc Insurance health wh')
     mod_saving_wh = fields.Float('Perc Saving wh')
