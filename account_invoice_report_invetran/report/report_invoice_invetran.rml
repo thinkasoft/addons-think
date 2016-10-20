@@ -231,8 +231,8 @@
            </blockTable>
        </place>
 
-       <place x="17cm" y="6cm" width="3cm"  height="1cm">
-           <blockTable colWidths="3cm" style="Table11">
+       <place x="17cm" y="6cm" width="6cm"  height="1cm">
+           <blockTable colWidths="6cm" style="Table11">
                <tr>
                    <td>
                        <para style="titname" vAlign="BOTTOM">
@@ -255,8 +255,8 @@
            </blockTable>
        </place>
 
-       <place x="17cm" y="5cm" width="3cm"  height="1cm">
-           <blockTable colWidths="3cm" style="Table11">
+       <place x="17cm" y="5cm" width="6cm"  height="1cm">
+           <blockTable colWidths="6cm" style="Table11">
                <tr>
                    <td>
                        <para style="titname" vAlign="BOTTOM">
@@ -279,8 +279,8 @@
            </blockTable>
        </place>
 
-       <place x="17cm" y="4cm" width="3cm"  height="1cm">
-           <blockTable colWidths="3cm" style="Table11">
+       <place x="17cm" y="4cm" width="6cm"  height="1cm">
+           <blockTable colWidths="6cm" style="Table11">
                <tr>
                    <td>
                        <para style="titname" vAlign="BOTTOM">
