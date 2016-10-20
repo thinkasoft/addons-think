@@ -169,6 +169,13 @@
         <para style="P3">
             <font color="white"> </font>
         </para>
+        <blockTable rowHeights="1.0cm"  colWidths="600.0">
+            <tr>
+                <td>
+                    <para style="P7" alignment="RIGHT">Unidad Tributaria:[[ get_atribute() ]]</para>
+                </td>
+            </tr>
+        </blockTable>
         <blockTable rowHeights="1.00cm" colWidths="55.0,70.0,80.0,70.0,70.0,70.0,70.0,100.0,50.0" style="Table1">
             <tr>
                 <td> <para style="P20" alignment="CENTER">Numero de Factura</para> </td>
@@ -198,13 +205,6 @@
                 </tr>
             </blockTable>
         </section>
-        <blockTable rowHeights="1.0cm"  colWidths="600.0">
-            <tr>
-                <td>
-                    <para style="P7" alignment="RIGHT">Unidad Tributaria:[[ get_atribute() ]]</para>
-                </td>
-            </tr>
-        </blockTable>
         <blockTable rowHeights="2.20cm" colWidths="327.0,250.0" style="Tabla2">
             <tr>
                 <td>
