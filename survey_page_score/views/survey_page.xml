@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Base: Hector -->
+<odoo>
+    <record id="view_score_total_survey_form" model="ir.ui.view">
+        <field name="name">view.score.total.survey.form</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='question_ids']" position="after">
+                <field name="survey_page_score"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
